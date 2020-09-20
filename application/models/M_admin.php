@@ -1,5 +1,5 @@
 <?php 
-	class M_skripsi extends CI_Model{
+	class M_admin extends CI_Model{
 		public function tampilData(){
 			return $this->db->get('daftarta');
 		}

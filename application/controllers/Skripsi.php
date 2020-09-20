@@ -15,7 +15,7 @@
 		}
 
 		public function index(){
-			$data['skripsi'] = $this->m_skripsi->tampilData()->result();
+			$data['skripsi'] = $this->m_admin->tampilData()->result();
 			$this->load->view('template/header');
 			$this->load->view('template/sidebar');
 			$this->load->view('skripsi', $data);
@@ -42,8 +42,8 @@
 				'show' => $show
 			);
 
-			// $this->m_skripsi->simpanData($data);
-			if($this->m_skripsi->simpanData($data)){
+			// $this->m_admin->simpanData($data);
+			if($this->m_admin->simpanData($data)){
 				$this->session->set_flashdata('sukses_tambah','Dokumen Berhasil Disimpan');
 			}
 			else{
@@ -88,8 +88,8 @@
         }
         public function hapusAksi(){
         	$id = $this->input->get('id');
-			// $this->m_skripsi->hapusData($id);
-			if(!$this->m_skripsi->hapusData($id)){
+			// $this->m_admin->hapusData($id);
+			if(!$this->m_admin->hapusData($id)){
 				$this->session->set_flashdata('gagal_hapus','Dokumen Gagal dihapus!');
 			}
 			else{
@@ -110,8 +110,8 @@
 				'judul' => $judul,
 				'abstrak' => $abstrak,
 			);
-			// $this->m_skripsi->updateData($data,$id);
-			if(!$this->m_skripsi->updateData($data,$id)){
+			// $this->m_admin->updateData($data,$id);
+			if(!$this->m_admin->updateData($data,$id)){
 				$this->session->set_flashdata('gagal_edit','Dokumen Gagal di Update!');
 			}
 			else{
@@ -138,7 +138,7 @@
         	$kueri = $this->prep($kueri);
 
         	// step 2 mendapatkan dokumen ke array
-        	$query = $this->m_skripsi->doctoArray();
+        	$query = $this->m_admin->doctoArray();
         	$arrayDokumen = [];
         	foreach ($query->result_array() as $row) {
 				$arrayDoc = [
@@ -163,13 +163,13 @@
 				$data = array(
 					'bobot' => $bobot
 				);
-				$this->m_skripsi->updateBobot($data,$id);
+				$this->m_admin->updateBobot($data,$id);
 			}
         }
         public function search(){
 			$kueri = $this->input->post('query');
 			$this->processSearch($kueri);
-			$data['skripsi'] = $this->m_skripsi->tampilHasil()->result();
+			$data['skripsi'] = $this->m_admin->tampilHasil()->result();
 			$data['pencarian'] = $kueri;
 			$this->load->view('template/header',$data);
 			$this->load->view('template/sidebar');
@@ -194,8 +194,8 @@
 			$data = array(
 				'download' => $edit
 			);
-			// $this->m_skripsi->lock($data, $id);
-			if($this->m_skripsi->lock($data, $id)){
+			// $this->m_admin->lock($data, $id);
+			if($this->m_admin->lock($data, $id)){
 				$this->session->set_flashdata('sukses_lock','Dokumen berhasil di Lock/Unlock!');
 			}else{
 				$this->session->set_flashdata('gagal_lock','Dokumen Gagal di Lock/Unlock!');
@@ -219,8 +219,8 @@
 			$data = array(
 				'show' => $edit
 			);
-			// $this->m_skripsi->show($data, $id);
-			if($this->m_skripsi->show($data, $id)){
+			// $this->m_admin->show($data, $id);
+			if($this->m_admin->show($data, $id)){
 				$this->session->set_flashdata('sukses_show','Dokumen berhasil di Seen/Unseen!');
 			}else{
 				$this->session->set_flashdata('gagal_show','Dokumen gagal di Seen/Unseen!');

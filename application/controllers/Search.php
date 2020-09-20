@@ -20,7 +20,7 @@ class Search extends CI_Controller
         $kueri = $this->prep($kueri);
 
         // step 2 mendapatkan dokumen ke array
-        $query = $this->m_skripsi->doctoArray();
+        $query = $this->m_admin->doctoArray();
         $arrayDokumen = [];
         foreach ($query->result_array() as $row) {
             $arrayDoc = [
@@ -42,13 +42,13 @@ class Search extends CI_Controller
             $data = array(
                 'bobot' => $bobot
             );
-            $this->m_skripsi->updateBobot($data,$id);
+            $this->m_admin->updateBobot($data,$id);
         }
     }
     public function cari(){
         $kueri = $this->input->get('query');
         $this->processSearch($kueri);
-        $data['skripsi'] = $this->m_skripsi->tampilHasil()->result();
+        $data['skripsi'] = $this->m_admin->tampilHasil()->result();
         $data['pencarian'] = $kueri;
         $this->load->view('template/s_header');
         $this->load->view('s_hasilPencarian', $data);

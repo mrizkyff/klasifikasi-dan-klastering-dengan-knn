@@ -14,7 +14,7 @@
                         // $('#alert_login').removeClass('alert-danger');
                         // $('#alert_login').addClass('alert-success');
                         // $('#message_login').text('Berhasil Login!');
-                        window.location.href = "<? base_url('admin') ?>";
+                        window.location.assign("<?php echo base_url('admin');?>");
                     }
                     else{
                         $('#alert_login').removeClass('alert-success');
