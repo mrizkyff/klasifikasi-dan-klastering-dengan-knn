@@ -7,38 +7,34 @@
         }
 
         function index(){
-            $this->load->view('v_login');
+            $this->load->view('admin/login_page');
+            $this->load->view('admin/scripts/login');
         }
 
-        function aksi_login(){
+        function authorize(){
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            $where = array(
+            $data = array(
                 'username' => $username,
                 'password' => $password
             );
 
-            $cek = $this->m_login->cek_login("admin",$where)->num_rows();
-            if($cek > 0){
+            $cek = $this->m_login->cek_login($data)->num_rows();
+            $level = $this->m_login->cek_level($data);
 
-                $data_session = array(
-                    'nama' => $username,
-                    'status' => "login"
-                );
+            $data_session = array(
+                'nama' => $username,
+                'status' => "login",
+            );
 
-                $this->session->set_userdata($data_session);
+            $this->session->set_userdata($data_session);
 
-                redirect(base_url("index.php/skripsi"));
-
-            }
-            else{
-                echo "Username dan password salah!";
-            }
+            echo json_encode($cek);
         }
 
         function logout(){
             $this->session->sess_destroy();
-            redirect(base_url("index.php/login"));
+            redirect(base_url("login"));
         }
     }
     
