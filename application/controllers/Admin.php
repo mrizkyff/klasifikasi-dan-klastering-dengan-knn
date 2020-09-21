@@ -27,6 +27,22 @@ class Admin extends CI_Controller {
 		// load js script
 
 	}
+
+	public function update_data(){
+		$data = $this->input->post();
+		$id = $data['id'];
+		$data = array(
+			'penulis' => $data['penulis'],
+			'tahun' => $data['tahun'],
+			'label' => $data['jurusan'],
+			'judul' => $data['judul'],
+			'abstrak' => $data['abstrak'],
+		);
+		$data = $this->admin->updateData($data,$id);
+		echo json_encode($data);
+	}
+
+	// method dumper
 	public function h(){
 		$this->load->view('index_dump');
 		

@@ -134,45 +134,47 @@
 
 
 <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Kelola Database Repository</h3>
-              <button class="btn btn-primary" data-toggle="modal" data-target="#tambahData" style="float: right;"><i class="fa fa-plus"></i>Tambah Dokumen ke Repository</button>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="tabel_data_dashboard" class="table table-striped table-bordered">
+  <div class="card-header">
+    <h3 class="card-title">Kelola Database Repository</h3>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#tambahData" style="float: right;"><i class="fa fa-plus"></i>Tambah Dokumen ke Repository</button>
+  </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="tabel_data_dashboard" class="table table-striped table-bordered">
 
-                  <thead>
-                      <tr>
-                          <th>No.</th>
-                          <!-- <th>No</th> -->
-                          <th>Penulis</th>
-                          <th>Tahun</th>
-                          <th>Judul</th>
-                          <th>Abstrak</th>
-                          <th width='200px'>Aksi</th>
-                      </tr>
-                  </thead>
+          <thead>
+              <tr>
+                  <th>No.</th>
+                  <!-- <th>No</th> -->
+                  <th>Penulis</th>
+                  <th>Tahun</th>
+                  <th>Judul</th>
+                  <th>Jurusan</th>
+                  <th>Abstrak</th>
+                  <th width='200px'>Aksi</th>
+              </tr>
+          </thead>
 
 
-                  <tfoot>
-                      <tr>
-                          <th>No.</th>
-                          <!-- <th>No</th> -->
-                          <th>Penulis</th>
-                          <th>Tahun</th>
-                          <th>Judul</th>
-                          <th>Abstrak</th>
-                          <th width='200px'>Aksi</th>
-                      </tr>
-                  </tfoot>
+          <tfoot>
+              <tr>
+                  <th>No.</th>
+                  <!-- <th>No</th> -->
+                  <th>Penulis</th>
+                  <th>Tahun</th>
+                  <th>Judul</th>
+                  <th>Jurusan</th>
+                  <th>Abstrak</th>
+                  <th width='200px'>Aksi</th>
+              </tr>
+          </tfoot>
 
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+  </div>
 </div>
 
 
@@ -222,8 +224,55 @@
     </div>
   </div>
 </div>
-
-
 </div>
+
+<!-- Modal Edit Data-->
+<div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="form_update">
+            <div class="form-group">
+                <label for="penulis">Penulis</label>
+                <input type="text" name="penulis" placeholder="Penulis" class="form-control">
+                <input type="hidden" name="id" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="tahun">Tahun</label>
+                <input type="text" name="tahun" placeholder="Tahun" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="judul">Judul</label>
+                <input type="text" name="judul" placeholder="Judul" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="abstrak">Abstrak</label>
+                <textarea name="abstrak" id="" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="jurusan">Penjurusan</label>
+                <select name="jurusan" id="jurusan" class="form-control">
+                  <option value="">Pilih...</option>
+                  <option value="SC">Sistem Cerdas</option>
+                  <option value="RPL">Rekayasa Perangkat Lunak</option>
+                </select>
+            </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" id="btn_update" value="Simpan" class="btn btn-primary">
+    </div>
+    </form>
+    </div>
+</div>
+</div>
+<!-- akhir modal edit data -->
 
 
