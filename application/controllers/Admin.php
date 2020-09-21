@@ -23,7 +23,7 @@ class Admin extends CI_Controller {
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('admin/dashboard');
 		$this->load->view('template/admin/footer');
-		// $this->load->view('admin/scripts/dashboard');
+		$this->load->view('admin/scripts/dashboard');
 		// load js script
 
 	}

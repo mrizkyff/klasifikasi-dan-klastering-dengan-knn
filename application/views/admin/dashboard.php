@@ -144,25 +144,26 @@
 
                   <thead>
                       <tr>
-                          <!-- <th>No.</th> -->
+                          <th>No.</th>
                           <!-- <th>No</th> -->
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
                           <th>Abstrak</th>
-                          <!-- <th width='200px'>Aksi</th> -->
+                          <th width='200px'>Aksi</th>
                       </tr>
                   </thead>
 
 
                   <tfoot>
                       <tr>
-                          <!-- <th>No.</th> -->
+                          <th>No.</th>
                           <!-- <th>No</th> -->
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
                           <th>Abstrak</th>
+                          <th width='200px'>Aksi</th>
                       </tr>
                   </tfoot>
 

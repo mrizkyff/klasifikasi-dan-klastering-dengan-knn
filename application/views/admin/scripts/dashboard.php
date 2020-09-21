@@ -28,7 +28,7 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "<?php echo base_url('admin/json')?>", "type": "POST"},
+                    ajax: {"url": "json", "type": "POST"},
                     columns: [
                         {
                             "data": "id",
@@ -37,9 +37,11 @@
                         {"data": "penulis"},
                         {"data": "tahun"},
                         {"data": "judul"},
-                        {"data": "abstrak"}
+                        {"data": "abstrak"},
+                        {"data": "aksi"}
                     ],
-                    order: [[1, 'asc']],
+                    // order menurut urutan kolom
+                    order: [[2, 'desc']],
                     rowCallback: function(row, data, iDisplayIndex) {
                         var info = this.fnPagingInfo();
                         var page = info.iPage;

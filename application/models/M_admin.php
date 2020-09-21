@@ -6,8 +6,11 @@
 		}
 
 		function json() {
-			$this->datatables->select('*');
+			// jangan pakai bintang nanti tidak bisa search
+			$this->datatables->select('id, penulis, tahun, judul, abstrak');
 			$this->datatables->from('daftarta');
+			$this->datatables->add_column('aksi', '<a class="btn-info btn-sm" href="javascript:;">edit</a> | <a class="btn-danger btn-sm" href="world/delete/$1">delete</a>', 'ID');
+			// $this->datatables->add_column('aksi','<a href="javascript:;" class="btn btn-info btn-xs item_edit">Edit</a>');
 			return $this->datatables->generate();
 		}		
 		public function tampilData(){
