@@ -12,12 +12,23 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	function json() {
+        header('Content-Type: application/json');
+        echo $this->admin->json();
+    }
+
 	public function index(){
-		$data['data_skripsi'] = $this->admin->tampilData()->result();
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar');
-		$this->load->view('admin/dashboard', $data);
-		$this->load->view('template/footer');
+		// $data['data_skripsi'] = $this->admin->tampilData();
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('admin/dashboard');
+		$this->load->view('template/admin/footer');
+		// $this->load->view('admin/scripts/dashboard');
 		// load js script
+
+	}
+	public function h(){
+		$this->load->view('index_dump');
+		
 	}
 }

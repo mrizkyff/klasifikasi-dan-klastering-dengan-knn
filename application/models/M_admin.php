@@ -1,7 +1,18 @@
 <?php 
 	class M_admin extends CI_Model{
+
+		public function __construct(){
+			parent::__construct();
+		}
+
+		function json() {
+			$this->datatables->select('*');
+			$this->datatables->from('daftarta');
+			return $this->datatables->generate();
+		}		
 		public function tampilData(){
-			return $this->db->get('daftarta');
+			$this->db->order_by('tahun','DESC');
+			return $this->db->get('daftarta')->result();
 		}
 		public function simpanData($data){
 			return $this->db->insert('daftarta', $data);	
