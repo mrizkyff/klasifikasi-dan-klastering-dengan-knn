@@ -107,14 +107,15 @@
         // aksiHapus
         $('#btn_hapus').click(function (e) { 
             e.preventDefault();
-            var id = $('#id_hapus').val();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('admin/hapus_data')?>",
-                data: "{id:id}",
+                data: $('#form_hapus').serialize(),
                 dataType: "JSON",
                 success: function (response) {
-                    console.log(response);
+                    alert('Record data berhasil dihapus!');
+                    $('#modal_hapus').modal('hide');
+                    $('#tabel_data_dashboard').DataTable().ajax.reload();
                 }
             });
         });

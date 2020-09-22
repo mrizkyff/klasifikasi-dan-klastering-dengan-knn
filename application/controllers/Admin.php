@@ -42,6 +42,12 @@ class Admin extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function hapus_data(){
+		$id = $this->input->post('id_hapus');
+		$data = $this->admin->hapusData($id);
+		echo json_encode($data);
+	}
+
 	// method dumper
 	public function h(){
 		$this->load->view('index_dump');

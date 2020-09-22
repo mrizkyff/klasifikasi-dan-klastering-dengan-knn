@@ -275,4 +275,29 @@
 </div>
 <!-- akhir modal edit data -->
 
+<!-- modal hapus data -->
+<div class="modal fade" id="modal_hapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus Dokumen?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form id="form_hapus">
+        <input type="hidden" name="id_hapus" id="id_hapus">
+        <div id="div_hapus"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="btn_hapus" class="btn btn-danger">Hapus</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- akhir modal hapus data -->
+
 

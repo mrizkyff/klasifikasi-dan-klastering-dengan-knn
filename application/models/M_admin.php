@@ -5,18 +5,19 @@
 			parent::__construct();
 		}
 
+		// untuk menampilkan data ke dtatables
 		function json() {
 			// jangan pakai bintang nanti tidak bisa search
 			$this->datatables->select('id, penulis, tahun, judul, abstrak, label');
 			$this->datatables->from('daftarta_label');
-			$this->datatables->add_column('aksi', '<a href="javascript:void(0);" class="edit_record btn-info btn-sm" data-id="$1" data-penulis="$2" data-tahun="$3" data-judul="$4" data-abstrak="$5" data-label="$6">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn-danger btn-sm" data-id="$1">Hapus</a>','id, penulis, tahun, judul, abstrak, label');
+			$this->datatables->add_column('aksi', '<a href="javascript:void(0);" class="edit_record btn-info btn-sm" data-id="$1" data-penulis="$2" data-tahun="$3" data-judul="$4" data-abstrak="$5" data-label="$6">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn-danger btn-sm" data-id="$1" data-judul="$4">Hapus</a>','id, penulis, tahun, judul, abstrak, label');
 
 			return $this->datatables->generate();
 		}		
-		public function tampilData(){
-			$this->db->order_by('tahun','DESC');
-			return $this->db->get('daftarta_label')->result();
-		}
+		// public function tampilData(){
+		// 	$this->db->order_by('tahun','DESC');
+		// 	return $this->db->get('daftarta_label')->result();
+		// }
 		public function simpanData($data){
 			return $this->db->insert('daftarta_label', $data);	
 		}
