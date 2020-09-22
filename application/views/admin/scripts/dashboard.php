@@ -28,7 +28,7 @@
             },
             processing: true,
             serverSide: true,
-            ajax: {"url": "json", "type": "POST"},
+            ajax: {"url": "<?php echo base_url('admin/json')?>", "type": "POST"},
             columns: [
                 {
                     "data": "id",
@@ -84,6 +84,18 @@
                 }
             });
         })
+
+        // getHapus
+        // $('#tabel_data_dashboard').on('click','.hapus_record', function(){
+        //     var id = $(this).data('id');
+        //     var judul = $(this).data('judul');
+        //     $('#modal_hapus').modal('show');
+        //     $('#hapus_judul').text('Yakin untuk menghapus dokumen dengan judul '+judul+'?');
+        //     $('[name = id_hapus]').val(id);
+        // })
+
+
+
     });
 
 
