@@ -18,13 +18,11 @@ class Admin extends CI_Controller {
     }
 
 	public function index(){
-		// $data['data_skripsi'] = $this->admin->tampilData();
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('admin/dashboard');
 		$this->load->view('template/admin/footer');
 		$this->load->view('admin/scripts/dashboard');
-		// load js script
 
 	}
 
