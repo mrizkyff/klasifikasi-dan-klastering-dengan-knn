@@ -48,9 +48,45 @@ class Admin extends CI_Controller {
 		echo json_encode($data);
 	}
 
+
+	function do_upload(){
+		$config['upload_path']          = './upload/';
+		$config['allowed_types']        = 'pdf';
+		$config['encrypt_name'] 		= TRUE;
+		
+		$this->load->library('upload',$config);
+		if($this->upload->do_upload("file")){
+			$data = array('upload_data' => $this->upload->data());
+			$nama_file = $data['upload_data']['file_name'];
+
+			$penulis = $this->input->post('penulis');
+			$tahun = $this->input->post('tahun');
+			$judul = $this->input->post('judul');
+			$abstrak = $this->input->post('abstrak');
+			$jurusan = $this->input->post('jurusan');
+
+			$data = array(
+				'penulis' => $penulis,
+				'tahun' => $tahun,
+				'judul' => $judul,
+				'label' => $jurusan,
+				'abstrak' => $abstrak,
+				'file' => $nama_file,
+			);
+
+			$result = $this->admin->simpanData($data);
+			echo json_encode($result);
+		}
+		
+	}
 	// method dumper
 	public function h(){
 		$this->load->view('index_dump');
 		
+	}
+	public function i(){
+		var_dump($this->input->post());
+		// var_dump($this->input->file());
+		echo json_encode();
 	}
 }

@@ -120,6 +120,34 @@
             });
         });
 
+        // getCreate
+        $('#btn_create').click(function (e) { 
+            e.preventDefault();
+            $('#modal_tambah').modal('show');
+        });
+
+        // aksiCreate
+        $('#form_create').submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('admin/do_upload')?>",
+                data: new FormData(this),
+                processData:false,
+                contentType:false,
+                success: function (response) {
+                    alert('Dokumen berhasil ditambahkan!');
+                    $('#modal_tambah').modal('hide');
+                    $('[name= penulis]').val("");
+                    $('[name= tahun]').val("");
+                    $('[name= judul]').val("");
+                    $('[name= abstrak]').val("");
+                    $('[name= jurusan]').val("");
+                    $('[name= file]').val("");
+                    $('#tabel_data_dashboard').DataTable().ajax.reload();
+                }
+            });
+        })
 
 
     });

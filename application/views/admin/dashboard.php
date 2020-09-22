@@ -136,7 +136,7 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Kelola Database Repository</h3>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#tambahData" style="float: right;"><i class="fa fa-plus"></i>Tambah Dokumen ke Repository</button>
+    <button class="btn btn-primary" style="float: right;" id="btn_create"><i class="fa fa-plus"></i>Tambah Dokumen ke Repository</button>
   </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -182,7 +182,7 @@
 
 
 <!-- Modal tambah data-->
-<div class="modal fade" id="tambahData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -192,8 +192,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <form action="<?php echo base_url().'skripsi/do_upload' ?>" method="POST" enctype="multipart/form-data"> -->
-        	<?php echo form_open_multipart('skripsi/do_upload') ?>
+        <form id="form_create">
             <div class="form-group">
                 <label for="penulis">Penulis</label>
                 <input type="text" name="penulis" placeholder="Penulis" class="form-control">
@@ -208,23 +207,32 @@
             </div>
             <div class="form-group">
                 <label for="abstrak">Abstrak</label>
-                <textarea name="abstrak" id="" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
+                <textarea name="abstrak" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
             </div>
             <div class="form-group">
-                <label for="file">File (PDF) :</label>
-                <input type="file" name="fileupload">
+                <label for="jurusan">Penjurusan</label>
+                <select name="jurusan" class="form-control">
+                  <option value="">Pilih...</option>
+                  <option value="SC">Sistem Cerdas</option>
+                  <option value="RPL">Rekayasa Perangkat Lunak</option>
+                </select>
+            </div>
+                <label for="file">Upload File</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="file">
+                <label for="file" class="custom-file-label">.pdf</label>
             </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <input type="submit" name="upload" value="Simpan" class="btn btn-primary">
       </div>
-      <?php echo form_close() ?>
-      <!-- </form> -->
+      </form>
     </div>
   </div>
 </div>
 </div>
+<!-- akhir modal tambah data -->
 
 <!-- Modal Edit Data-->
 <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -253,11 +261,11 @@
             </div>
             <div class="form-group">
                 <label for="abstrak">Abstrak</label>
-                <textarea name="abstrak" id="" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
+                <textarea name="abstrak" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label for="jurusan">Penjurusan</label>
-                <select name="jurusan" id="jurusan" class="form-control">
+                <select name="jurusan" class="form-control">
                   <option value="">Pilih...</option>
                   <option value="SC">Sistem Cerdas</option>
                   <option value="RPL">Rekayasa Perangkat Lunak</option>
