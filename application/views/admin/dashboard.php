@@ -3,115 +3,10 @@
 
 
     <!-- notifiaksi -->
-        <!-- tambah -->
-          <?php if($this->session->flashdata('sukses_tambah') ==  TRUE){ ?>
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><p><?php echo $this->session->flashdata('sukses_tambah') ?></p></strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-          <?php }
-          else if($this->session->flashdata('gagal_tambah') ==  TRUE){
-          ?>
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong><p><?php echo $this->session->flashdata('gagal_tambah') ?></p></strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <?php
-          }
-          ?>
-        <!-- /.tambah -->
-
-        <!-- edit -->
-          <?php if($this->session->flashdata('sukses_edit') ==  TRUE){ ?>
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                  <strong><p><?php echo $this->session->flashdata('sukses_edit') ?></p></strong>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-            <?php }
-            else if($this->session->flashdata('gagal_edit') ==  TRUE){
-            ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong><p><?php echo $this->session->flashdata('gagal_edit') ?></p></strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <?php
-            }
-            ?>
-        <!-- /.edit -->
-
-        <!-- hapus -->
-          <?php if($this->session->flashdata('sukses_hapus') ==  TRUE){ ?>
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                  <strong><p><?php echo $this->session->flashdata('sukses_hapus') ?></p></strong>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-            <?php }
-            else if($this->session->flashdata('gagal_hapus') ==  TRUE){
-            ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong><p><?php echo $this->session->flashdata('gagal_hapus') ?></p></strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <?php
-            }
-            ?>
-        <!-- /.hapus -->
-
-        <!-- lock -->
-        <?php if($this->session->flashdata('sukses_lock') ==  TRUE){ ?>
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                  <strong><p><?php echo $this->session->flashdata('sukses_lock') ?></p></strong>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-            <?php }
-            else if($this->session->flashdata('gagal_lock') ==  TRUE){
-            ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong><p><?php echo $this->session->flashdata('gagal_lock') ?></p></strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <?php
-            }
-            ?>
-        <!-- /.lock -->
-
-        <!-- show -->
-          <?php if($this->session->flashdata('sukses_show') ==  TRUE){ ?>
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                  <strong><p><?php echo $this->session->flashdata('sukses_show') ?></p></strong>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-            <?php }
-            else if($this->session->flashdata('gagal_show') ==  TRUE){
-            ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong><p><?php echo $this->session->flashdata('gagal_show') ?></p></strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <?php
-            }
-            ?>
-        <!-- /.show -->
+    <div class="alert alert-success" role="alert" id="dashboard_alert_sukses">
+    </div>
+    <div class="alert alert-danger" role="alert" id="dashboard_alert_gagal">
+    </div>
     <!-- akhir notifikasi -->
 
     <!-- Content Header (Page header) -->
@@ -137,7 +32,7 @@
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">Kelola Database Repository</h3>
-      <button class="btn btn-primary" style="float: right;" id="btn_create"><i class="fa fa-plus"></i>Tambah Dokumen ke Repository</button>
+      <button class="btn btn-primary" style="float: right;" id="btn_create"><i class="fa fa-plus"></i> Tambah Dokumen ke Repository</button>
     </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -150,9 +45,8 @@
                           <th width="10%">Penulis</th>
                           <th>Tahun</th>
                           <th width="17%">Judul</th>
-                          <th width="10%">Jurusan</th>
                           <th>Abstrak</th>
-                          <th width='10%'>Aksi</th>
+                          <th width='11%'>Aksi</th>
                       </tr>
                   </thead>
 
@@ -164,7 +58,6 @@
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
-                          <th>Jurusan</th>
                           <th>Abstrak</th>
                           <th>Aksi</th>
                       </tr>

@@ -1,5 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#dashboard_alert_sukses').hide();
+        $('#dashboard_alert_gagal').hide();
         $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
         {
             return {
@@ -37,14 +39,6 @@
                 {"data": "penulis"},
                 {"data": "tahun"},
                 {"data": "title"},
-                {"data": "label", render: function(data){
-                    if(data == 'SC'){
-                        return '<h5><span class="badge badge-dark">Sistem Cerdas</span></h5>'
-                    }
-                    else{
-                        return '<h5><span class="badge badge-secondary">Rekayasa Perangkat Lunak</span></h5>'
-                    }
-                }},
                 {"data": "abstract"},
                 {"data": "aksi"}
             ],
@@ -89,7 +83,7 @@
                 data: $('#form_update').serialize(),
                 dataType: "JSON",
                 success: function (response) {
-                    alert('Record data berhasil diupdate!');
+                    // alert('Record data berhasil diupdate!');
                     $('[name = id]').val();
                     $('[name = penulis]').val();
                     $('[name = tahun]').val();
@@ -98,6 +92,26 @@
                     $('[name = jurusan]').val();
                     $('#modal_edit').modal('hide');
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
+
+                    // munculkan alert di dashboard
+                    if(response){
+                        $('#dashboard_alert_sukses').html('<strong>Data berhasil diperbarui!</strong>');
+                        $("#dashboard_alert_sukses").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_sukses").slideUp(500);
+                        });
+                    }
+                    else{
+                        $('#dashboard_alert_gagal').html('<strong>Data gagal diperbarui!</strong>');
+                        $("#dashboard_alert_gagal").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_gagal").slideUp(500);
+                        });
+                    }
+                },
+                error: function(response){
+                    $('#dashboard_alert_gagal').html('<strong>Data gagal diperbarui!</strong>');
+                    $("#dashboard_alert_gagal").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_gagal").slideUp(500);
+                        });
                 }
             });
         })
@@ -120,9 +134,28 @@
                 data: $('#form_hapus').serialize(),
                 dataType: "JSON",
                 success: function (response) {
-                    alert('Record data berhasil dihapus!');
+                    // alert('Record data berhasil dihapus!');
                     $('#modal_hapus').modal('hide');
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
+                    // munculkan alert di dashboard
+                    if(response){
+                        $('#dashboard_alert_sukses').html('<strong>Data berhasil dihapus!</strong>');
+                        $("#dashboard_alert_sukses").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_sukses").slideUp(500);
+                        });
+                    }
+                    else{
+                        $('#dashboard_alert_gagal').html('<strong>Data gagal dihapus!</strong>');
+                        $("#dashboard_alert_gagal").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_gagal").slideUp(500);
+                        });
+                    }
+                },
+                error: function(response){
+                    $('#dashboard_alert_gagal').html('<strong>Data gagal dihapus!</strong>');
+                    $("#dashboard_alert_gagal").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_gagal").slideUp(500);
+                        });
                 }
             });
         });
@@ -143,7 +176,7 @@
                 processData:false,
                 contentType:false,
                 success: function (response) {
-                    alert('Dokumen berhasil ditambahkan!');
+                    // alert('Dokumen berhasil ditambahkan!');
                     $('#modal_tambah').modal('hide');
                     $('[name= penulis]').val("");
                     $('[name= tahun]').val("");
@@ -152,6 +185,25 @@
                     $('[name= jurusan]').val("");
                     $('[name= file]').val("");
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
+
+                    if(response){
+                        $('#dashboard_alert_sukses').html('<strong>Data berhasil ditambahkan!</strong>');
+                        $("#dashboard_alert_sukses").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_sukses").slideUp(500);
+                        });
+                    }
+                    else{
+                        $('#dashboard_alert_gagal').html('<strong>Data gagal ditambahkan!</strong>');
+                        $("#dashboard_alert_gagal").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_gagal").slideUp(500);
+                        });
+                    }
+                },
+                error: function(response){
+                    $('#dashboard_alert_gagal').html('<strong>Data gagal ditambahkan!</strong>');
+                    $("#dashboard_alert_gagal").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#dashboard_alert_gagal").slideUp(500);
+                        });
                 }
             });
         })
