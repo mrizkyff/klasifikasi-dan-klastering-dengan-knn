@@ -36,9 +36,16 @@
                 },
                 {"data": "penulis"},
                 {"data": "tahun"},
-                {"data": "judul"},
-                {"data": "label"},
-                {"data": "abstrak"},
+                {"data": "title"},
+                {"data": "label", render: function(data){
+                    if(data == 'SC'){
+                        return '<h5><span class="badge badge-dark">Sistem Cerdas</span></h5>'
+                    }
+                    else{
+                        return '<h5><span class="badge badge-secondary">Rekayasa Perangkat Lunak</span></h5>'
+                    }
+                }},
+                {"data": "abstract"},
                 {"data": "aksi"}
             ],
             // order menurut urutan kolom

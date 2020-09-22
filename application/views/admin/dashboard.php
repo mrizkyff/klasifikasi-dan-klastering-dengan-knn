@@ -132,50 +132,54 @@
     </div>
 <!-- akhir judul halaman -->
 
-
-<div class="card">
-  <div class="card-header">
-    <h3 class="card-title">Kelola Database Repository</h3>
-    <button class="btn btn-primary" style="float: right;" id="btn_create"><i class="fa fa-plus"></i>Tambah Dokumen ke Repository</button>
-  </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      <table id="tabel_data_dashboard" class="table table-striped table-bordered">
-
-          <thead>
-              <tr>
-                  <th>No.</th>
-                  <!-- <th>No</th> -->
-                  <th>Penulis</th>
-                  <th>Tahun</th>
-                  <th>Judul</th>
-                  <th>Jurusan</th>
-                  <th>Abstrak</th>
-                  <th width='200px'>Aksi</th>
-              </tr>
-          </thead>
-
-
-          <tfoot>
-              <tr>
-                  <th>No.</th>
-                  <!-- <th>No</th> -->
-                  <th>Penulis</th>
-                  <th>Tahun</th>
-                  <th>Judul</th>
-                  <th>Jurusan</th>
-                  <th>Abstrak</th>
-                  <th width='200px'>Aksi</th>
-              </tr>
-          </tfoot>
-
-      </table>
+<!-- tabel utama Dashboard -->
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Kelola Database Repository</h3>
+      <button class="btn btn-primary" style="float: right;" id="btn_create"><i class="fa fa-plus"></i>Tambah Dokumen ke Repository</button>
     </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
+      <!-- /.card-header -->
+      <div class="card-body">
+            <div class="table-responsive">
+              <table id="tabel_data_dashboard" class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                          <th>No.</th>
+                          <!-- <th>No</th> -->
+                          <th width="10%">Penulis</th>
+                          <th>Tahun</th>
+                          <th width="17%">Judul</th>
+                          <th width="10%">Jurusan</th>
+                          <th>Abstrak</th>
+                          <th width='10%'>Aksi</th>
+                      </tr>
+                  </thead>
+
+
+                  <tfoot>
+                      <tr>
+                          <th>No.</th>
+                          <!-- <th>No</th> -->
+                          <th>Penulis</th>
+                          <th>Tahun</th>
+                          <th>Judul</th>
+                          <th>Jurusan</th>
+                          <th>Abstrak</th>
+                          <th>Aksi</th>
+                      </tr>
+                  </tfoot>
+
+              </table>
+          </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+    </div>
   </div>
 </div>
+<!-- tabel utama Dashboard -->
 
 
 
