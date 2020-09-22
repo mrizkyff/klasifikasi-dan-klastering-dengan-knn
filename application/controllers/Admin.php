@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Camspiers\StatisticalClassifier\Classifier\ComplementNaiveBayes;
+use Camspiers\StatisticalClassifier\DataSource\DataArray;
+
 class Admin extends CI_Controller {
 
 	function __construct(){
@@ -61,13 +64,22 @@ class Admin extends CI_Controller {
 			$tahun = $this->input->post('tahun');
 			$judul = $this->input->post('judul');
 			$abstrak = $this->input->post('abstrak');
-			$jurusan = $this->input->post('jurusan');
+
+			// klasifikasi otomatis judul dengan NBC
+			$data = $this->admin->getAllData();
+			$source = new DataArray();
+			$classifier = new ComplementNaiveBayes($source);
+			foreach ($data as $dt){
+				// train data
+				$source->addDocument($dt['label'], $dt['judul']);
+			}
+			$label = $classifier->classify($judul);
 
 			$data = array(
 				'penulis' => $penulis,
 				'tahun' => $tahun,
 				'judul' => $judul,
-				'label' => $jurusan,
+				'label' => $label,
 				'abstrak' => $abstrak,
 				'file' => $nama_file,
 			);
@@ -83,8 +95,16 @@ class Admin extends CI_Controller {
 		
 	}
 	public function i(){
-		var_dump($this->input->post());
-		// var_dump($this->input->file());
-		echo json_encode();
+		$data = $this->admin->getAllData();
+		
+		$source = new DataArray();
+
+		$classifier = new ComplementNaiveBayes($source);
+		foreach ($data as $dt){
+			// train data
+			$source->addDocument($dt['label'], $dt['judul']);
+		}
+		// testing
+		echo $classifier->classify('rancang bangun sistem informasi perangkat lunak dengan naive bayes berbasis web'); 
 	}
 }

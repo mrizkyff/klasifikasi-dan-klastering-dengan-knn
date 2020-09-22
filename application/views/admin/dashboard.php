@@ -106,14 +106,7 @@
                 <label for="abstrak">Abstrak</label>
                 <textarea name="abstrak" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
             </div>
-            <div class="form-group">
-                <label for="jurusan">Penjurusan</label>
-                <select name="jurusan" class="form-control">
-                  <option value="">Pilih...</option>
-                  <option value="SC">Sistem Cerdas</option>
-                  <option value="RPL">Rekayasa Perangkat Lunak</option>
-                </select>
-            </div>
+            
                 <label for="file">Upload File</label>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" name="file">

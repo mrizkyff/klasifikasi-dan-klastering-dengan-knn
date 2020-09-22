@@ -19,6 +19,9 @@
 			','id, penulis, tahun, judul, abstrak, label, file');
 
 			return $this->datatables->generate();
+		}
+		public function getAllData(){
+			return $this->db->get('daftarta_label')->result_array();
 		}		
 		public function simpanData($data){
 			return $this->db->insert('daftarta_label', $data);	
