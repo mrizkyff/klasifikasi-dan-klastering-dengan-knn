@@ -54,7 +54,8 @@
 
 
         // getEdit
-        $('#tabel_data_dashboard').on('click','.edit_record',function(){
+        $('#tabel_data_dashboard').on('click','.edit_record',function(event){
+            event.preventDefault();
             var id = $(this).data('id');
             var penulis = $(this).data('penulis');
             var tahun = $(this).data('tahun');
@@ -74,6 +75,7 @@
 
         // aksi edit
         $('#btn_update').on('click',function(event){
+            event.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('admin/update_data') ?>",
@@ -81,18 +83,41 @@
                 dataType: "JSON",
                 success: function (response) {
                     alert('Record data berhasil diupdate!');
+                    $('[name = id]').val();
+                    $('[name = penulis]').val();
+                    $('[name = tahun]').val();
+                    $('[name = judul]').val();
+                    $('[name = abstrak]').val();
+                    $('[name = jurusan]').val();
+                    $('#modal_edit').modal('hide');
+                    $('#tabel_data_dashboard').DataTable().ajax.reload();
                 }
             });
         })
 
         // getHapus
-        // $('#tabel_data_dashboard').on('click','.hapus_record', function(){
-        //     var id = $(this).data('id');
-        //     var judul = $(this).data('judul');
-        //     $('#modal_hapus').modal('show');
-        //     $('#hapus_judul').text('Yakin untuk menghapus dokumen dengan judul '+judul+'?');
-        //     $('[name = id_hapus]').val(id);
-        // })
+        $('#tabel_data_dashboard').on('click','.hapus_record', function(){
+            var id = $(this).data('id');
+            var judul = $(this).data('judul');
+            $('#modal_hapus').modal('show');
+            $('#div_hapus').html('<p>Yakin untuk menghapus dokumen dengan judul <b>'+judul+'</b>?</p>');
+            $('[name = id_hapus]').val(id);
+        })
+
+        // aksiHapus
+        $('#btn_hapus').click(function (e) { 
+            e.preventDefault();
+            var id = $('#id_hapus').val();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('admin/hapus_data')?>",
+                data: "{id:id}",
+                dataType: "JSON",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        });
 
 
 
