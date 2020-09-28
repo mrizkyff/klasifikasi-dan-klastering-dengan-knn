@@ -2,9 +2,9 @@
 class Search extends CI_Controller
 {
     public function index(){
-        $this->load->view('template/s_header');
+        $this->load->view('template/public/s_header');
         $this->load->view('s_halamanPencarian');
-        $this->load->view('template/s_footer');
+        $this->load->view('template/public/s_footer');
     }
     public function prep($query){
         $this->load->library('preprocessing');
