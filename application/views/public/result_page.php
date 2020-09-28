@@ -69,7 +69,7 @@
                                         <div class="card-body">
                                         
                                                 <div class="d-flex flex-column bd-highlight mb-3">
-                                                    <div class="p-0 bd-highlight"><p style='color: blue;'><?php echo $data->judul ?></p><p class='text-secondary'><i>(Keyword similarity <?php echo $data->bobot*100 ?>%)</i></p></div>
+                                                    <div class="p-0 bd-highlight"><p style='color: blue;'><?php echo $data->judul ?> <span class="badge badge-secondary"><?= $data->label ?></span></p><p class='text-secondary'><i>(Keyword similarity <?php echo $data->bobot*100 ?>%)</i></p></div>
                                                 <div class="p-0 bd-highlight"><p class='text-md-left'><?php echo $abstrak ?><a href="#" data-toggle='modal' data-target='#detail<?php echo $data->id?>'>[...Baca Abstrak]</a></p></div>
                                                 <!-- modal details -->
                                                 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="detail<?php echo $data->id?>">
@@ -82,9 +82,9 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <blockquote>
+                                                            <p class="text-justify">
                                                                 <?php echo $data->abstrak ?>
-                                                            </blockquote>
+                                                            </p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -98,7 +98,7 @@
                                                     <?php
                                                         if($data->download != 0){
                                                             ?>
-                                                                <div class="p-2 bd-highlight text-success"><a href="<?php echo base_url() ?>upload/<?php echo $data->file ?>" class="text-success"><u>Download File</u></a></div>
+                                                                <div class="p-2 bd-highlight text-success"><a href="<?php echo base_url() ?>upload/<?php echo $data->file ?>" target="_blank" class="text-success"><u>Download File</u></a></div>
                                                                 <?php
                                                         }
                                                         else if($data->download == 0){
