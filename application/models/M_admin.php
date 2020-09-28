@@ -5,7 +5,7 @@
 			parent::__construct();
 		}
 
-		// untuk menampilkan data ke dtatables
+		// untuk menampilkan data ke dtatables dengan serverside
 		function json() {
 			// jangan pakai bintang nanti tidak bisa search
 			$this->datatables->select('id, penulis, tahun, judul, abstrak, label, file');
@@ -35,37 +35,7 @@
 			return $this->db->update('daftarta_label',$data);
 		}
 
-		public function doctoArray(){
-			$query = $this->db->query("SELECT * FROM daftarta_label");
-			// $arrayDokumen = [];
-			// foreach ($query->result_array() as $row) {
-			// 	$arrayDoc = [
-			// 		'id_doc' => $row['id'],
-			// 		'dokumen' => implode(" ", $this->skripsi->prep($row['judul']))
-			// 	];
-			// 	array_push($arrayDokumen, $arrayDoc);
-			// }
-			// return $arrayDokumen;
-			return $query;
-		}
-
-		public function updateBobot($data, $id){
-			$this->db->where('id',$id);
-			$this->db->update('daftarta_label',$data);
-		}
-
-		public function tampilHasil(){
-			$query = $this->db->from("daftarta_label")->order_by("daftarta_label.bobot desc")->get();
-			return $query;
-		}
 		
-		public function lock($data, $id){
-			$this->db->where('id',$id);
-			return $this->db->update('daftarta_label',$data);
-		}
-		public function show($data, $id){
-			$this->db->where('id',$id);
-			return $this->db->update('daftarta_label',$data);
-		}
+		
 	}
  ?>

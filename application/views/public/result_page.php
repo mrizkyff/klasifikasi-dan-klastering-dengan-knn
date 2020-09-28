@@ -1,6 +1,6 @@
 <nav class="navbar navbar-primary bg-primary">
   <span class="navbar-text">
-    Hasil Pencarian untuk '<?php echo $pencarian?>'
+    Hasil Pencarian untuk '<?php echo $keyword?>'
   </span>
 </nav>
 <div class="konten">
@@ -17,7 +17,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cari Judul Tugas Akhir" name='query' value='<?php echo $pencarian ?>'>
+                        <input type="text" class="form-control" placeholder="Cari Judul Tugas Akhir" name='query' value='<?php echo $keyword ?>'>
                         <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             <i class="fa fa-search"></i>
@@ -43,7 +43,7 @@
                     </thead>
                 <tbody>
                 <?php
-                    foreach ($skripsi as $data){
+                    foreach ($koleksi_skripsi as $data){
                         if(($data->bobot != 0) && ($data->show != 0)){
                             $len = strlen($data->abstrak);
                             $abstrak = $data->abstrak;
