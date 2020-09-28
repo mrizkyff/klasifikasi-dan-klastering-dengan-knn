@@ -34,7 +34,7 @@
 
 
     <!-- datatables -->
-    <table class="">
+    <table id="tabel_hasil_pencarian">
                 <thead>
                     <tr>
                         <th>Hasil Pencarian. </th>

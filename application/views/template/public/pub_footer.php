@@ -46,22 +46,13 @@
 
 
 <!-- JS Datatables -->
-<!-- <script src="<?php echo base_url() ?>asset/plugins/datatables/jquery.dataTables.js"></script>
-
-<script src="<?php echo base_url() ?>asset/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script> -->
+<script src="<?php echo base_url() ?>asset/plugins/datatables/jquery.dataTables.js"></script>
+<script src="<?php echo base_url() ?>asset/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
 <!-- javasccript cdn -->
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script> -->
 
-
-
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable({
-      // "searching" : false
-    });
-} );
 </script>
 </body>
 </html>

@@ -8,12 +8,13 @@
 
 		public function updateBobot($data, $id){
 			$this->db->where('id',$id);
-			$this->db->update('daftarta_label',$data);
+			return $this->db->update('daftarta_label',$data);
 		}
 
 		public function tampilHasil(){
-			$query = $this->db->from("daftarta_label")->order_by("daftarta_label.bobot desc")->get();
-			return $query;
+            $this->db->select('*');
+            $this->db->order_by("bobot","DESC");
+            return $this->db->get("daftarta_label");
 		}
     }
     
