@@ -37,7 +37,7 @@
     <table id="tabel_hasil_pencarian">
                 <thead>
                     <tr>
-                        <th>Hasil Pencarian. </th>
+                        <td><b> Hasil Pencarian </b> <i>(<?= $waktu_pencarian ?>) detik.</i></td>
                         
                     </tr>
                     </thead>
@@ -69,7 +69,7 @@
                                         <div class="card-body">
                                         
                                                 <div class="d-flex flex-column bd-highlight mb-3">
-                                                    <div class="p-0 bd-highlight"><p style='color: blue;'><?php echo $data->judul ?> <span class="badge badge-secondary"><?= $data->label ?></span></p><p class='text-secondary'><i>(Keyword similarity <?php echo $data->bobot*100 ?>%)</i></p></div>
+                                                    <div class="p-0 bd-highlight"><p style='color: blue;'><?php echo $data->judul ?> <span class="badge badge-secondary"><?= $data->label ?></span></p><p class='text-secondary'><i>(Kemiripan Kata Kunci <?php echo $data->bobot*100 ?>%)</i></p></div>
                                                 <div class="p-0 bd-highlight"><p class='text-md-left'><?php echo $abstrak ?><a href="#" data-toggle='modal' data-target='#detail<?php echo $data->id?>'>[...Baca Abstrak]</a></p></div>
                                                 <!-- modal details -->
                                                 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="detail<?php echo $data->id?>">
