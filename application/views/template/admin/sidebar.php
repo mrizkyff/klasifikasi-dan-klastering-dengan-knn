@@ -25,7 +25,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?php echo base_url().'index.php/skripsi/index' ?>" class="nav-link">
+            <a href="<?php echo base_url().'admin' ?>" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
               <p>
                 Kelola Database
@@ -34,7 +34,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('index.php/login/logout')?>" class="nav-link">
+            <a href="<?php echo base_url('login/logout')?>" class="nav-link">
               <i class="nav-icon fas fa-lock"></i>
               <p>
                 Log-Out
