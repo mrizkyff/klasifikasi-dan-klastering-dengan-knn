@@ -1,10 +1,5 @@
 <?php
 
-// include 'config.php';
-// define("HOSTNAME_DB", $database['hostname'], TRUE);
-// define("USERNAME_DB", $database['username'], TRUE);
-// define("PASSWORD_DB", $database['password'], TRUE);
-// define("DATABASE_DB", $database['database'], TRUE);
 
 /**
  * Kelas Module untuk Preprocess
@@ -17,6 +12,14 @@ class Preprocessing
      * @param  string  $query
      * @return array
     */
+    
+    // konstruktor untuk memanggil model dari library ini
+    // private $CI;
+    // function __construct(){
+    //     $this->CI =& get_instance();
+    //     $this->CI->load->model('M_VSM','m_vsm');
+    // }
+
     public static function preprocess($query)
     {        
         $query_case     = Preprocessing::case_folding($query);
@@ -89,11 +92,19 @@ class Preprocessing
     */
     public static function stemming($query)
     {
-        $kelas = new Preprocessing;
-        // $cari  = $kelas->cari("lihat");
+        // VERSI MANUAL
+        // $kelas = new Preprocessing;
         $query_array = [];
+        // foreach ($query as $key => $value) {
+        //     array_push($query_array, $kelas->katadasar($value));
+        // }
+        // return $query_array;
+
+        // VERSI SASTRAWI
+        $stemmerFactory = new \Sastrawi\Stemmer\StemmerFactory();
+        $stemmer = $stemmerFactory->createStemmer();
         foreach ($query as $key => $value) {
-            array_push($query_array, $kelas->katadasar($value));
+                array_push($query_array, $stemmer->stem($value));
         }
         return $query_array;
     }
@@ -101,14 +112,19 @@ class Preprocessing
 
     // ========== fungsi pendukung Preprocessing ========= //
     function cari($kata){
-        // $host = "localhost";
-        // $user = "root";
-        // $pass = "";
-        // $db   = "vsmnative";
-        // $hasil = mysqli_query(mysqli_connect($host, $user, $pass, $db), "SELECT * FROM tb_katadasar WHERE katadasar = '".$kata."'");
-        // $row = mysqli_fetch_assoc($hasil);
-        // return $row['katadasar'] ? $row['katadasar'] : NULL;
-        return NULL;
+        // cara kerja = dengan mecari kata di database, ketika tidak ada akan return 0 dan dilanjutkan langkah 1 - 5 sampai didapatkan kata dasar, 
+        // kalau tidak ada kata dasar yg sama, returnkan null untuk penanda diproses di langkah 1-5
+        // kalau tidak null berarti sudah ketemu kata dasarnya
+        $hasil = $this->CI->m_vsm->get_kata_dasar($kata);
+        foreach ($hasil as $row) {
+            // var_dump($row['katadasar']);
+            if ($row['katadasar']){
+                return $row['katadasar'];
+            }
+            else{
+                return NULL;
+            }
+        }
     }
 
     //langkah 1 - hapus partikel
