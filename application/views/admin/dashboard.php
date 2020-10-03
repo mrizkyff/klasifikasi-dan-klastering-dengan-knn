@@ -2,7 +2,7 @@
 <div class="content-wrapper">
 
 
-    <!-- notifiaksi -->
+    <!-- notifikasi -->
     <div class="alert alert-success" role="alert" id="dashboard_alert_sukses">
     </div>
     <div class="alert alert-danger" role="alert" id="dashboard_alert_gagal">
@@ -42,10 +42,9 @@
                       <tr>
                           <th>No.</th>
                           <!-- <th>No</th> -->
-                          <th width="10%">Penulis</th>
+                          <th>Penulis</th>
                           <th>Tahun</th>
-                          <th width="17%">Judul</th>
-                          <th>Abstrak</th>
+                          <th>Judul</th>
                           <th width='11%'>Aksi</th>
                       </tr>
                   </thead>
@@ -58,7 +57,6 @@
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
-                          <th>Abstrak</th>
                           <th>Aksi</th>
                       </tr>
                   </tfoot>
@@ -103,8 +101,12 @@
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
             </div>
             <div class="form-group">
-                <label for="abstrak">Abstrak</label>
-                <textarea name="abstrak" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
+                <label for="minat">Minat</label>
+                <select name="minat" class="form-control">
+                  <option value="">Pilih...</option>
+                  <option value="sc">Sistem Cerdas</option>
+                  <option value="rpl">Rekayasa Perangkat Lunak</option>
+                </select>
             </div>
             
                 <label for="file">Upload File</label>
@@ -150,15 +152,11 @@
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
             </div>
             <div class="form-group">
-                <label for="abstrak">Abstrak</label>
-                <textarea name="abstrak" cols="20" rows="10" placeholder="Abstrak" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="jurusan">Penjurusan</label>
-                <select name="jurusan" class="form-control">
+                <label for="minat">Minat</label>
+                <select name="minat" class="form-control">
                   <option value="">Pilih...</option>
-                  <option value="SC">Sistem Cerdas</option>
-                  <option value="RPL">Rekayasa Perangkat Lunak</option>
+                  <option value="sc">Sistem Cerdas</option>
+                  <option value="rpl">Rekayasa Perangkat Lunak</option>
                 </select>
             </div>
         

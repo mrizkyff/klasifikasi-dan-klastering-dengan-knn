@@ -63,23 +63,14 @@ class Admin extends CI_Controller {
 			$penulis = $this->input->post('penulis');
 			$tahun = $this->input->post('tahun');
 			$judul = $this->input->post('judul');
-			$abstrak = $this->input->post('abstrak');
+			$minat = $this->input->post('minat');
 
-			// klasifikasi otomatis judul dengan NBC
-			$data = $this->admin->getAllData();
-			$source = new DataArray();
-			$classifier = new ComplementNaiveBayes($source);
-			foreach ($data as $dt){
-				// train data
-				$source->addDocument($dt['label'], $dt['judul']);
-			}
-			$label = $classifier->classify($judul);
 
 			$data = array(
 				'penulis' => $penulis,
 				'tahun' => $tahun,
 				'judul' => $judul,
-				'label' => $label,
+				'minat' => $minat,
 				'abstrak' => $abstrak,
 				'file' => $nama_file,
 			);

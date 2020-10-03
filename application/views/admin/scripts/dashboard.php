@@ -39,7 +39,6 @@
                 {"data": "penulis"},
                 {"data": "tahun"},
                 {"data": "title"},
-                {"data": "abstract"},
                 {"data": "aksi"}
             ],
             // order menurut urutan kolom
@@ -61,17 +60,15 @@
             var penulis = $(this).data('penulis');
             var tahun = $(this).data('tahun');
             var judul = $(this).data('judul');
-            var abstrak = $(this).data('abstrak');
-            var label = $(this).data('label');
-            // console.log(id, penulis, tahun, judul, abstrak, label);
+            var minat = $(this).data('minat');
+            // console.log(id, penulis, tahun, judul, minat);
             // set modal edit
             $('#modal_edit').modal('show');
             $('[name = id]').val(id);
             $('[name = penulis]').val(penulis);
             $('[name = tahun]').val(tahun);
             $('[name = judul]').val(judul);
-            $('[name = abstrak]').val(abstrak);
-            $('[name = jurusan]').val(label);
+            $('[name = minat]').val(minat);
         })
 
         // aksi edit
@@ -88,8 +85,8 @@
                     $('[name = penulis]').val();
                     $('[name = tahun]').val();
                     $('[name = judul]').val();
-                    $('[name = abstrak]').val();
                     $('[name = jurusan]').val();
+                    $('[name = minat]').val();
                     $('#modal_edit').modal('hide');
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
 
@@ -181,8 +178,7 @@
                     $('[name= penulis]').val("");
                     $('[name= tahun]').val("");
                     $('[name= judul]').val("");
-                    $('[name= abstrak]').val("");
-                    $('[name= jurusan]').val("");
+                    $('[name= minat]').val("");
                     $('[name= file]').val("");
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
 
