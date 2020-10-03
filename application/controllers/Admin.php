@@ -37,6 +37,7 @@ class Admin extends CI_Controller {
 			'tahun' => $data['tahun'],
 			'minat' => $data['minat'],
 			'judul' => $data['judul'],
+			'token' => implode(',',$this->prep($data['judul'])),
 		);
 		$data = $this->admin->updateData($data,$id);
 		echo json_encode($data);
@@ -63,13 +64,15 @@ class Admin extends CI_Controller {
 			$tahun = $this->input->post('tahun');
 			$judul = $this->input->post('judul');
 			$minat = $this->input->post('minat');
-
+			// token adalah bentuk baku dari judul karena sudah dilakukan preprocessing
+			$token = implode(',',$this->prep($judul));
 
 			$data = array(
 				'penulis' => $penulis,
 				'tahun' => $tahun,
 				'judul' => $judul,
 				'minat' => $minat,
+				'token' => $token,
 				'file' => $nama_file,
 			);
 
@@ -95,5 +98,11 @@ class Admin extends CI_Controller {
 		}
 		// testing
 		echo $classifier->classify('rancang bangun sistem informasi perangkat lunak dengan naive bayes berbasis web'); 
+	}
+
+	// method untuk preprocessing judul pada form input data
+	public function prep($teks_dokumen){
+		$this->load->library('preprocessing');
+		return $this->preprocessing->preprocess($teks_dokumen);
 	}
 }
