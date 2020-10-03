@@ -35,9 +35,8 @@ class Admin extends CI_Controller {
 		$data = array(
 			'penulis' => $data['penulis'],
 			'tahun' => $data['tahun'],
-			'label' => $data['jurusan'],
+			'minat' => $data['minat'],
 			'judul' => $data['judul'],
-			'abstrak' => $data['abstrak'],
 		);
 		$data = $this->admin->updateData($data,$id);
 		echo json_encode($data);
@@ -71,7 +70,6 @@ class Admin extends CI_Controller {
 				'tahun' => $tahun,
 				'judul' => $judul,
 				'minat' => $minat,
-				'abstrak' => $abstrak,
 				'file' => $nama_file,
 			);
 

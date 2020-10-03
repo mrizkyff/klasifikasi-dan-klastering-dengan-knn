@@ -45,6 +45,7 @@
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
+                          <th>Waktu</th>
                           <th width='11%'>Aksi</th>
                       </tr>
                   </thead>
@@ -57,6 +58,7 @@
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
+                          <th>Waktu</th>
                           <th>Aksi</th>
                       </tr>
                   </tfoot>

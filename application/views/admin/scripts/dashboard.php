@@ -39,10 +39,11 @@
                 {"data": "penulis"},
                 {"data": "tahun"},
                 {"data": "title"},
-                {"data": "aksi"}
+                {"data": "timestamp"},
+                {"data": "aksi"},
             ],
             // order menurut urutan kolom
-            order: [[2, 'desc']],
+            order: [[4, 'desc']],
             rowCallback: function(row, data, iDisplayIndex) {
                 var info = this.fnPagingInfo();
                 var page = info.iPage;
