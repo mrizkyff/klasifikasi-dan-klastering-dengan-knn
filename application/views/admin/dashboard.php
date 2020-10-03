@@ -92,14 +92,18 @@
         <form id="form_create">
             <div class="form-group">
                 <label for="penulis">Penulis</label>
-                <input type="text" name="penulis" placeholder="Penulis" class="form-control">
+                <input type="text" name="penulis" placeholder="Nama Mahasiswa (Penulis)" class="form-control">
             </div>
             <div class="form-group">
-                <label for="tahun">Tahun</label>
+                <label for="nim">NIM</label>
+                <input type="text" name="nim" placeholder="Nomor Induk Mahasiswa" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="tahun">Tahun Tugas Akhir</label>
                 <input type="text" name="tahun" placeholder="Tahun" class="form-control">
             </div>
             <div class="form-group">
-                <label for="judul">Judul</label>
+                <label for="judul">Judul Tugas Akhir</label>
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
             </div>
             <div class="form-group">
@@ -142,15 +146,19 @@
         <form id="form_update">
             <div class="form-group">
                 <label for="penulis">Penulis</label>
-                <input type="text" name="penulis" placeholder="Penulis" class="form-control">
+                <input type="text" name="penulis" placeholder="Nama Mahasiswa (Penulis)" class="form-control">
                 <input type="hidden" name="id" class="form-control">
             </div>
             <div class="form-group">
-                <label for="tahun">Tahun</label>
+                <label for="nim">NIM</label>
+                <input type="text" name="nim" placeholder="Nomor Induk Mahasiswa" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="tahun">Tahun Tugas Akhir</label>
                 <input type="text" name="tahun" placeholder="Tahun" class="form-control">
             </div>
             <div class="form-group">
-                <label for="judul">Judul</label>
+                <label for="judul">Judul Tugas Akhir</label>
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
             </div>
             <div class="form-group">

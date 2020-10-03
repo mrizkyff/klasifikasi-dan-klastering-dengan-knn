@@ -37,6 +37,7 @@ class Admin extends CI_Controller {
 			'tahun' => $data['tahun'],
 			'minat' => $data['minat'],
 			'judul' => $data['judul'],
+			'nim' => $data['nim'],
 			'token' => implode(',',$this->prep($data['judul'])),
 		);
 		$data = $this->admin->updateData($data,$id);
@@ -51,6 +52,7 @@ class Admin extends CI_Controller {
 
 
 	function do_upload(){
+		$tanggal = date("Y-m-d H:i:s");
 		$config['upload_path']          = './upload/';
 		$config['allowed_types']        = 'pdf';
 		$config['encrypt_name'] 		= TRUE;
@@ -64,6 +66,7 @@ class Admin extends CI_Controller {
 			$tahun = $this->input->post('tahun');
 			$judul = $this->input->post('judul');
 			$minat = $this->input->post('minat');
+			$nim = $this->input->post('nim');
 			// token adalah bentuk baku dari judul karena sudah dilakukan preprocessing
 			$token = implode(',',$this->prep($judul));
 
@@ -71,9 +74,11 @@ class Admin extends CI_Controller {
 				'penulis' => $penulis,
 				'tahun' => $tahun,
 				'judul' => $judul,
+				'nim' => $nim,
 				'minat' => $minat,
 				'token' => $token,
 				'file' => $nama_file,
+				'timestamp' => $tanggal,
 			);
 
 			$result = $this->admin->simpanData($data);

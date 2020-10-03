@@ -36,7 +36,7 @@
                     "data": "id",
                     "orderable": false
                 },
-                {"data": "penulis"},
+                {"data": "dt_penulis"},
                 {"data": "tahun"},
                 {"data": "title"},
                 {"data": "timestamp"},
@@ -62,6 +62,7 @@
             var tahun = $(this).data('tahun');
             var judul = $(this).data('judul');
             var minat = $(this).data('minat');
+            var nim = $(this).data('nim');
             // console.log(id, penulis, tahun, judul, minat);
             // set modal edit
             $('#modal_edit').modal('show');
@@ -70,6 +71,7 @@
             $('[name = tahun]').val(tahun);
             $('[name = judul]').val(judul);
             $('[name = minat]').val(minat);
+            $('[name = nim]').val(nim);
         })
 
         // aksi edit
@@ -88,6 +90,7 @@
                     $('[name = judul]').val();
                     $('[name = jurusan]').val();
                     $('[name = minat]').val();
+                    $('[name = nim]').val();
                     $('#modal_edit').modal('hide');
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
 
@@ -181,6 +184,7 @@
                     $('[name= judul]').val("");
                     $('[name= minat]').val("");
                     $('[name= file]').val("");
+                    $('[name= nim]').val("");
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
 
                     if(response){
