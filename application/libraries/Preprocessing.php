@@ -103,6 +103,7 @@ class Preprocessing
         // VERSI SASTRAWI
         $stemmerFactory = new \Sastrawi\Stemmer\StemmerFactory();
         $stemmer = $stemmerFactory->createStemmer();
+        // key itu id/nama dokumen nya, value itu stringnya
         foreach ($query as $key => $value) {
                 array_push($query_array, $stemmer->stem($value));
         }
