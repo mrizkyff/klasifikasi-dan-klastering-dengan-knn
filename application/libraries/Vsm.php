@@ -13,14 +13,14 @@ class VSM
      * @return array
      * menggabungkan antara query dan dokumen (hanya term saja)
     */
-    public static function get_rank($query, $dokumen)
+    public static function get_rank($query, $dokumen, $debug=false)
     {
-        $term           = VSM::term($query, $dokumen);
-        $dokumen_term   = VSM::dokumen_term($dokumen);
-        $df             = VSM::df($term, $query, $dokumen_term);
-        $idf            = VSM::idf($query, $dokumen_term, $df);
-        $bobot          = VSM::bobot($query, $dokumen_term, $idf);
-        $cos_similarity = VSM::cosine_similarity($bobot);
+        $term           = VSM::term($query, $dokumen, $debug);
+        $dokumen_term   = VSM::dokumen_term($dokumen, $debug);
+        $df             = VSM::df($term, $query, $dokumen_term, $debug);
+        $idf            = VSM::idf($query, $dokumen_term, $df, $debug);
+        $bobot          = VSM::bobot($query, $dokumen_term, $idf, $debug);
+        $cos_similarity = VSM::cosine_similarity($bobot, $debug);
 
         return $cos_similarity;
         // return $bobot;
@@ -33,12 +33,12 @@ class VSM
      * @param  array $dokumen
      * @return array
     */
-    public static function term($query, $dokumen)
+    public static function term($query, $dokumen, $debug)
     {
         // query to string
         $query = implode(" ",  $query);
 
-        // dokumen to array | remove nested array
+        // dokumen to array | remove nested array karna bentuk sebelumnya tu nested array
         $arrayTampung = [];
         foreach ($dokumen as $key => $value) {
             foreach ($value as $key1 => $value1) {
@@ -48,7 +48,7 @@ class VSM
             }
         }
 
-        // menggabungkan query ke term
+        // menggabungkan query pencarian ke term dokumen
         array_push($arrayTampung, $query);
 
         // semua value $arrayTampung jadi satu string
@@ -60,6 +60,11 @@ class VSM
         $word       = str_word_count($string_term, 1); // auto string to array
         $term       = array_count_values($word);
 
+        if ($debug){
+            var_dump('--------term--------');
+            print_r($term);
+        }
+
         return $term;
     }
 
@@ -69,7 +74,7 @@ class VSM
      * @param  array $dokumen
      * @return array
     */
-    public static function dokumen_term($dokumen)
+    public static function dokumen_term($dokumen, $debug)
     {
         $arrayTampung = [];
         foreach ($dokumen as $key => $value) {
@@ -79,6 +84,10 @@ class VSM
             $word       = str_word_count($value['dokumen'], 1); // auto string to array
             $term       = array_count_values($word);
             array_push($arrayTampung, ['id_doc' => $value['id_doc'], 'dokumen' => $term]);
+        }
+        if ($debug){
+            var_dump('--------dokumen term--------');
+            print_r($arrayTampung);
         }
         return $arrayTampung;
     }
@@ -91,7 +100,7 @@ class VSM
      * @param  array $dokumen_term
      * @return array
     */
-    public static function df($term, $query, $dokumen_term)
+    public static function df($term, $query, $dokumen_term, $debug)
     {
         // start from 0 | start dari nol
         $arrayDf = [];
@@ -118,7 +127,10 @@ class VSM
                 }
             }
         }
-
+        if ($debug){
+            var_dump('-------- df (seluruh term/leksikon) --------');
+            print_r($arrayDf);
+        }
         return $arrayDf;
     }
 
@@ -130,7 +142,7 @@ class VSM
      * @param  array $df
      * @return array
     */
-    public static function idf($query, $dokumen_term, $df)
+    public static function idf($query, $dokumen_term, $df, $debug)
     {
         // n = jumlah dokumen + query
         $N_count = count($dokumen_term) + 1;
@@ -145,6 +157,10 @@ class VSM
             }
         }
 
+        if ($debug){
+            var_dump('-------- idf --------');
+            print_r($arrayIdf);
+        }
         return $arrayIdf;
     }
 
@@ -156,7 +172,7 @@ class VSM
      * @param  array $idf
      * @return array
     */
-    public static function bobot($query, $dokumen_term, $idf)
+    public static function bobot($query, $dokumen_term, $idf, $debug)
     {
         // pembobotan query
         $bobotQuery =[];
@@ -185,6 +201,10 @@ class VSM
         // Array Bobot
         $arrayBobot = ["query" => $bobotQuery, "dokumen" => $bobotDokumen];
 
+        if ($debug){
+            var_dump('-------- weighting/pembobotan --------');
+            print_r($arrayBobot);
+        }
         return $arrayBobot;
     }
 
@@ -194,7 +214,7 @@ class VSM
      * @param  array $bobot
      * @return array
     */
-    public static function cosine_similarity($bobot)
+    public static function cosine_similarity($bobot, $debug)
     {
         //edit ian
         // mendapatkan jumlah dan akar dari query @float
@@ -289,6 +309,21 @@ class VSM
             }
             $arrayDoc[$index] = ["id_doc" => $dokumen['id_doc'], "ranking" => $jumlah];
             array_push($dokumenRanking, $arrayDoc[$index]);
+        }
+
+        if ($debug){
+            var_dump('-------- jumlah dan akar query --------');
+            print_r($queryCosAkar);
+            var_dump('/n-------- jumlah dan akar dokumen --------');
+            print_r($dokumenCosJumlahAkar);
+            var_dump('-------- vektor dokumen (perkalian)(pembilang)--------');
+            print_r($dokumenVektor);
+            var_dump('-------- besar vektor dokumen (penyebut) --------');
+            print_r($dokumenBesarVektor);
+            var_dump('-------- cosinus dokumen --------');
+            print_r($dokumenCosine);
+            var_dump('-------- rangking dokumen (hasil) --------');
+            print_r($dokumenRanking);
         }
 
         return $dokumenRanking;
