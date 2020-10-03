@@ -33,7 +33,9 @@ class Search extends CI_Controller
         foreach ($koleksi_dokumen->result_array() as $row) {
             $arrayDoc = [
                 'id_doc' => $row['id'],
-                'dokumen' => implode(" ", $this->prep($row['judul']))
+                // 'dokumen' => implode(" ", $this->prep($row['judul']))
+                // langsung ambil dari token aja, karena preprocessing korpus sudah dilakukan ketika input/create dokumen
+                'dokumen' => $row['token'],
             ];
             array_push($arrayDokumen, $arrayDoc);
         }
