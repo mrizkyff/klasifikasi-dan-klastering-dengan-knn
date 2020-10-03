@@ -48,7 +48,7 @@ class Search extends CI_Controller
             $bobot = $rank[$i]['ranking'];
             // update
             $data = array(
-                'bobot' => $bobot
+                'cosim' => $bobot
             );
             $this->search->updateBobot($data,$id);
         }
