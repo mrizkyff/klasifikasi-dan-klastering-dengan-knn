@@ -21,8 +21,6 @@ class VSM
         $idf            = VSM::idf($query, $dokumen_term, $df, $debug);
         $bobot          = VSM::bobot($query, $dokumen_term, $idf, $debug);
         $cos_similarity = VSM::cosine_similarity($bobot, $debug);
-        // $jaccard_similarity = VSM::jaccard_similarity($bobot, $debug);
-        // $dice_similarity = VSM::dice_similarity($bobot, $debug);
 
         return $cos_similarity;
         // return $dice_similarity;
@@ -222,33 +220,33 @@ class VSM
      * @param  array $bobot
      * @return array
     */
-    public static function cosine_similarity($dis, $debug)
+    public static function cosine_similarity($bobot, $debug)
     {
         // ====================================================================================
-        $bobot = [];
-        $bobot['query'] = [
-            'x' => 1.5,
-            'y' => 1.0,
-            'z' => 0.0,
-        ];
-        $bobot['dokumen'] = [
-            '0' => [
-                'id_doc' => 'g1',
-                'dokumen' => [
-                    'x' => 0.5,
-                    'y' => 0.8,
-                    'z' => 0.3,
-                ],
-            ],
-            '1' => [
-                'id_doc' => 'g2',
-                'dokumen' => [
-                    'x' => 0.9,
-                    'y' => 0.4,
-                    'z' => 0.2,
-                ],
-            ],
-        ];
+        // $bobot = [];
+        // $bobot['query'] = [
+        //     'x' => 1.5,
+        //     'y' => 1.0,
+        //     'z' => 0.0,
+        // ];
+        // $bobot['dokumen'] = [
+        //     '0' => [
+        //         'id_doc' => 'g1',
+        //         'dokumen' => [
+        //             'x' => 0.5,
+        //             'y' => 0.8,
+        //             'z' => 0.3,
+        //         ],
+        //     ],
+        //     '1' => [
+        //         'id_doc' => 'g2',
+        //         'dokumen' => [
+        //             'x' => 0.9,
+        //             'y' => 0.4,
+        //             'z' => 0.2,
+        //         ],
+        //     ],
+        // ];
         // print_r($dis);
         // print_r($bobot);
         // ====================================================================================
