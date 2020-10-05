@@ -26,7 +26,8 @@ class Preprocessing
         $query_token    = Preprocessing::tokenizing($query_case);
         $query_filter   = Preprocessing::filtering($query_token);
         $query_dasar    = Preprocessing::stemming($query_filter);
-        return $query_dasar;
+        // array unique untuk supaya menghilangkan term yang duplicate dalam satu dokumen
+        return array_unique($query_dasar);
     }
 
     /**
