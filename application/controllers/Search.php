@@ -41,16 +41,20 @@ class Search extends CI_Controller
         }
 
         // step 3 mendapatkan ranking dengan VSM
-        $rank = $this->vsm($search_query, $arrayDokumen);
+        $allRank = $this->vsm($search_query, $arrayDokumen);
 
         // step 4 memasukkan cos similarity ke database
-        $jumlahDokumen = count($rank);
+        $jumlahDokumen = count($allRank['cosinus_similarity']);
         for ($i=0; $i < $jumlahDokumen; $i++) { 
-            $id = $rank[$i]['id_doc'];
-            $bobot = $rank[$i]['ranking'];
+            $id = $allRank['cosinus_similarity'][$i]['id_doc'];
+            $bobot_cosim = $allRank['cosinus_similarity'][$i]['ranking'];
+            $bobot_jaccard = $allRank['jaccard_similarity'][$i]['ranking'];
+            $bobot_dice = $allRank['dice_similarity'][$i]['ranking'];
             // update
             $data = array(
-                'cosim' => $bobot
+                'cosim' => $bobot_cosim,
+                'jaccard' => $bobot_jaccard,
+                'dice' => $bobot_dice,
             );
             $this->search->updateBobot($data,$id);
         }

@@ -13,7 +13,7 @@ class VSM
      * @return array
      * menggabungkan antara query dan dokumen (hanya term saja)
     */
-    public static function get_rank($query, $dokumen, $debug=true)
+    public static function get_rank($query, $dokumen, $debug=false)
     {
         $term           = VSM::term($query, $dokumen, $debug);
         $dokumen_term   = VSM::dokumen_term($dokumen, $debug);
@@ -352,6 +352,8 @@ class VSM
         $dokumenRankingDice = [];
         foreach ($dokumenCosine as $index => $dokumen) {
             $jumlah = 0;
+            $jumlahJaccard = 0;
+            $jumlahDice = 0;
             if ($dokumen["jumlah_vektor"] != 0 && $dokumen["jumlah_besar_vektor"] != 0) {
                 $jumlah = $dokumen["jumlah_vektor"] / $dokumen["jumlah_besar_vektor"];
 
@@ -387,7 +389,11 @@ class VSM
             print_r($dokumenRankingDice);
         }
 
-        return $dokumenRanking;
+        return $allRanking = [
+            'cosinus_similarity' => $dokumenRanking,
+            'jaccard_similarity' => $dokumenRankingJaccard,
+            'dice_similarity' => $dokumenRankingDice,
+        ];
     }
     
 
