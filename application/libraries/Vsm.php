@@ -288,6 +288,7 @@ class VSM
         // mendapatkan vektor
         // jadi ketika term pada query dan dokumen itu sama, dikalikan lalu dijumlahkan sehingga menghasilkan jumlah vektor pada masing2 dokumen
         $dokumenVektor = [];
+        $dokumenVektorEuclidean = [];
         foreach ($bobot['dokumen'] as $index => $dokumen) { // dokumen 1, 2, 3 ... n
             // var_dump('=========== '.$index.' ===============');
             $arrayDoc[$index] = ["id_doc" => $dokumen['id_doc']];
@@ -324,8 +325,11 @@ class VSM
                 
             }
             // print_r(['DOKUMEN' => $dokumen['id_doc'].' '.$vektorDocEuclidean[$index]]);
-            $arrayDoc[$index] += ["jumlah_vektor" => $vektorDoc[$index], "jumlah_vektor_euclidean" => sqrt($vektorDocEuclidean[$index])];
+            $arrayDoc[$index] += ["jumlah_vektor" => $vektorDoc[$index]];
             array_push($dokumenVektor,  $arrayDoc[$index]);
+            
+            // khusus EUCLIDEAn langsung ketemu ranking, tanpa operasi lain
+            array_push($dokumenVektorEuclidean,  ["id_doc" => $dokumen["id_doc"], "ranking" => sqrt($vektorDocEuclidean[$index])]);
         }
 
 
@@ -364,10 +368,6 @@ class VSM
                 }
             }
         }
-
-        // echo 'gabungan array vektor dan besar vektor <br>';
-        // var_dump($dokumenCosine);
-        // echo '<br>end<br>';
 
         // membuat ranking
         $dokumenRanking = [];
@@ -416,6 +416,7 @@ class VSM
             'cosinus_similarity' => $dokumenRanking,
             'jaccard_similarity' => $dokumenRankingJaccard,
             'dice_similarity' => $dokumenRankingDice,
+            'euclidean_similarity' => $dokumenVektorEuclidean,
         ];
     }
     
