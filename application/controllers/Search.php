@@ -50,11 +50,14 @@ class Search extends CI_Controller
             $bobot_cosim = $allRank['cosinus_similarity'][$i]['ranking'];
             $bobot_jaccard = $allRank['jaccard_similarity'][$i]['ranking'];
             $bobot_dice = $allRank['dice_similarity'][$i]['ranking'];
+            $bobot_euclidean = $allRank['euclidean_similarity'][$i]['ranking'];
+
             // update
             $data = array(
                 'cosim' => $bobot_cosim,
                 'jaccard' => $bobot_jaccard,
                 'dice' => $bobot_dice,
+                'euclidean' => $bobot_euclidean,
             );
             $this->search->updateBobot($data,$id);
         }

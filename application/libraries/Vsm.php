@@ -13,7 +13,7 @@ class VSM
      * @return array
      * menggabungkan antara query dan dokumen (hanya term saja)
     */
-    public static function get_rank($query, $dokumen, $debug=true)
+    public static function get_rank($query, $dokumen, $debug=false)
     {
         $term           = VSM::term($query, $dokumen, $debug);
         $dokumen_term   = VSM::dokumen_term($dokumen, $debug);
