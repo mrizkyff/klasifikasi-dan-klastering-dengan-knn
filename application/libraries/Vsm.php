@@ -289,65 +289,45 @@ class VSM
         // jadi ketika term pada query dan dokumen itu sama, dikalikan lalu dijumlahkan sehingga menghasilkan jumlah vektor pada masing2 dokumen
         $dokumenVektor = [];
         foreach ($bobot['dokumen'] as $index => $dokumen) { // dokumen 1, 2, 3 ... n
+            // var_dump('=========== '.$index.' ===============');
             $arrayDoc[$index] = ["id_doc" => $dokumen['id_doc']];
             $vektorDoc[$index] = 0;
+
+            // FLAG = EUCLIDEAN
+            $vektorDocEuclidean[$index] = 0;
+            // untuk cek apakah di dokumen apakah ada term yang sama dengan query, jika tidak ada, langsung aja nilai query dikadratkan
+            foreach ($bobot['query'] as $kunci => $nilai) {
+                if (!array_key_exists($kunci,$dokumen['dokumen'])){
+                    $vektorDocEuclidean[$index] += pow($nilai,2);
+                    // print_r(['Perhitungan query' => $kunci.' '.$nilai, 'hasilnya' => pow($nilai,2)]);
+                }
+            }
+            // untuk cek apakah di query terdapat term yang ada pada dokumen jika tidak ada, langsung saja nilai di dokumen dikuadratkan
+            foreach ($dokumen['dokumen'] as $key => $value) {
+                if (!array_key_exists($key, $bobot['query'])){
+                    $vektorDocEuclidean[$index] += pow($value,2);
+                    // print_r(['Perhitungan dokumen' => $key.' '.$value, 'hasilnya' => pow($value,2)]);
+                }
+            }
+
             foreach ($bobot['query'] as $key => $value) {
                 foreach ($dokumen['dokumen'] as $key1 => $value1) { // isi dr dokumen 1, 2, ..n
                     if ($key == $key1) {
                         $vektorDoc[$index] += ($value * $value1);
-                    }
-                }
-            }
-            $arrayDoc[$index] += ["jumlah_vektor" => $vektorDoc[$index] ];
-            array_push($dokumenVektor,  $arrayDoc[$index]);
-        }
 
-        // mendapatkan vektor (EUCLIDEAN DISTANCE)
-        foreach ($bobot['dokumen'] as $index => $dokumen) { //dokumen ke 1,2,3..n
-            var_dump('=========== '.$index.' ===============');
-            $arrayDoc[$index] = ['id_doc' => $dokumen['id_doc']];
-            $vektorDoc[$index] = 0;
-            foreach ($bobot['query'] as $kunci => $nilai) {
-                if (!array_key_exists($kunci,$dokumen['dokumen'])){
-                    $vektorDoc[$index] += pow($nilai,2);
-                    // print_r(['Perhitungan query' => $kunci.' '.$nilai, 'hasilnya' => pow($nilai,2)]);
-                }
-            }
-            foreach ($dokumen['dokumen'] as $key => $value) { //isi dokumen ke 1,2,3..n
-                foreach ($bobot['query'] as $key1 => $value1) {
-                    // print_r(['key_dokumen' => $key, 'banyaknya' => array_key_exists($key, $bobot['query'])]);
-                    // untuk cek apakah term di query dan dokumen sama, jika sama langsung dihitung euclidean distance
-                    if ($key == $key1){
-                        $vektorDoc[$index] += pow(($value - $value1),2);
+                        // FLAG = EUCLIDEAN
+                        // untuk cek apakah term di query dan dokumen sama, jika sama langsung dihitung euclidean distance
+                        $vektorDocEuclidean[$index] += pow(($value - $value1),2);
                         // print_r(['Perhitungan sama query' => $key1.' '.$value1, 'dokumen' => $key.' '.$value, 'hasilnya' => pow(($value - $value1),2)]);
                     }
                 }
-                // untuk cek apakah di query terdapat term yang ada pada dokumen jika tidak ada, langsung saja nilai di dokumen dikuadratkan
-                if (!array_key_exists($key, $bobot['query'])){
-                    $vektorDoc[$index] += pow($value,2);
-                    // print_r(['Perhitungan dokumen' => $key.' '.$value, 'hasilnya' => pow($value,2)]);
-
-                }
-                // untuk cek apakah di dokumen apakah ada term yang sama dengan query, jika tidak ada, langsung aja nilai query dikadratkan
-                // else if (!array_key_exists($key1,$dokumen['dokumen'])){
-                //     $vektorDoc[$index] += pow($value,2);
-                //     // print_r(['query' => $key1.' '.$value1, 'hasilnya' => pow($value1,2)]);
-
-                // }
+                
             }
-            // print_r(['dokumen' => $dokumen['id_doc'].' '.$vektorDoc[$index]]);
-            $arrayDoc[$index] += ["jumlah_vektor_uclidean" => sqrt($vektorDoc[$index]) ];
-            print_r($arrayDoc[$index]);
+            // print_r(['DOKUMEN' => $dokumen['id_doc'].' '.$vektorDocEuclidean[$index]]);
+            $arrayDoc[$index] += ["jumlah_vektor" => $vektorDoc[$index], "jumlah_vektor_euclidean" => sqrt($vektorDocEuclidean[$index])];
             array_push($dokumenVektor,  $arrayDoc[$index]);
         }
-        // print_r($dokumenVektor);
 
-        die();
-
-        
-        
-
-        
 
         // mendapatkan besar vektor
         $dokumenBesarVektor = [];
