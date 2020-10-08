@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use Camspiers\StatisticalClassifier\Classifier\ComplementNaiveBayes;
-use Camspiers\StatisticalClassifier\DataSource\DataArray;
 
 class Admin extends CI_Controller {
 
@@ -86,24 +84,7 @@ class Admin extends CI_Controller {
 		}
 		
 	}
-	// method dumper
-	public function h(){
-		$this->load->view('index_dump');
-		
-	}
-	public function i(){
-		$data = $this->admin->getAllData();
-		
-		$source = new DataArray();
-
-		$classifier = new ComplementNaiveBayes($source);
-		foreach ($data as $dt){
-			// train data
-			$source->addDocument($dt['label'], $dt['judul']);
-		}
-		// testing
-		echo $classifier->classify('rancang bangun sistem informasi perangkat lunak dengan naive bayes berbasis web'); 
-	}
+	
 
 	// method untuk preprocessing judul pada form input data
 	public function prep($teks_dokumen){
