@@ -6,20 +6,11 @@
             $this->load->model('M_debug','mdebug');
         }
         public function index(){
-            $d1 = 'Implementasi Eigenface Pada Sistem Pencari Data Personal Berbasis Pengenalan Wajah';
-            $d2 = 'Implementasi Algoritma Vigenere Cipher dan Playfair Cipher dalam Kriptografi Citra';
-            $d3 = 'Sistem Rekomendasi Hero Dota 2 Menggunakan Klasifikasi Naive Bayes -';
-            $query = 'implementasi pencarian dengan algoritma naive bayes?-,.#123^A';
-            $dokumen = array(
-                'd1' => $d1,
-                'd2' => $d2,
-                'd3' => $d3,
-                'query' => $query,
-            );
-            print_r($dokumen);
-            foreach ($dokumen as $doc) {
-                print_r($this->prep($doc));
-            }
+            $this->load->view('template/admin/header');
+            $this->load->view('template/admin/sidebar');
+            $this->load->view('admin/analytics');
+            $this->load->view('template/admin/footer');
+            $this->load->view('admin/scripts/analytics');
             
 
         }
@@ -47,15 +38,21 @@
             // print_r($korpus);
         }
         public function proses_pencarian(){
-            // step 1 mengumpulkan korpus dan kueri
-            $kueri = 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City';
-            // $kueri = 'Daun berwarna putih';
-            $korpus = array(
-                'g1' => 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City',
-                'g2' => 'Penerapan Teknologi Augmented Reality Sebagai Media Promosi Universitas Dian Nuswantoro Berbasis Android',
-                'g3' => 'RANCANG BANGUN APLIKASI KATALOG MAKANAN KOTA SEMARANG SEBAGAI SARANA REFERENSI BAGI WISATAWAN',
-            );
-
+            // // step 1 mengumpulkan korpus dan kueri
+            // $kueri = 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City';
+            // // $kueri = 'Daun berwarna putih';
+            // $korpus = array(
+            //     'g1' => 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City',
+            //     'g2' => 'Penerapan Teknologi Augmented Reality Sebagai Media Promosi Universitas Dian Nuswantoro Berbasis Android',
+            //     'g3' => 'RANCANG BANGUN APLIKASI KATALOG MAKANAN KOTA SEMARANG SEBAGAI SARANA REFERENSI BAGI WISATAWAN',
+            // );
+            $data = $this->input->post();
+            $dataArray = [];
+            foreach ($data as $key => $value) {
+                $dataArray[$key] = implode(',<br>',$this->prep($value));
+            }
+            echo json_encode($dataArray);
+            
             // step 2 preprocessing kueri 
             $kueri = $this->prep($kueri);
 
