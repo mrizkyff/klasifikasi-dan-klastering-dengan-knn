@@ -328,8 +328,8 @@ class VSM
             $arrayDoc[$index] += ["jumlah_vektor" => $vektorDoc[$index]];
             array_push($dokumenVektor,  $arrayDoc[$index]);
             
-            // khusus EUCLIDEAn langsung ketemu ranking, tanpa operasi lain
-            array_push($dokumenVektorEuclidean,  ["id_doc" => $dokumen["id_doc"], "ranking" => sqrt($vektorDocEuclidean[$index])]);
+            // khusus EUCLIDEAN langsung ketemu ranking, tanpa operasi lain
+            array_push($dokumenVektorEuclidean,  ["id_doc" => $dokumen["id_doc"], "ranking" => 1/(1-(sqrt($vektorDocEuclidean[$index])))*100 ]);
         }
 
 
