@@ -1,5 +1,5 @@
 <?php
-    class Debug extends CI_Controller
+    class Analysis extends CI_Controller
     {
         public function __construct(){
             parent::__construct();
@@ -48,11 +48,12 @@
         }
         public function proses_pencarian(){
             // step 1 mengumpulkan korpus dan kueri
-            $kueri = 'Daun kuning';
+            $kueri = 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City';
+            // $kueri = 'Daun berwarna putih';
             $korpus = array(
-                'g1' => 'Daun berwarna kuning',
-                'g2' => 'Daun berwarna putih',
-                'g3' => 'Batang berwarna kuning',
+                'g1' => 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City',
+                'g2' => 'Penerapan Teknologi Augmented Reality Sebagai Media Promosi Universitas Dian Nuswantoro Berbasis Android',
+                'g3' => 'RANCANG BANGUN APLIKASI KATALOG MAKANAN KOTA SEMARANG SEBAGAI SARANA REFERENSI BAGI WISATAWAN',
             );
 
             // step 2 preprocessing kueri 
@@ -72,6 +73,7 @@
             print_r($arrayDokumen);
 
             $rank = $this->vsm($kueri, $arrayDokumen);
+            print_r($rank);
         }
     }
     
