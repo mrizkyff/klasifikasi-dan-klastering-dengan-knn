@@ -36,11 +36,14 @@
                     "data": "id",
                     "orderable": false
                 },
-                {"data": "dt_penulis"},
+                {"data": "author", "seachable":false},
                 {"data": "tahun"},
-                {"data": "title"},
+                {"data": "title", "searchable":false},
                 {"data": "timestamp"},
                 {"data": "aksi"},
+                {"data": "penulis", "visible": false, "searchable":true},
+                {"data": "nim", "visible": false, "searchable":true},
+                {"data": "judul", "visible": false, "searchable":true},
             ],
             // order menurut urutan kolom
             order: [[4, 'desc']],

@@ -47,6 +47,9 @@
                           <th>Judul</th>
                           <th>Waktu</th>
                           <th width='11%'>Aksi</th>
+                          <th>Penulis</th>
+                          <th>NIM</th>
+                          <th>JUDUL</th>
                       </tr>
                   </thead>
 
@@ -60,6 +63,9 @@
                           <th>Judul</th>
                           <th>Waktu</th>
                           <th>Aksi</th>
+                          <th>Penulis</th>
+                          <th>NIM</th>
+                          <th>JUDUL</th>
                       </tr>
                   </tfoot>
 

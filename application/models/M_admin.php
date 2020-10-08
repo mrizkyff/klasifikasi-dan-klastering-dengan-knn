@@ -10,7 +10,7 @@
 			// jangan pakai bintang nanti tidak bisa search
 			$this->datatables->select('id, penulis, tahun, judul, minat, file, timestamp, nim');
 			$this->datatables->from('ta_a11');
-			$this->datatables->add_column('dt_penulis','<p><b>$1</b><br>$2</p>','penulis, nim');
+			$this->datatables->add_column('author','<p><b>$1</b><br>$2</p>','penulis, nim');
 			$this->datatables->add_column('title','<p class="text-justify">$1 <span class="badge badge-secondary">$2</span></p>','judul,minat');
 			$this->datatables->add_column('aksi', '
 			<a href="upload/$6" target="_blank" class="badge-light"><i class="fas fa-file-pdf lead"></i></a>
