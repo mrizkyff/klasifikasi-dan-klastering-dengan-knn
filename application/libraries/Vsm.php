@@ -22,6 +22,11 @@ class VSM
         $bobot          = VSM::bobot($query, $dokumen_term, $idf, $debug);
         $cos_similarity = VSM::cosine_similarity($bobot, $debug);
 
+        // mengirim ke controller analysis
+        $cos_similarity['dokumen_term'] = $dokumen_term;
+
+        // print_r($cos_similarity);
+
         return $cos_similarity;
         // return $dice_similarity;
     }
@@ -407,9 +412,9 @@ class VSM
             var_dump('-------- cosinus dokumen --------');
             print_r($dokumenCosine);
             var_dump('-------- rangking dokumen (hasil) --------');
-            print_r($dokumenRanking);
-            print_r($dokumenRankingJaccard);
-            print_r($dokumenRankingDice);
+            // print_r($dokumenRanking);
+            // print_r($dokumenRankingJaccard);
+            // print_r($dokumenRankingDice);
         }
 
         return $allRanking = [
