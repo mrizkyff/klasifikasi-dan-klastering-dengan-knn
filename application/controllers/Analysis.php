@@ -115,7 +115,7 @@
 
             
             // step 2 preprocessing kueri 
-            $kueri = $this->prep($this->input->post('query'));
+            $kueri = $this->prep($kueri);
 
             // buat korpus ke dalam array
             $arrayDokumen = [];

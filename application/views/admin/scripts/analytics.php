@@ -89,7 +89,7 @@
                         $.each(response['dokumen_term'], function (indexInArray, valueOfElement) { // dokumen ke 0, 1, 2 ..
                                 $.each(valueOfElement, function (termnya, nilainya  ) {  //isi dari dokumen ke 0, 1, 2, 3...
                                     if(termnya == term){
-                                        $('#rowke'+indeks+'_'+indexInArray).html('1');
+                                        $('#rowke'+indeks+'_'+indexInArray).html(nilainya);
                                     } 
                                 });
                             });
