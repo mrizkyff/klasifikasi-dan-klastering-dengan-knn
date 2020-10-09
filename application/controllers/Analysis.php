@@ -19,9 +19,9 @@
             $this->load->library('preprocessing');
             return $this->preprocessing->preprocess($teks_dokumen);
         }
-        public function vsm($search_query, $dokumen){
+        public function vsm($search_query, $dokumen, $debug){
             $this->load->library('vsm');
-            return $this->vsm->get_rank($search_query, $dokumen);
+            return $this->vsm->get_rank($search_query, $dokumen, $debug);
         }
         // method untuk convert judul ke bentuk token
         public function generate_token(){
@@ -39,38 +39,102 @@
         }
         public function proses_pencarian(){
             // // step 1 mengumpulkan korpus dan kueri
-            // $kueri = 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City';
-            // // $kueri = 'Daun berwarna putih';
-            // $korpus = array(
-            //     'g1' => 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City',
-            //     'g2' => 'Penerapan Teknologi Augmented Reality Sebagai Media Promosi Universitas Dian Nuswantoro Berbasis Android',
-            //     'g3' => 'RANCANG BANGUN APLIKASI KATALOG MAKANAN KOTA SEMARANG SEBAGAI SARANA REFERENSI BAGI WISATAWAN',
-            // );
             $data = $this->input->post();
-            $dataArray = [];
+            $korpus = [];
+            $korpus_output = [];
+            $koleksi_term  = [];
             foreach ($data as $key => $value) {
-                $dataArray[$key] = implode(',<br>',$this->prep($value));
+                    $korpus[$key] = implode(' ',$this->prep($value));
+                    $korpus_output[$key] = implode(',<br>',$this->prep($value));
+                    foreach ($this->prep($value) as $indeks => $term) {
+                        array_push($koleksi_term, $term);
+                    }
             }
-            echo json_encode($dataArray);
+            $koleksi_term = array_unique($koleksi_term);
+
             
             // step 2 preprocessing kueri 
-            $kueri = $this->prep($kueri);
+            $kueri = $this->prep($this->input->post('query'));
+
+            // step 3 buat korpus ke dalam array
+            $arrayDokumen = [];
+            // var_dump($korpus);
+            foreach ($korpus as $key => $value) {
+                // print_r($this->prep($dokumen));
+                if ($key != 'query'){
+                    $arrayDoc = [
+                        'id_doc' => $key,
+                        'dokumen' => implode(' ',$this->prep($value)),
+                    ];
+                    array_push($arrayDokumen, $arrayDoc);
+                }
+            }
+            // print_r($arrayDokumen);
+
+            // step 3 proses perhitungan
+            $rank = $this->vsm($kueri, $arrayDokumen, $debug=false);
+            // print_r($rank);
+
+            // menghilangkan nested object
+            $dokumen_term = [];
+            foreach ($rank['dokumen_term'] as $key => $value) {
+                foreach ($value as $key1 => $value1) {
+                    $dokumen_term[$key] = $value1;
+                }
+            }
+
+            // query term
+            $query_term = [];
+            foreach ($kueri as $key => $value) {
+                $query_term[$value] = 1;
+            }
+
+            // gabungkan dokumen_term dengan $query_term
+            array_push($dokumen_term, $query_term);
+
+
+            $output = [
+                'korpus' => $korpus_output,
+                'koleksi_term' => $koleksi_term,
+                'dokumen_term' => $dokumen_term,
+                'kueri' => $query_term,
+            ];
+
+            echo json_encode($output);
+
+        }
+        public function debug(){
+            // // step 1 mengumpulkan korpus dan kueri
+            // $kueri = 'Katalog Digital Pariwisata Semarang Berbasis Augmented Reality Untuk menjadikan Semarang Sebagai Smart City';
+            $kueri = 'Daun kuning';
+            $korpus = array(
+                'g1' => 'Daun berwarna kuning',
+                'g2' => 'Daun berwarna putih',
+                'g3' => 'Batang berwarna kuning',
+            );
+
+            
+            // step 2 preprocessing kueri 
+            $kueri = $this->prep($this->input->post('query'));
 
             // buat korpus ke dalam array
             $arrayDokumen = [];
             // var_dump($korpus);
             foreach ($korpus as $key => $value) {
                 // print_r($this->prep($dokumen));
-                $arrayDoc = [
-                    'id_doc' => $key,
-                    'dokumen' => implode(' ',$this->prep($value)),
-                ];
-                array_push($arrayDokumen, $arrayDoc);
+                if ($key != 'query'){
+                    $arrayDoc = [
+                        'id_doc' => $key,
+                        'dokumen' => implode(' ',$this->prep($value)),
+                    ];
+                    array_push($arrayDokumen, $arrayDoc);
+                }
             }
-            print_r($arrayDokumen);
+            // print_r($arrayDokumen);
 
-            $rank = $this->vsm($kueri, $arrayDokumen);
-            print_r($rank);
+            $rank = $this->vsm($kueri, $arrayDokumen, $debug=true);
+            // print_r($rank);
+
         }
     }
     

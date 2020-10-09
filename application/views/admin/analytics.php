@@ -34,11 +34,15 @@
         <form id="formDokumen">
             <div class="form-group">
                 <label for="query">Query</label>
-                <input type="text" name='query' id='query' placeholder="Query Pencarian" class="form-control">
+                <input type="text" name='query' id='query' placeholder="Query Pencarian" class="form-control" value='semarang panas'>
             </div>
             <div class="form-group">
                 <label for="doc1">Dokumen 1</label>
-                <input type="text" name='doc1' id='doc1' placeholder="Teks Dokumen 1" class="form-control">
+                <input type="text" name='doc1' id='doc1' placeholder="Teks Dokumen 1" class="form-control" value='salatiga dingin'>
+            </div>
+            <div class="form-group">
+                <label for="doc2">Dokumen 2</label>
+                <input type="text" name='doc2' id='doc2' placeholder="Teks Dokumen 2" class="form-control" value='solo sultan'>
             </div>
             <div class="kotakDokumen">
             </div>
@@ -64,7 +68,19 @@
                         <th>Kata Baku</th>
                     </tr>
                 </thead>
-                <tbody id="showTabel1"> 
+                <tbody id="showTabelPrep"> 
+                </tbody>
+            </table>
+        </div>
+      </div>
+
+      <div class="container mt-5 mainContainerPerhitungan">
+        <div class="table-responsive">
+            <h5>Langkah 2.1 Perhitungan TF</h5>
+            <table id="tabel1" class="table table-striped table-bordered">
+                <thead id="headTabelTf">
+                </thead>
+                <tbody id="showTabelTf"> 
                 </tbody>
             </table>
         </div>
