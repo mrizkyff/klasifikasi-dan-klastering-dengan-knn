@@ -4,7 +4,7 @@
         var jmlDokumen = 2;
         $('#btnAddDokumen').click(function (e) { 
             e.preventDefault();
-            jmlDokumen += 2
+            jmlDokumen += 1
             $('.kotakDokumen').before(
                 '<div class="form-group">'+
                     '<div class="form-group">'+
@@ -69,30 +69,34 @@
                             "<th>"+'Doc'+index+''+"</th>"
                         $('#subHeadTabelTf').append(html);
                     }
-                    $('#subHeadTabelTf').append('<th>Query</th>');
+                    $('#subHeadTabelTf').append('<th>Query</th><th width="200px">IDF</th>');
                     console.log(jml);
 
                     // body
                     // looping membuat 0 di seluruh cell tabel
                     var htmlBody = ''
                     $.each(response['koleksi_term'], function (indeks, term) { 
-                        htmlBody += '<tr><td>'+indeks+'</td>'+
+                        htmlBody += '<tr><td width="50px">'+(indeks+1)+'</td>'+
                                         '<td>'+term+'</td>'
-                        for (let i = 0; i < jml; i++) {
+                        for (let i = 0; i <= jml; i++) {
                             htmlBody += '<td id=rowke'+indeks+'_'+i+'>0</td>'
                         }
                         });
                     $('#showTabelTf').append(htmlBody)
                         
-                        // mengupdate nilai 0 pada cell table TF sesuai dengan nilai tfnya
+                    // mengupdate nilai 0 pada cell table TF sesuai dengan nilai tfnya
                     $.each(response['koleksi_term'], function (indeks, term) { 
+                        var dokumenFrekuensi = 0;
                         $.each(response['dokumen_term'], function (indexInArray, valueOfElement) { // dokumen ke 0, 1, 2 ..
-                                $.each(valueOfElement, function (termnya, nilainya  ) {  //isi dari dokumen ke 0, 1, 2, 3...
-                                    if(termnya == term){
-                                        $('#rowke'+indeks+'_'+indexInArray).html(nilainya);
-                                    } 
-                                });
+                            $.each(valueOfElement, function (termnya, nilainya  ) {  //isi dari dokumen ke 0, 1, 2, 3...
+                                if(termnya == term){
+                                    $('#rowke'+indeks+'_'+indexInArray).html(nilainya);
+                                    $('#rowke'+indeks+'_'+indexInArray).addClass('bg-secondary');
+                                    dokumenFrekuensi += nilainya;
+                                } 
                             });
+                        });
+                        $('#rowke'+indeks+'_'+jml).html(Math.log10(jml/dokumenFrekuensi));
                     });
 
                 }

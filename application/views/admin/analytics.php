@@ -56,6 +56,7 @@
       </div>
       <!-- akhir form untuk melakukan pengujian -->
 
+      <!-- awal tabel preprocessing -->
       <div class="container mt-5 mainContainerPerhitungan">
         <h3 class="text-center">Perhitungan Algoritma</h3>
         <div class="table-responsive">
@@ -73,10 +74,12 @@
             </table>
         </div>
       </div>
+      <!-- akhir tabel preprocessing -->
 
+      <!-- awal tabel perhitungan TF -->
       <div class="container mt-5 mainContainerPerhitungan">
         <div class="table-responsive">
-            <h5>Langkah 2.1 Perhitungan TF</h5>
+            <h5>Langkah 2.1 Perhitungan TF dan IDF</h5>
             <table id="tabel1" class="table table-striped table-bordered">
                 <thead id="headTabelTf">
                 </thead>
@@ -85,6 +88,9 @@
             </table>
         </div>
       </div>
+      <!-- akhir tabel perhitungan TF -->
+
+
 
     </div>
       <!-- /.card-body -->
