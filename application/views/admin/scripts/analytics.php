@@ -206,10 +206,30 @@
                             // console.log('koordinat'+j+','+i);
                             jumlahVektor += Number($('#pvektorke'+j+'_'+i).html());
                         }
-                        console.log('jumlahke'+i+'='+jumlahVektor);
                         $('#jmlke'+i).html(jumlahVektor.toFixed(6));
                         $('#akarke'+i).html(Math.sqrt(jumlahVektor).toFixed(6));
                     }
+
+                    // mengambil data perhitungan dari controller analysis
+                    var htmlCosim = ''
+                    var htmlJaccard = ''
+                    var htmlDice = ''
+                    $.each(response['cosine_document'], function (index, value) { 
+                        // append ke tabel cosim
+                        htmlCosim += '<tr><td>(query,'+value['id_doc']+') = '+value['jumlah_vektor'].toFixed(6)+'/'+value['jumlah_besar_vektor'].toFixed(6)+' = '+Number(value['jumlah_vektor']/value['jumlah_besar_vektor']).toFixed(6)+'</td></tr>'
+
+                        // append ke tabel jaccard
+                        var j = Number(value['jumlah_vektor']/(value['jumlah_besar_vektor_jaccard'].toFixed(6)-value['jumlah_vektor']))
+                        htmlJaccard += '<tr><td>(query,'+value['id_doc']+') = '+value['jumlah_vektor'].toFixed(6)+'/('+value['jumlah_besar_vektor_jaccard'].toFixed(6)+'-'+value['jumlah_vektor'].toFixed(6)+') = '+j+'</td></tr>'
+
+                        // append ke tabel dice
+                        htmlDice += '<tr><td>(query,'+value['id_doc']+') = 2x('+value['jumlah_vektor'].toFixed(6)+'/'+value['jumlah_besar_vektor_jaccard'].toFixed(6)+') = '+(Number(value['jumlah_vektor']/value['jumlah_besar_vektor_jaccard']).toFixed(6)*2)+'</td></tr>'
+
+
+                    });
+                    $('#tabelCosim').append(htmlCosim);
+                    $('#tabelJaccard').append(htmlJaccard);
+                    $('#tabelDice').append(htmlDice);
                 }
             });
         });

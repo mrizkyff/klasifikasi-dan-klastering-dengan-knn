@@ -122,6 +122,37 @@
       </div>
       <!-- akhir tabel perhitungan panjang vektor -->
 
+      <!-- awal tabel perhitungan cosim -->
+      <div class="container mt-5 mainContainerPerhitungan">
+        <div class="table-responsive">
+            <h5>Langkah 4 Perhitungan Similarity</h5>
+            <h5>Langkah 4.1 Cosinus Similarity</h5>
+            <table id="tabelCosim" class="table table-bordered">
+            </table>
+        </div>
+      </div>
+      <!-- akhir tabel perhitungan cosim -->
+
+      <!-- awal tabel perhitungan jaccard -->
+      <div class="container mt-5 mainContainerPerhitungan">
+        <div class="table-responsive">
+            <h5>Langkah 4.2 Jaccard Similarity</h5>
+            <table id="tabelJaccard" class="table table-bordered">
+            </table>
+        </div>
+      </div>
+      <!-- akhir tabel perhitungan jaccard -->
+
+      <!-- awal tabel perhitungan dice -->
+      <div class="container mt-5 mainContainerPerhitungan">
+        <div class="table-responsive">
+            <h5>Langkah 4.3 Dice Similarity</h5>
+            <table id="tabelDice" class="table table-bordered">
+            </table>
+        </div>
+      </div>
+      <!-- akhir tabel perhitungan dice -->
+
 
 
     </div>

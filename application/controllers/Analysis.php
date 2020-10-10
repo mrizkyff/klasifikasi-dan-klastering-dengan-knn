@@ -81,12 +81,18 @@
             $rank = $this->vsm($kueri, $arrayDokumen, $debug=false);
             // print_r($rank);
 
-            // menghilangkan nested object
+            // menghilangkan nested object pada dokumen term
             $dokumen_term = [];
             foreach ($rank['dokumen_term'] as $key => $value) {
                 foreach ($value as $key1 => $value1) {
                     $dokumen_term[$key] = $value1;
                 }
+            }
+
+            // menangkap dan proses cosine document dari proses vsm
+            $cosine_document = [];
+            foreach ($rank['cosine_document'] as $key => $value) {
+                $cosine_document[$key] = $value;
             }
 
             // query term
@@ -104,6 +110,7 @@
                 'koleksi_term' => $koleksi_term,
                 'dokumen_term' => $dokumen_term,
                 'kueri' => $query_term,
+                'cosine_document' => $cosine_document,
             ];
 
             echo json_encode($output);
@@ -138,8 +145,8 @@
             }
             // print_r($arrayDokumen);
 
-            $rank = $this->vsm($kueri, $arrayDokumen, $debug=true);
-            // print_r($rank);
+            $rank = $this->vsm($kueri, $arrayDokumen, $debug=false);
+            print_r($rank);
 
         }
     }
