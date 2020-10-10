@@ -422,6 +422,8 @@ class VSM
             'jaccard_similarity' => $dokumenRankingJaccard,
             'dice_similarity' => $dokumenRankingDice,
             'euclidean_similarity' => $dokumenVektorEuclidean,
+            // mengirim ke controller analysis
+            'cosine_document' => $dokumenCosine,
         ];
     }
     
