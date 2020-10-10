@@ -97,7 +97,7 @@
       <!-- awal tabel perhitungan pembobotan -->
       <div class="container mt-5 mainContainerPerhitungan">
         <div class="table-responsive">
-            <h5>Langkah 2.1 Perhitungan Pembobotan</h5>
+            <h5>Langkah 2.2 Perhitungan Pembobotan</h5>
             <table id="tabel1" class="table table-striped table-bordered">
                 <thead id="headTabelBobot">
                 </thead>
@@ -107,6 +107,20 @@
         </div>
       </div>
       <!-- akhir tabel perhitungan pembobotan -->
+
+      <!-- awal tabel perhitungan panjang vektor -->
+      <div class="container mt-5 mainContainerPerhitungan">
+        <div class="table-responsive">
+            <h5>Langkah 3 Perhitungan Panjang Vektor</h5>
+            <table id="tabel1" class="table table-striped table-bordered">
+                <thead id="headTabelPanjangVektor">
+                </thead>
+                <tbody id="showTabelPanjangVektor"> 
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <!-- akhir tabel perhitungan panjang vektor -->
 
 
 

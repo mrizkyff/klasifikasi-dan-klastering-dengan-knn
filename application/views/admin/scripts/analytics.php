@@ -66,6 +66,13 @@
                                 '</tr>';
                     $('#headTabelBobot').append(html1);
 
+                    // head tabel panjang vektor
+                    var html2 = '<tr id="subHeadTabelPanjangVektor">'+
+                                    '<th>No.</th>'+
+                                    '<th>Term</th>'+
+                                '</tr>';
+                    $('#headTabelPanjangVektor').append(html2);
+
                     
 
                     // subhead
@@ -84,23 +91,28 @@
                         // membuat dynamic subhead tabel pembobotan
                         $('#subHeadTabelBobot').append(html);
 
+                        // membuat dynamic subhead tabel panjang vektor
+                        $('#subHeadTabelPanjangVektor').append(html);
+
                     }
                     // subhead query dan IDF pada tabel tfidf
                     $('#subHeadTabelTf').append('<th>Query</th><th width="200px">IDF</th>');
-                    // subhead query dan IDF pada tabel pembobotan
+                    // subhead query pada tabel pembobotan
                     $('#subHeadTabelBobot').append('<th>Query</th>');
+                    // subhead query pada tabel panjang vektor
+                    $('#subHeadTabelPanjangVektor').append('<th>Query</th>');
                     console.log(jml);
 
                     // body
                     // mengisi cell nomer + term + dilanjutkan tabel 0 dynamic
                     var htmlBodyTf = ''
                     var htmlBodyBobot = ''
+                    var htmlBodyPanjangVektor = ''
                     var no = 0
                     $.each(response['koleksi_term'], function (indeks, term) { 
                         no += 1
                         htmlBodyTf += '<tr><td width="50px">'+(no)+'</td>'+
-                                        '<td>'+term+'</td>'
-                                        
+                                        '<td>'+term+'</td>'             
                         // looping membuat 0 di seluruh cell tabel tf-idf
                         for (let i = 0; i <= jml; i++) {
                             htmlBodyTf += '<td id=rowke'+indeks+'_'+i+'>0</td>'
@@ -108,16 +120,27 @@
                                         
                         htmlBodyBobot += '<tr><td width="50px">'+(no)+'</td>'+
                                         '<td>'+term+'</td>'
-
                         // looping membuat 0 di seluruh cell tabel pembobotan
                         for (let i = 0; i < jml; i++) {
                             htmlBodyBobot += '<td id=bobotke'+indeks+'_'+i+'>0</td>'
                         }
-                        });
+
+                        htmlBodyPanjangVektor += '<tr><td width="50px">'+(no)+'</td>'+
+                                        '<td>'+term+'</td>'
+                        // looping membuat 0 di seluruh cell tabel panjang vektor
+                        for (let i = 0; i < jml; i++) {
+                            htmlBodyPanjangVektor += '<td id=pvektorke'+indeks+'_'+i+'>0</td>'
+                        }
+
+
+                    });
                     //  menampilkan di tabel Tfidf
                     $('#showTabelTf').append(htmlBodyTf)
                     // menampilkan di tabel pembobotan
                     $('#showTabelBobot').append(htmlBodyBobot)
+                    // menampilkan di tabel panjang vektor (isinya sama dengan tabel pembobotan)
+                    $('#showTabelPanjangVektor').append(htmlBodyPanjangVektor)
+
                         
                     // mengupdate nilai 0 pada cell table TF sesuai dengan nilai tfnya
                     $.each(response['koleksi_term'], function (indeks, term) { 
@@ -127,6 +150,7 @@
                         $.each(response['dokumen_term'], function (indexInArray, valueOfElement) { // dokumen ke 0, 1, 2 ..
                             $.each(valueOfElement, function (termnya, nilainya  ) {  //isi dari dokumen ke 0, 1, 2, 3...
                                 if(termnya == term){
+                                    // set nilai tfidf
                                     $('#rowke'+indeks+'_'+indexInArray).html(nilainya);
                                     $('#rowke'+indeks+'_'+indexInArray).addClass('bg-secondary');
                                     dokumenFrekuensi += nilainya;
@@ -135,14 +159,19 @@
                         });
                         // menampilkan idf di tabel tfidf
                         idf = Math.log10(jml/dokumenFrekuensi);
-                        $('#rowke'+indeks+'_'+jml).html(idf);
+                        $('#rowke'+indeks+'_'+jml).html(idf.toFixed(6));
 
-                        // mengisi tabel pembobotan
+                        // mengisi tabel pembobotan dan juga panjang vektor
                         $.each(response['dokumen_term'], function (indexInArray, valueOfElement) { // dokumen ke 0, 1, 2 ..
                             $.each(valueOfElement, function (termnya, nilainya  ) {  //isi dari dokumen ke 0, 1, 2, 3...
                                 if(termnya == term){
-                                    $('#bobotke'+indeks+'_'+indexInArray).html((nilainya * idf));
+                                    // set nilai pembobotan
+                                    $('#bobotke'+indeks+'_'+indexInArray).html((nilainya * idf).toFixed(6));
                                     $('#bobotke'+indeks+'_'+indexInArray).addClass('bg-secondary');
+                                    
+                                    // set nilai panjangvektor
+                                    $('#pvektorke'+indeks+'_'+indexInArray).html((nilainya * Math.pow(idf,2)).toFixed(6));
+                                    $('#pvektorke'+indeks+'_'+indexInArray).addClass('bg-secondary');
                                 } 
                             });
                         });
