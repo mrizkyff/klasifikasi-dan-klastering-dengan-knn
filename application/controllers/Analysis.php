@@ -42,15 +42,21 @@
             $data = $this->input->post();
             $korpus = [];
             $korpus_output = [];
-            $koleksi_term  = [];
+            $kumpulan_term  = [];
             foreach ($data as $key => $value) {
                     $korpus[$key] = implode(' ',$this->prep($value));
                     $korpus_output[$key] = implode(',<br>',$this->prep($value));
                     foreach ($this->prep($value) as $indeks => $term) {
-                        array_push($koleksi_term, $term);
+                        array_push($kumpulan_term, $term);
                     }
             }
-            $koleksi_term = array_unique($koleksi_term);
+            $kumpulan_term = array_unique($kumpulan_term);
+        
+            // mengurutkan index koleksi term
+            $koleksi_term = [];
+            foreach ($kumpulan_term as $indeks => $value) {
+                array_push($koleksi_term, $value);
+            }
 
             
             // step 2 preprocessing kueri 
