@@ -120,9 +120,9 @@
                     $('#showTabelBobot').append(htmlBodyBobot)
                         
                     // mengupdate nilai 0 pada cell table TF sesuai dengan nilai tfnya
-                    var idf = 0;
                     $.each(response['koleksi_term'], function (indeks, term) { 
                         // mengisi tabel tfidf
+                        var idf = 0;
                         var dokumenFrekuensi = 0;
                         $.each(response['dokumen_term'], function (indexInArray, valueOfElement) { // dokumen ke 0, 1, 2 ..
                             $.each(valueOfElement, function (termnya, nilainya  ) {  //isi dari dokumen ke 0, 1, 2, 3...
@@ -135,7 +135,7 @@
                         });
                         // menampilkan idf di tabel tfidf
                         idf = Math.log10(jml/dokumenFrekuensi);
-                        $('#bobotke'+indeks+'_'+jml).html(idf);
+                        $('#rowke'+indeks+'_'+jml).html(idf);
 
                         // mengisi tabel pembobotan
                         $.each(response['dokumen_term'], function (indexInArray, valueOfElement) { // dokumen ke 0, 1, 2 ..
