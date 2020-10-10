@@ -23,6 +23,13 @@
             $('#showTabelPrep').empty();
             $('#headTabelTf').empty();
             $('#showTabelTf').empty();
+            
+            $('#headTabelBobot').empty();
+            $('#showTabelBobot').empty();
+
+            $('#headTabelPanjangVektor').empty();
+            $('#showTabelPanjangVektor').empty();
+
 
 
             $('.mainContainerPerhitungan').fadeIn();
@@ -109,7 +116,9 @@
                     var htmlBodyBobot = ''
                     var htmlBodyPanjangVektor = ''
                     var no = 0
+                    var jmlTerm = 0
                     $.each(response['koleksi_term'], function (indeks, term) { 
+                        jmlTerm += 1
                         no += 1
                         htmlBodyTf += '<tr><td width="50px">'+(no)+'</td>'+
                                         '<td>'+term+'</td>'             
@@ -131,16 +140,28 @@
                         for (let i = 0; i < jml; i++) {
                             htmlBodyPanjangVektor += '<td id=pvektorke'+indeks+'_'+i+'>0</td>'
                         }
-
-
                     });
                     //  menampilkan di tabel Tfidf
                     $('#showTabelTf').append(htmlBodyTf)
                     // menampilkan di tabel pembobotan
                     $('#showTabelBobot').append(htmlBodyBobot)
-                    // menampilkan di tabel panjang vektor (isinya sama dengan tabel pembobotan)
-                    $('#showTabelPanjangVektor').append(htmlBodyPanjangVektor)
 
+                    // menampilkan di tabel panjang vektor (isinya sama dengan tabel pembobotan)
+                    // menambahkan row jumlah dan akar pada tabel panjang vektor
+                    var elemenJumlah = ''
+                    htmlBodyPanjangVektor +=    '<tr id="jumlahPvektor">'+
+                                                    '<td colspan ="2" >Jumlah</td>'+
+                                                '</tr>'+
+                                                '<tr id="akarPvektor">'+
+                                                    '<td colspan ="2">Akar</td>'+
+                                                '</tr>'
+                    $('#showTabelPanjangVektor').append(htmlBodyPanjangVektor)
+                    for (let i = 0; i < jml; i++) {
+                        $('#jumlahPvektor').append('<td id=jmlke'+i+'>0</td>');
+                    }
+                    for (let i = 0; i < jml; i++) {
+                        $('#akarPvektor').append('<td id=akarke'+i+'>0</td>');
+                    }
                         
                     // mengupdate nilai 0 pada cell table TF sesuai dengan nilai tfnya
                     $.each(response['koleksi_term'], function (indeks, term) { 
@@ -176,7 +197,19 @@
                             });
                         });
                     });
-
+                    
+                    // menjumlahkan panjang vektor setiap dokumen dan mencari akarnya
+                    for (let i = 0; i < jml; i++) {
+                        var jumlahVektor = 0
+                        var akarVektor = 0
+                        for (let j = 0; j < jmlTerm; j++){
+                            // console.log('koordinat'+j+','+i);
+                            jumlahVektor += Number($('#pvektorke'+j+'_'+i).html());
+                        }
+                        console.log('jumlahke'+i+'='+jumlahVektor);
+                        $('#jmlke'+i).html(jumlahVektor.toFixed(6));
+                        $('#akarke'+i).html(Math.sqrt(jumlahVektor).toFixed(6));
+                    }
                 }
             });
         });
