@@ -34,15 +34,19 @@
         <form id="formDokumen">
             <div class="form-group">
                 <label for="query">Query</label>
-                <input type="text" name='query' id='query' placeholder="Query Pencarian" class="form-control" value='semarang panas'>
+                <input type="text" name='query' id='query' placeholder="Query Pencarian" class="form-control" value='daun kuning'>
             </div>
             <div class="form-group">
                 <label for="doc1">Dokumen 1</label>
-                <input type="text" name='doc1' id='doc1' placeholder="Teks Dokumen 1" class="form-control" value='salatiga dingin'>
+                <input type="text" name='doc1' id='doc1' placeholder="Teks Dokumen 1" class="form-control" value='daun berwarna kuning'>
             </div>
             <div class="form-group">
                 <label for="doc2">Dokumen 2</label>
-                <input type="text" name='doc2' id='doc2' placeholder="Teks Dokumen 2" class="form-control" value='solo sultan'>
+                <input type="text" name='doc2' id='doc2' placeholder="Teks Dokumen 2" class="form-control" value='daun berwarna putih'>
+            </div>
+            <div class="form-group">
+                <label for="doc3">Dokumen 3</label>
+                <input type="text" name='doc3' id='doc3' placeholder="Teks Dokumen 3" class="form-control" value='batang berwarna kuning'>
             </div>
             <div class="kotakDokumen">
             </div>
@@ -89,6 +93,20 @@
         </div>
       </div>
       <!-- akhir tabel perhitungan TF -->
+      
+      <!-- awal tabel perhitungan pembobotan -->
+      <div class="container mt-5 mainContainerPerhitungan">
+        <div class="table-responsive">
+            <h5>Langkah 2.1 Perhitungan Pembobotan</h5>
+            <table id="tabel1" class="table table-striped table-bordered">
+                <thead id="headTabelBobot">
+                </thead>
+                <tbody id="showTabelBobot"> 
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <!-- akhir tabel perhitungan pembobotan -->
 
 
 
