@@ -30,6 +30,11 @@
             $('#headTabelPanjangVektor').empty();
             $('#showTabelPanjangVektor').empty();
 
+            $('#tabelCosim').empty();
+            $('#tabelJaccard').empty();
+            $('#tabelDice').empty();
+
+
 
 
             $('.mainContainerPerhitungan').fadeIn();
@@ -216,14 +221,14 @@
                     var htmlDice = ''
                     $.each(response['cosine_document'], function (index, value) { 
                         // append ke tabel cosim
-                        htmlCosim += '<tr><td>(query,'+value['id_doc']+') = '+value['jumlah_vektor'].toFixed(6)+'/'+value['jumlah_besar_vektor'].toFixed(6)+' = '+Number(value['jumlah_vektor']/value['jumlah_besar_vektor']).toFixed(6)+'</td></tr>'
+                        htmlCosim += '<tr><td>(query,'+value['id_doc']+') = '+value['jumlah_vektor'].toFixed(6)+'/'+value['jumlah_besar_vektor'].toFixed(6)+' = '+Number(value['jumlah_vektor']/value['jumlah_besar_vektor']).toFixed(4)+'</td></tr>'
 
                         // append ke tabel jaccard
                         var j = Number(value['jumlah_vektor']/(value['jumlah_besar_vektor_jaccard'].toFixed(6)-value['jumlah_vektor']))
-                        htmlJaccard += '<tr><td>(query,'+value['id_doc']+') = '+value['jumlah_vektor'].toFixed(6)+'/('+value['jumlah_besar_vektor_jaccard'].toFixed(6)+'-'+value['jumlah_vektor'].toFixed(6)+') = '+j+'</td></tr>'
+                        htmlJaccard += '<tr><td>(query,'+value['id_doc']+') = '+value['jumlah_vektor'].toFixed(6)+'/('+value['jumlah_besar_vektor_jaccard'].toFixed(6)+'-'+value['jumlah_vektor'].toFixed(6)+') = '+j.toFixed(4)+'</td></tr>'
 
                         // append ke tabel dice
-                        htmlDice += '<tr><td>(query,'+value['id_doc']+') = 2x('+value['jumlah_vektor'].toFixed(6)+'/'+value['jumlah_besar_vektor_jaccard'].toFixed(6)+') = '+(Number(value['jumlah_vektor']/value['jumlah_besar_vektor_jaccard']).toFixed(6)*2)+'</td></tr>'
+                        htmlDice += '<tr><td>(query,'+value['id_doc']+') = 2x('+value['jumlah_vektor'].toFixed(6)+'/'+value['jumlah_besar_vektor_jaccard'].toFixed(6)+') = '+(Number(value['jumlah_vektor']/value['jumlah_besar_vektor_jaccard'])*2).toFixed(4)+'</td></tr>'
 
 
                     });
