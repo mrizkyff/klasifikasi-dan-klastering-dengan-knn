@@ -64,12 +64,16 @@ class Search extends CI_Controller
     }
     public function cari(){
         $search_query = $this->input->get('query');
+        $search_tahun = $this->input->get('tahun');
+        $search_minat = $this->input->get('minat');
         $tic = microtime(true);
         $this->processSearch($search_query);
         $toc = microtime(true);
         $data['waktu_pencarian'] = $toc-$tic;
-        $data['koleksi_skripsi'] = $this->search->tampilHasil()->result();
+        $data['koleksi_skripsi'] = $this->search->tampilHasil($search_tahun, $search_minat)->result();
         $data['keyword'] = $search_query;
+        $data['tahun'] = $search_tahun;
+        $data['minat'] = $search_minat;
         $this->load->view('template/public/pub_header');
         $this->load->view('public/result_page',$data);
         $this->load->view('template/public/pub_footer');

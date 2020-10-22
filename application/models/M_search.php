@@ -11,8 +11,19 @@
 			return $this->db->update('ta_a11',$data);
 		}
 
-		public function tampilHasil(){
+		public function tampilHasil($tahun, $minat){
             $this->db->select('*');
+            if ($tahun != '' and $minat != ''){
+                $this->db->where('tahun', $tahun);
+                $this->db->where('minat', $minat);
+            }
+            else if ($tahun != ''){
+                $this->db->where('tahun', $tahun);
+            }
+            else if ($minat != ''){
+                $this->db->where('minat', $minat);
+            }
+            $this->db->where('cosim !=','0');
             $this->db->order_by("cosim","DESC");
             return $this->db->get("ta_a11");
 		}

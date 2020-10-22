@@ -1,6 +1,6 @@
 <nav class="navbar navbar-primary bg-primary">
   <span class="navbar-text">
-    Hasil Pencarian untuk '<?php echo $keyword?>'
+    Hasil Pencarian untuk '<?php echo $keyword.' - '.$tahun.' - '.$minat?>'
   </span>
 </nav>
 <div class="konten">
@@ -8,13 +8,35 @@
     <div class="main">
         <table width=100%>
             <tr>
-                <td><img src="<?php echo base_url() ?>asset/img/logoRepository.png" alt="DNRepository" class="img-fluid"></td>
+                <td colspan='3'><img src="<?php echo base_url() ?>asset/img/logoRepository.png" alt="DNRepository" class="img-fluid"></td>
             </tr>
             <tr height='15px'>
                 <td></td>
             </tr>
-            <form action="<?php echo base_url().'index.php/search/cari'?>" method='get'>
+            <form action="<?php echo base_url().'search/cari'?>" method='get'>
             <tr>
+                <td width='140px'>
+                    <div class="input-group">
+                        <select name="tahun" id="tahun" class="form-control" selected='<?php echo $tahun ?>'>
+                            <option value="" <?= ($tahun == '')?'selected':''?>>Semua Tahun</option>
+                            <option value="2020" <?= ($tahun == '2020')?'selected':''?>>2020</option>
+                            <option value="2019" <?= ($tahun == '2019')?'selected':''?>>2019</option>
+                            <option value="2018" <?= ($tahun == '2018')?'selected':''?>>2018</option>
+                            <option value="2017" <?= ($tahun == '2017')?'selected':''?>>2017</option>
+                            <option value="2016" <?= ($tahun == '2016')?'selected':''?>>2016</option>
+                            <option value="2015" <?= ($tahun == '2015')?'selected':''?>>2015</option>
+                        </select>
+                    </div>
+                </td>
+                <td width='140px'>
+                    <div class="input-group">
+                        <select name="minat" id="minat" class="form-control" selected='<?php echo $minat ?>'>
+                            <option value="" <?= ($minat == '')?'selected':''?>>Semua Minat</option>
+                            <option value="sc" <?= ($minat == 'sc')?'selected':''?>>SC</option>
+                            <option value="rpl" <?= ($minat == 'rpl')?'selected':''?>>RPL</option>
+                        </select>
+                    </div>
+                </td>
                 <td>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Cari Judul Tugas Akhir" name='query' value='<?php echo $keyword ?>'>
