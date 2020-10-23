@@ -6,9 +6,15 @@ class Search extends CI_Controller
         $this->load->model('M_Search','search');
     }
     public function index(){
+        $data['waktu_pencarian'] = 0;
+        $data['keyword'] = '';
+        $data['tahun'] = '';
+        $data['minat'] = '';
         $this->load->view('template/public/pub_header');
-        $this->load->view('public/search_page');
+        $this->load->view('public/result_page', $data);
         $this->load->view('template/public/pub_footer');
+        $this->load->view('public/scripts/result_page');
+
     }
 
     // method untuk preprocessing
@@ -76,6 +82,24 @@ class Search extends CI_Controller
         $data['minat'] = $search_minat;
         $this->load->view('template/public/pub_header');
         $this->load->view('public/result_page',$data);
+        $this->load->view('template/public/pub_footer');
+        $this->load->view('public/scripts/result_page');
+    }
+
+    public function cari_spesifik(){
+        $data['tahun'] = '';
+        $data['minat'] = '';
+        $nama = $this->input->post('nama');
+        $nim = $this->input->post('nim');
+        $tic = microtime(true);
+        $data['koleksi_skripsi'] = $this->search->specific_search($nim, $nama);
+        $toc = microtime(true);
+        $data['waktu_pencarian'] = $toc-$tic;
+        $data['keyword'] = 'nama:'.$nama.' ; nim:'.$nim;
+        $data['specific'] = true;
+
+        $this->load->view('template/public/pub_header');
+        $this->load->view('public/result_page', $data);
         $this->load->view('template/public/pub_footer');
         $this->load->view('public/scripts/result_page');
     }

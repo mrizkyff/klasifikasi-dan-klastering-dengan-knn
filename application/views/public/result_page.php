@@ -1,12 +1,12 @@
 <nav class="navbar navbar-primary bg-primary">
   <span class="navbar-text">
-    Hasil Pencarian untuk '<?php echo $keyword.' - '.$tahun.' - '.$minat?>'
+    Hasil Pencarian untuk '<?php echo $keyword.' '.$tahun.' '.$minat?>'
   </span>
 </nav>
-<div class="konten">
+<div class="container mt-5 mb-5">
     <!-- form pencarian -->
-    <div class="main">
-        <table width=100%>
+        <!-- awal tabel logo -->
+        <table width=100% >
             <tr>
                 <td colspan='3'><img src="<?php echo base_url() ?>asset/img/logoRepository.png" alt="DNRepository" class="img-fluid"></td>
             </tr>
@@ -41,68 +41,120 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Cari Judul Tugas Akhir" name='query' value='<?php echo $keyword ?>'>
                         <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
                     </div>
                 </td>
             </tr>
             </form>
+            <tr>
+                <td colspan=3>
+                    <div class="container mt-2">
+                        <div class="text-center">
+                            <button id='show_spesifik' class='btn btn-link' type='button'>Pencarian Spesifik &nbsp<i class="fas fa-angle-double-down"></i></button>
+                        </div>
+                        <div id='spesifik_form'>
+                            <div class="row">
+                                <div class="col">
+                                <form action="<?php echo base_url('search/cari_spesifik')?>" method='POST'>
+                                    <div class="form-group">
+                                        <label for="nim">NIM</label>
+                                        <input type="text" id='nim' name='nim' placeholder='Nomor Induk Mahasiswa' class='form-control'>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" id='nama' name='nama' placeholder='Nama Mahasiswa' class='form-control'>
+                                    </div>
+                                </div>
+                            </div>
+                                <button class="btn btn-primary float-right">Cari</button>
+                                </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='3'>
+                    <div class="text-center">
+                        <button id='hide_spesifik' class='btn btn-link' type='button'>Pencarian Spesifik &nbsp<i class="fas fa-angle-double-up"></i></button>
+                    </div>
+                </td>
+            </tr>
         </table>
-    
-    </div>
+        <!-- akhir tabel logo -->
     <!-- akhir form pencarian -->
 
-
-    <!-- datatables -->
-    <table id="tabel_hasil_pencarian">
+    <?php if(isset($koleksi_skripsi))
+        {
+    ?>
+    <div class="row mt-3">
+        <!-- datatables -->
+        <div class="col">
+            <table id="tabel_hasil_pencarian" width='100%'>
                 <thead>
                     <tr>
-                        <td><b> Hasil Pencarian </b> <i>(<?= $waktu_pencarian ?>) detik.</i></td>
+                        <td>
+                            <b> Hasil Pencarian untuk </b> <?= sizeof($koleksi_skripsi) ?> dokumen ditemukan <i>(<?= $waktu_pencarian.' detik' ?>)</i>
+                        </td>
                         
                     </tr>
-                    </thead>
+                </thead>
                 <tbody>
                 <?php
                     foreach ($koleksi_skripsi as $data){
                 ?>
                     <tr>
                         <td>
-                            <div class="card">
+                            <div class='card'>
                                 <div class="card-body">
                                         <div class="d-flex flex-column bd-highlight mb-3">
                                             <div class="p-0 bd-highlight">
                                                 <a href="<?php echo base_url()?>upload/<?php echo $data->file?>" target="_blank" rel="noopener noreferrer">
-                                                    <p style='color: blue;'><?php echo $data->judul ?> <span class="badge badge-secondary"><?= $data->minat ?></span></p><p class='text-secondary'><i>(Kemiripan Kata Kunci <?php echo $data->cosim*100 ?>%)</i></p>
+                                                    <p style='color: blue;'><?php echo $data->judul ?> 
+                                                        <span class="badge badge-secondary">
+                                                            <?= $data->minat ?>
+                                                        </span>
+                                                        <br>
+                                                        <?php if(isset($specific) != true) {?>
+                                                        <i class="text-secondary">(Kemiripan dengan query <?php echo $data->cosim*100 ?>%)</i>
+                                                        <?php }?>
+                                                    </p>
                                                 </a>
                                             </div>
                                             <div class="p-0 bd-highlight">
-                                                <div class="d-flex flex-row-reverse bd-highlight">
+                                                <p>
+                                                    <?php echo $data->penulis ?> || <?= $data->nim ?> <br>
+                                                    <?php echo $data->tahun ?>
+                                                </p>
+                                                <!-- <div class="d-flex flex-row-reverse bd-highlight">
                                                     <div class="p-2 bd-highlight"><?php echo $data->tahun ?></div>
                                                     <div class="p-2 bd-highlight"><?php echo $data->penulis ?> || <?= $data->nim ?></div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                 </div>
                             </div>
                         </td>
                     </tr>
-
                 <?php
                     }
                 ?>
-
-                   
                 </tbody>
                 <tfoot>
                     <tr>    
                         <th>Hasil Pencarian. </th>
-                       
                     </tr>
                 </tfoot>
             </table>
-
+        </div>    
         <!-- akhir datatables -->
-
+    </div>
+    <?php
+    }
+    ?>
+    
 </div>

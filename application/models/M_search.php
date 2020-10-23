@@ -4,7 +4,14 @@
         public function doctoArray(){
             $this->db->select('*');
             return $this->db->get('ta_a11');
-		}
+        }
+        
+        public function specific_search($nim, $nama){
+            $this->db->select('*');
+            $this->db->like('nim' , $nim, 'both');
+            $this->db->like('penulis', $nama, 'both');
+            return $this->db->get('ta_a11')->result();
+        }
 
 		public function updateBobot($data, $id){
 			$this->db->where('id',$id);
