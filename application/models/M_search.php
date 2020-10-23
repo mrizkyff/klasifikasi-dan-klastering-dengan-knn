@@ -33,7 +33,16 @@
             $this->db->where('cosim !=','0');
             $this->db->order_by("cosim","DESC");
             return $this->db->get("ta_a11");
-		}
+        }
+        
+        public function resetAllBobot(){
+            $data = [
+                'cosim' => 0,
+                'jaccard' => 0,
+                'dice' => 0,
+            ];
+            $this->db->update('ta_a11', $data);
+        }
     }
     
 ?>

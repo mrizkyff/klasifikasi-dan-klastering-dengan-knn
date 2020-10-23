@@ -84,6 +84,8 @@ class Search extends CI_Controller
         $this->load->view('public/result_page',$data);
         $this->load->view('template/public/pub_footer');
         $this->load->view('public/scripts/result_page');
+        // reset semua bobot
+        $this->search->resetAllBobot();
     }
 
     public function cari_spesifik(){
