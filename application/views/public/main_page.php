@@ -19,6 +19,30 @@
   </head>
   <body>
 
+        <!-- awal navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+            <a class="navbar-brand" href="#">Perpustakaan Udinus</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Koleksi TA <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Administrator</a>
+                </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- akhir navbar -->
+
     <!-- kontainer utama -->
     <div class="container mt-2 mb-1">
 
@@ -44,6 +68,12 @@
         <div class="row mt-2">
             <!-- awal kontainer kolom hasil pencarian -->
             <div class="col" style="background-color: #ffefd8">
+            <!-- tampilkan query dan waktu pencarian -->
+            <div class="mt-2">
+                <p>Ditemukan 1287 hasil pencarian untuk "<b>Metode naive bayes</b>" dalam 1.109239 detik.</p>
+
+            </div>
+            <!-- akhir tampilkan query dan waktu pencarian -->
                 <?php 
                     for ($x = 0; $x <=10; $x+=1){
                 ?>

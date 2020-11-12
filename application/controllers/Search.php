@@ -11,7 +11,8 @@ class Search extends CI_Controller
         $data['tahun'] = '';
         $data['minat'] = '';
         $this->load->view('template/public/pub_header');
-        $this->load->view('public/result_page', $data);
+        // $this->load->view('public/result_page', $data);
+        $this->load->view('public/main_page');
         $this->load->view('template/public/pub_footer');
         $this->load->view('public/scripts/result_page');
 
