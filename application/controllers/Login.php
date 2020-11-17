@@ -8,7 +8,7 @@
 
         function index(){
             $this->load->view('admin/login_page');
-            $this->load->view('admin/scripts/login');
+            // $this->load->view('admin/scripts/login');
         }
 
         function authorize(){

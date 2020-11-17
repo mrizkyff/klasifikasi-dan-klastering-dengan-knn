@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <title>DNRepository Admin Login</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 	.login-form {
 		width: 340px;
@@ -31,6 +33,29 @@
 </style>
 </head>
 <body>
+<!-- awal navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+    <a class="navbar-brand" href="#">Perpustakaan Udinus</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url()?>">Koleksi TA <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('admin')?>">Administrator</a>
+        </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<!-- akhir navbar -->
 <div class="login-form">
         <h2 class="text-center">Log in</h2>       
 
@@ -53,7 +78,36 @@
             <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
         </div>        
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#alert_login').hide();
+        $('#btnLogin').on('click', function(){
+            var username = $('#username').val();
+            var password = $('#password').val();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('login/authorize') ?>",
+                data: {username:username, password:password},
+                success: function (response) {
+                    // console.log(response);
+                    if (response >= 1){
+                        // $('#alert_login').removeClass('alert-danger');
+                        // $('#alert_login').addClass('alert-success');
+                        // $('#message_login').text('Berhasil Login!');
+                        window.location.assign("<?php echo base_url('admin');?>");
+                    }
+                    else{
+                        $('#alert_login').removeClass('alert-success');
+                        $('#alert_login').addClass('alert-danger');
+                        $('#message_login').text('Gagal Login!, Periksa Username dan Password!');
+                    }
+                }
+            });
+            $('#alert_login').show('slow',function(){});
+        })
+    })
+</script>
 </body>
 </html>                                		                            
