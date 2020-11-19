@@ -5,12 +5,18 @@ class Search extends CI_Controller
         parent::__construct();
         $this->load->model('M_Search','search');
     }
+    function json() {
+        header('Content-Type: application/json');
+        echo $this->search->json();
+    }
     public function index(){
         $search_query = $this->input->get('query');
         $data['waktu_pencarian'] = 0;
         // cek query kosong atau tidak, kalau tidak kosong masuk ke proses pencarian. 
         // kalau kosong masuk ke main page
         if (isset($search_query)){
+            // reset semua bobot setelah semua data tampil jadi 0 
+            $this->search->resetAllBobot();
             // panggil method procesSearch + waktu kalkulasi
             $tic = microtime(true);
             $this->processSearch($search_query);
@@ -21,14 +27,16 @@ class Search extends CI_Controller
             $data['koleksi_skripsi'] = $this->search->tampilHasil()->result();
             $data['keyword'] = $search_query;
         }
+        else{
+            // reset semua bobot setelah semua data tampil jadi -1
+            // -1 karena untuk ditampilkan semua di halaman awal
+            $this->search->resetAllBobot(-1);
+            $data['koleksi_skripsi'] = '';
+        }
         $this->load->view('template/public/pub_header');
-        // $this->load->view('public/result_page', $data);
         $this->load->view('public/main_page', $data);
         $this->load->view('template/public/pub_footer');
         $this->load->view('public/scripts/main_page');
-
-        // reset semua bobot setelah semua data tampil
-        $this->search->resetAllBobot();
     }
 
     // method untuk proses pencarian
@@ -67,7 +75,7 @@ class Search extends CI_Controller
 
             // update bobot
             $data = array(
-                'cosim' => $bobot_cosim,
+                'cosim' => round($bobot_cosim*100,2),
                 'jaccard' => $bobot_jaccard,
                 'dice' => $bobot_dice,
                 'euclidean' => $bobot_euclidean,
@@ -75,6 +83,7 @@ class Search extends CI_Controller
             $this->search->updateBobot($data,$id);
         }
     }
+    
 }
 
 ?>
