@@ -15,6 +15,10 @@
             };
         };
         var t = $("#tabel_data_dashboard").dataTable({
+            // ganti bahasa datatable jadi bahasa indonesia
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json"
+            },
             initComplete: function() {
                 var api = this.api();
                 $('#mytable_filter input')
