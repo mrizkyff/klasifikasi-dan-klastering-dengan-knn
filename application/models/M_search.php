@@ -18,7 +18,7 @@
 			return $this->db->update('ta_a11',$data);
 		}
 
-		public function tampilHasil($tahun, $minat){
+		public function tampilHasil($tahun = '', $minat = ''){
             $this->db->select('*');
             if ($tahun != '' and $minat != ''){
                 $this->db->where('tahun', $tahun);
