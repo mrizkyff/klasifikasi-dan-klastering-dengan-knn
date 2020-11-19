@@ -45,21 +45,22 @@
 
     <!-- kontainer utama -->
     <div class="container mt-2 mb-1">
-
         <div class="row mt-2" style="background-color: #ececec; padding-bottom: 20px;">
             <div class="col">
                 <h1 class="text-center">LOGO PERPUSTAKAAN</h1>
                 <div class="container">
-                    <table border="0" style="margin-left: auto; margin-right: auto; width: 80%;">
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control form-control-sm" id="search" name="search" placeholder="Judul Dokumen">
-                            </td>
-                            <td >
-                                <button type="submit" class="btn btn-primary btn-sm">Cari</button>
-                            </td>
-                        </tr>                    
-                    </table>
+                    <form action="<?php echo base_url().'search/index'?>" method='get'>
+                        <table border="0" style="margin-left: auto; margin-right: auto; width: 80%;">
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" id="search" name='query' value='<?php echo isset($keyword)?$keyword:''?>' placeholder="Judul Dokumen">
+                                </td>
+                                <td >
+                                    <button type="submit" class="btn btn-primary btn-sm">Cari</button>
+                                </td>
+                            </tr>                    
+                        </table>
+                    <form>
                 </div>
             </div>
         </div>
@@ -67,62 +68,90 @@
         <!-- awal kontainer baris hasil pencarian -->
         <div class="row mt-2">
             <!-- awal kontainer kolom hasil pencarian -->
+            <!-- warna kuning -->
             <div class="col" style="background-color: #ffefd8">
-            <!-- tampilkan query dan waktu pencarian -->
-            <div class="mt-2">
-                <p>Ditemukan 1287 hasil pencarian untuk "<b>Metode naive bayes</b>" dalam 1.109239 detik.</p>
-
-            </div>
-            <!-- akhir tampilkan query dan waktu pencarian -->
-                <?php 
-                    for ($x = 0; $x <=10; $x+=1){
-                ?>
                 <!-- awal kontainer item dokumen -->
                 <div class="container mb-2 mt-2">
-                    <div class="row" style="background-color: #fed9c9">
-                        <table border="0" width="100%">
-                            <tr>
-                                <td rowspan="5" width="100px">
-                                    <div style="width: 80px; height: 120px; background-color: #ACDDDE">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="3">Rekayasa Perangkat Lunak Terstruktur dan Berorientasi Objek - Software Engineering Ninth Edition International Edition</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h6>Rosa A.S dan M. Shalahuddin - A11.0000.11111</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h6>Teknik Informatika - S1</h6>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="row mr-0">
-                                        <div class="col">
-                                            <h6>2011</h6>
-                                        </div>
-                                        <div class="col">
-                                            <a href="#" class="float-right">Download File</a>
-                                            <a class="float-right">&nbsp | &nbsp</a>
-                                            <a href="#" class="float-right">Meta</a>
-                                        </div>  
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table border='0' id='daftar_dokumen' width="100%">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <?php
+                                                if (isset($keyword)){
+                                            ?>
+                                                <p>Ditemukan <?= sizeof($koleksi_skripsi) ?> hasil pencarian untuk "<b><?= $keyword ?></b>" <?= $waktu_pencarian.' detik' ?>.</p>
+                                            <?php 
+                                                }
+                                            ?>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    if(isset($koleksi_skripsi)){
+                                        foreach ($koleksi_skripsi as $data) {
+                                ?>
+                                    <tr>
+                                        <td>
+                                            <!-- warna orange -->
+                                            <table border='0' width='100%' style="background-color: #fed9c9" class='mt-1'>
+                                                <tr>
+                                                    <td rowspan='5' width='100px'>
+                                                        <!-- warna biru, sesuai fakultas -->
+                                                        <div style="width: 80px; height: 120px; background-color: #ACDDDE">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#"><?= $data->judul?></a>
+                                                        <p class='text-gray'>(<?= ($data->cosim*100).'%'?>)</p class='text-gray'>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h6><?= $data->penulis.' - '.$data->nim?></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <!-- prodi sesuai pada db -->
+                                                        <h6>Teknik Informatika - S1</h6>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="row mr-0">
+                                                            <div class="col">
+                                                                <h6><?= $data->tahun?></h6>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a href="#" class="float-right">Download File</a>
+                                                                <a class="float-right">&nbsp | &nbsp</a>
+                                                                <a href="#" class="float-right">Meta</a>
+                                                            </div>  
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                    
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                <?php        
+                                        }
+                                    }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!-- akhir kontainer item dokumen -->
-                <?php
-                    }
-                ?>
+                
             </div>
             <!-- akhir kontainer kolom hasil pencarian -->
 
