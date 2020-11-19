@@ -77,74 +77,27 @@
                             <table border='0' id='daftar_dokumen' width="100%">
                                 <thead>
                                     <tr>
-                                        <td>
+                                        <th>Custom</th>
+                                        <th>
                                             <?php
                                                 if (isset($keyword)){
                                             ?>
-                                                <p>Ditemukan <?= sizeof($koleksi_skripsi) ?> hasil pencarian untuk "<b><?= $keyword ?></b>" <?= $waktu_pencarian.' detik' ?>.</p>
+                                                Ditemukan <?= sizeof($koleksi_skripsi) ?> hasil pencarian untuk "<b><?= $keyword ?></b>" <?= $waktu_pencarian.' detik' ?>.
                                             <?php 
                                                 }
+                                                else{
                                             ?>
-                                        </td>
+                                                Koleksi Tugas Akhir
+                                            <?php
+                                                }
+                                            ?>
+                                        </th>
+                                        <th>Cosim</th>
                                     </tr>
                                 </thead>
+                                    
                                 <tbody>
-                                <?php
-                                    if(isset($koleksi_skripsi)){
-                                        foreach ($koleksi_skripsi as $data) {
-                                ?>
-                                    <tr>
-                                        <td>
-                                            <!-- warna orange -->
-                                            <table border='0' width='100%' style="background-color: #fed9c9" class='mt-1'>
-                                                <tr>
-                                                    <td rowspan='5' width='100px'>
-                                                        <!-- warna biru, sesuai fakultas -->
-                                                        <div style="width: 80px; height: 120px; background-color: #ACDDDE">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><?= $data->judul?></a>
-                                                        <p class='text-gray'>(<?= ($data->cosim*100).'%'?>)</p class='text-gray'>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h6><?= $data->penulis.' - '.$data->nim?></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <!-- prodi sesuai pada db -->
-                                                        <h6>Teknik Informatika - S1</h6>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="row mr-0">
-                                                            <div class="col">
-                                                                <h6><?= $data->tahun?></h6>
-                                                            </div>
-                                                            <div class="col">
-                                                                <a href="#" class="float-right">Download File</a>
-                                                                <a class="float-right">&nbsp | &nbsp</a>
-                                                                <a href="#" class="float-right">Meta</a>
-                                                            </div>  
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                    
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                <?php        
-                                        }
-                                    }
-                                ?>
+                                
                                 </tbody>
                             </table>
                         </div>
