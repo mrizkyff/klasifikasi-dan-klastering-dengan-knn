@@ -6,33 +6,39 @@ class Search extends CI_Controller
         $this->load->model('M_Search','search');
     }
     public function index(){
+        $search_query = $this->input->get('query');
         $data['waktu_pencarian'] = 0;
-        $data['keyword'] = '';
-        $data['tahun'] = '';
-        $data['minat'] = '';
+        // cek query kosong atau tidak, kalau tidak kosong masuk ke proses pencarian. 
+        // kalau kosong masuk ke main page
+        if (isset($search_query)){
+            // panggil method procesSearch + waktu kalkulasi
+            $tic = microtime(true);
+            $this->processSearch($search_query);
+            $toc = microtime(true);
+            $data['waktu_pencarian'] = $toc-$tic;
+
+            // ambil data dari db
+            $data['koleksi_skripsi'] = $this->search->tampilHasil()->result();
+            $data['keyword'] = $search_query;
+        }
         $this->load->view('template/public/pub_header');
         // $this->load->view('public/result_page', $data);
-        $this->load->view('public/main_page');
+        $this->load->view('public/main_page', $data);
         $this->load->view('template/public/pub_footer');
-        $this->load->view('public/scripts/result_page');
+        $this->load->view('public/scripts/main_page');
 
+        // reset semua bobot setelah semua data tampil
+        $this->search->resetAllBobot();
     }
 
-    // method untuk preprocessing
-    public function prep($teks_dokumen){
-        $this->load->library('preprocessing');
-        return $this->preprocessing->preprocess($teks_dokumen);
-    }
-
-    // method untuk perhitungan vsm
-    public function vsm($search_query, $dokumen){
-        $this->load->library('vsm');
-        return $this->vsm->get_rank($search_query, $dokumen);
-    }
-
+    // method untuk proses pencarian
     public function processSearch($search_query){
+        // panggil library preprocessing dan vsm
+        $this->load->library('preprocessing');
+        $this->load->library('vsm');
+
         // step 1 mendapatkan kata dasar dari query (preprocessing query)
-        $search_query = $this->prep($search_query);
+        $search_query = $this->preprocessing->preprocess($search_query);
 
         // step 2 mendapatkan dokumen ke array
         $koleksi_dokumen = $this->search->doctoArray();
@@ -48,7 +54,7 @@ class Search extends CI_Controller
         }
 
         // step 3 mendapatkan ranking dengan VSM
-        $allRank = $this->vsm($search_query, $arrayDokumen);
+        $allRank = $this->vsm->get_rank($search_query, $arrayDokumen);
 
         // step 4 memasukkan cos similarity ke database
         $jumlahDokumen = count($allRank['cosinus_similarity']);
@@ -59,7 +65,7 @@ class Search extends CI_Controller
             $bobot_dice = $allRank['dice_similarity'][$i]['ranking'];
             $bobot_euclidean = $allRank['euclidean_similarity'][$i]['ranking'];
 
-            // update
+            // update bobot
             $data = array(
                 'cosim' => $bobot_cosim,
                 'jaccard' => $bobot_jaccard,
@@ -69,44 +75,6 @@ class Search extends CI_Controller
             $this->search->updateBobot($data,$id);
         }
     }
-    public function cari(){
-        $search_query = $this->input->get('query');
-        $search_tahun = $this->input->get('tahun');
-        $search_minat = $this->input->get('minat');
-        $tic = microtime(true);
-        $this->processSearch($search_query);
-        $toc = microtime(true);
-        $data['waktu_pencarian'] = $toc-$tic;
-        $data['koleksi_skripsi'] = $this->search->tampilHasil($search_tahun, $search_minat)->result();
-        $data['keyword'] = $search_query;
-        $data['tahun'] = $search_tahun;
-        $data['minat'] = $search_minat;
-        $this->load->view('template/public/pub_header');
-        $this->load->view('public/result_page',$data);
-        $this->load->view('template/public/pub_footer');
-        $this->load->view('public/scripts/result_page');
-        // reset semua bobot
-        $this->search->resetAllBobot();
-    }
-
-    public function cari_spesifik(){
-        $data['tahun'] = '';
-        $data['minat'] = '';
-        $nama = $this->input->post('nama');
-        $nim = $this->input->post('nim');
-        $tic = microtime(true);
-        $data['koleksi_skripsi'] = $this->search->specific_search($nim, $nama);
-        $toc = microtime(true);
-        $data['waktu_pencarian'] = $toc-$tic;
-        $data['keyword'] = 'nama:'.$nama.' ; nim:'.$nim;
-        $data['specific'] = true;
-
-        $this->load->view('template/public/pub_header');
-        $this->load->view('public/result_page', $data);
-        $this->load->view('template/public/pub_footer');
-        $this->load->view('public/scripts/result_page');
-    }
-    
 }
 
 ?>
