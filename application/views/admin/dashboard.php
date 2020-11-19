@@ -112,16 +112,7 @@
                 <label for="judul">Judul Tugas Akhir</label>
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="minat">Minat</label>
-                <select name="minat" class="form-control">
-                  <option value="">Pilih...</option>
-                  <option value="sc">Sistem Cerdas</option>
-                  <option value="rpl">Rekayasa Perangkat Lunak</option>
-                </select>
-            </div>
-            
-                <label for="file">Upload File</label>
+            <label for="file">Upload File</label>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" name="file">
                 <label for="file" class="custom-file-label">.pdf</label>
@@ -167,15 +158,6 @@
                 <label for="judul">Judul Tugas Akhir</label>
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="minat">Minat</label>
-                <select name="minat" class="form-control">
-                  <option value="">Pilih...</option>
-                  <option value="sc">Sistem Cerdas</option>
-                  <option value="rpl">Rekayasa Perangkat Lunak</option>
-                </select>
-            </div>
-        
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

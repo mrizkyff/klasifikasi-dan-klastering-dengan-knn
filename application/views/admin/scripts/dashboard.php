@@ -41,6 +41,7 @@
                 {"data": "title", "searchable":false, "orderable":false},
                 {"data": "timestamp"},
                 {"data": "aksi", "orderable": false},
+                // dibikin off karena untuk search nya, kalau gadikasih ini gabisa cari dari nim dan nama dan judul soale satu kolom banyak data
                 {"data": "penulis", "visible": false, "searchable":true},
                 {"data": "nim", "visible": false, "searchable":true},
                 {"data": "judul", "visible": false, "searchable":true},
