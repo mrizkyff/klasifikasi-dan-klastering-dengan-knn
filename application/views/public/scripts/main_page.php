@@ -56,4 +56,22 @@
                 var index = page * length + (iDisplayIndex + 1);
             }
         });
+
+        $(document).on('click', "#btnMeta", function(){
+            var penulis = $(this).data('penulis');
+            var tahun = $(this).data('tahun');
+            var judul = $(this).data('judul');
+            var nim = $(this).data('nim');
+            var fakultas = 'Ilmu Komputer';
+            var prodi = 'Teknik Informatika - S1';
+            $('#modalMeta').modal('show');
+            console.log(penulis, tahun, judul, nim);
+            $('#meta_judul').text(judul);
+            $('#meta_penulis').text(penulis);
+            $('#meta_tahun').text(tahun);
+            $('#meta_nim').text(nim);
+            $('#meta_fakultas').text(fakultas);
+            $('#meta_prodi').text(prodi);
+        })
+            
 </script>

@@ -105,6 +105,63 @@
                 </div>
                 <!-- akhir kontainer item dokumen -->
                 
+                <!-- awal modal meta -->
+                <!-- Button trigger modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="modalMeta" tabindex="-1" role="dialog" aria-labelledby="modalMeta" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Meta Data Dokumen</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div class="modal-body">
+                                <table border='0'>
+                                    <tr>
+                                        <td rowspan="6" style="width:120px; height:135px; background-color:red;">
+                                        </td>
+                                        <td rowspan="6" width="7px"></td>
+                                        <td width="120px"><h6>Judul</h6></td>
+                                        <td>:</td>
+                                        <td><h6 id="meta_judul"></h6></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Fakultas</h6></td>
+                                        <td>:</td>
+                                        <td><h6 id="meta_fakultas"></h6></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Program Studi</h6></td>
+                                        <td>:</td>
+                                        <td><h6 id="meta_prodi"></h6></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Penulis</h6></td>
+                                        <td>:</td>
+                                        <td><h6 id="meta_penulis"></h6></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>No. Induk Mhs</h6></td>
+                                        <td>:</td>
+                                        <td><h6 id="meta_nim"></h6></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Tahun Terbit</h6></td>
+                                        <td>:</td>
+                                        <td><h6 id="meta_tahun"></h6></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- akhir modal meta -->
+
             </div>
             <!-- akhir kontainer kolom hasil pencarian -->
 

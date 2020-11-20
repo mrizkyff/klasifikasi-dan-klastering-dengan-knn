@@ -87,7 +87,7 @@
                             <div class="col">
                                 <a href="upload/$5" target="_blank" rel="noopener noreferrer" class="float-right">Download File</a>
                                 <a class="float-right">&nbsp | &nbsp</a>
-                                <a href="#" class="float-right">Meta</a>
+                                <a href="javascript:void(0);" id="btnMeta" data-penulis="$2" data-tahun="$4" data-judul="$1" data-nim="$3" class="float-right">Meta</a>
                             </div>  
                         </div>
                     </td>
