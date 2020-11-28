@@ -3,19 +3,19 @@
     {
         public function doctoArray(){
             $this->db->select('*');
-            return $this->db->get('ta_a11');
+            return $this->db->get('tb_dokumen');
         }
         
         public function specific_search($nim, $nama){
             $this->db->select('*');
             $this->db->like('nim' , $nim, 'both');
             $this->db->like('penulis', $nama, 'both');
-            return $this->db->get('ta_a11')->result();
+            return $this->db->get('tb_dokumen')->result();
         }
 
 		public function updateBobot($data, $id){
 			$this->db->where('id',$id);
-			return $this->db->update('ta_a11',$data);
+			return $this->db->update('tb_dokumen',$data);
 		}
 
 		public function tampilHasil($tahun = '', $minat = ''){
@@ -32,7 +32,7 @@
             }
             $this->db->where('cosim !=','0');
             $this->db->order_by("cosim","DESC");
-            return $this->db->get("ta_a11");
+            return $this->db->get("tb_dokumen");
         }
         
         public function resetAllBobot($value = 0){
@@ -41,12 +41,14 @@
                 'jaccard' => $value,
                 'dice' => $value,
             ];
-            $this->db->update('ta_a11', $data);
+            $this->db->update('tb_dokumen', $data);
         }
         function json() {
 			// jangan pakai bintang nanti tidak bisa search
-			$this->datatables->select('id, penulis, tahun, judul, file, nim, cosim');
-            $this->datatables->from('ta_a11');
+			$this->datatables->select('id, penulis, tahun, judul, file, nim, cosim, desc_fak, desc_prodi');
+            $this->datatables->from('tb_dokumen');
+            $this->datatables->join('tb_prodi', 'tb_dokumen.kode_prodi = tb_prodi.kode_prodi');
+            $this->datatables->join('tb_fakultas', 'tb_prodi.kode_fak = tb_fakultas.kode_fak');
             $this->datatables->where('cosim != ', '0');
             $this->datatables->add_column('koleksi_ta',
             '<table border="0" width="100%" style="background-color: #fed9c9" class="mt-1">
@@ -75,7 +77,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <h6>Teknik Informatika - S1</h6>
+                        <h6>$8 || $7</h6>
                     </td>
                 </tr>
                 <tr>
@@ -87,14 +89,14 @@
                             <div class="col">
                                 <a href="upload/$5" target="_blank" rel="noopener noreferrer" class="float-right">Download File</a>
                                 <a class="float-right">&nbsp | &nbsp</a>
-                                <a href="javascript:void(0);" id="btnMeta" data-penulis="$2" data-tahun="$4" data-judul="$1" data-nim="$3" class="float-right">Meta</a>
+                                <a href="javascript:void(0);" id="btnMeta" data-penulis="$2" data-tahun="$4" data-judul="$1" data-nim="$3" data-prodi="$7" data-fak="$8" class="float-right">Meta</a>
                             </div>  
                         </div>
                     </td>
                 </tr>
             </table>
             ',
-            'judul, penulis, nim, tahun, file, cosim');
+            'judul, penulis, nim, tahun, file, cosim, desc_prodi, desc_fak');
 
 			return $this->datatables->generate();
 		}

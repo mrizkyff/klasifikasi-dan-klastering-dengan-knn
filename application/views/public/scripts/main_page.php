@@ -62,8 +62,8 @@
             var tahun = $(this).data('tahun');
             var judul = $(this).data('judul');
             var nim = $(this).data('nim');
-            var fakultas = 'Ilmu Komputer';
-            var prodi = 'Teknik Informatika - S1';
+            var fakultas = $(this).data('prodi');
+            var prodi = $(this).data('fak');;
             $('#modalMeta').modal('show');
             console.log(penulis, tahun, judul, nim);
             $('#meta_judul').text(judul);

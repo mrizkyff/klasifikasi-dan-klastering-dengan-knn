@@ -33,10 +33,10 @@ class Admin extends CI_Controller {
 		$data = array(
 			'penulis' => $data['penulis'],
 			'tahun' => $data['tahun'],
-			'minat' => $data['minat'],
 			'judul' => $data['judul'],
 			'nim' => $data['nim'],
 			'token' => implode(',',$this->prep($data['judul'])),
+			'kode_prodi' => strtolower(substr($data['nim'],0,3)),
 		);
 		$data = $this->admin->updateData($data,$id);
 		echo json_encode($data);
@@ -68,15 +68,18 @@ class Admin extends CI_Controller {
 			// token adalah bentuk baku dari judul karena sudah dilakukan preprocessing
 			$token = implode(',',$this->prep($judul));
 
+			// parsing prodi
+			$prodi = strtolower(substr($nim,0,3));
+
 			$data = array(
 				'penulis' => $penulis,
 				'tahun' => $tahun,
 				'judul' => $judul,
 				'nim' => $nim,
-				'minat' => $minat,
 				'token' => $token,
 				'file' => $nama_file,
 				'timestamp' => $tanggal,
+				'kode_prodi' => $prodi
 			);
 
 			$result = $this->admin->simpanData($data);

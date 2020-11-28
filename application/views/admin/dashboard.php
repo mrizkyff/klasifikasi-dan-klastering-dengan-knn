@@ -44,7 +44,9 @@
                           <!-- <th>No</th> -->
                           <th width="250px">Penulis</th>
                           <th>Tahun</th>
-                          <th>Judul</th>
+                          <th width="700px">Judul</th>
+                          <th width="130px">Progdi</th>
+                          <th width="120px">Fakultas</th>
                           <th>Waktu</th>
                           <th width='11%'>Aksi</th>
                           <th>Penulis</th>
@@ -61,6 +63,8 @@
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
+                          <th>Progdi</th>
+                          <th>Fakultas</th>
                           <th>Waktu</th>
                           <th>Aksi</th>
                           <th>Penulis</th>

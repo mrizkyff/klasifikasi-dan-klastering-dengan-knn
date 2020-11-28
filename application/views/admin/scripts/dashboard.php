@@ -43,6 +43,8 @@
                 {"data": "author", "seachable":false, "orderable":false},
                 {"data": "tahun"},
                 {"data": "title", "searchable":false, "orderable":false},
+                {"data": "desc_prodi"},
+                {"data": "desc_fak"},
                 {"data": "timestamp"},
                 {"data": "aksi", "orderable": false},
                 // dibikin off karena untuk search nya, kalau gadikasih ini gabisa cari dari nim dan nama dan judul soale satu kolom banyak data

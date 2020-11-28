@@ -3,12 +3,12 @@
     {
         public function get_all_corpus(){
             $this->db->select('id, judul');
-            return $this->db->get('ta_a11')->result_array();
+            return $this->db->get('tb_dokumen')->result_array();
         }
         public function update_token($id, $data){
             $this->db->where('id',$id);
-            $this->db->update('ta_a11',$data);
+            $this->db->update('tb_dokumen',$data);
         }
     }
-    
+
 ?>
