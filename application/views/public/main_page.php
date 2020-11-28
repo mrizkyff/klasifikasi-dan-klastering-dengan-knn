@@ -78,7 +78,7 @@
                                 <thead>
                                     <tr>
                                         <th>Custom</th>
-                                        <th>
+                                        <td>
                                             <?php
                                                 if (isset($keyword)){
                                             ?>
@@ -91,7 +91,7 @@
                                             <?php
                                                 }
                                             ?>
-                                        </th>
+                                        </td>
                                         <th>Cosim</th>
                                     </tr>
                                 </thead>
@@ -239,7 +239,7 @@
                         </tr>
                         <tr>
                             <td class="td_sidebar">
-                                <a href="#">Animasi - S1</a>
+                                <a href="#">Animasi - D4</a>
                             </td>
                         </tr>
                         <tr>
