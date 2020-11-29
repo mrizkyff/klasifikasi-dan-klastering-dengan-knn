@@ -63,15 +63,17 @@
             var judul = $(this).data('judul');
             var nim = $(this).data('nim');
             var fakultas = $(this).data('prodi');
-            var prodi = $(this).data('fak');;
+            var prodi = $(this).data('fak');
+            var kodeFak = $(this).data('kdfak');
             $('#modalMeta').modal('show');
-            console.log(penulis, tahun, judul, nim);
+            console.log(penulis, tahun, judul, nim, kodeFak);
             $('#meta_judul').text(judul);
             $('#meta_penulis').text(penulis);
             $('#meta_tahun').text(tahun);
             $('#meta_nim').text(nim);
             $('#meta_fakultas').text(fakultas);
             $('#meta_prodi').text(prodi);
+            $('#thumbnailSkripsiMeta').attr("src","http://localhost/ciLTE/asset/img/thumbnail_skripsi/"+kodeFak+".png");
         })
             
 </script>

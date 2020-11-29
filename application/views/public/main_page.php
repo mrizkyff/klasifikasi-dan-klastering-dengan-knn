@@ -120,7 +120,8 @@
                             <div class="modal-body">
                                 <table border='0'>
                                     <tr>
-                                        <td rowspan="6" style="width:120px; height:135px; background-color:red;">
+                                        <td rowspan="6" style="width:120px; height:135px;">
+                                            <img src="" alt="" id="thumbnailSkripsiMeta">
                                         </td>
                                         <td rowspan="6" width="7px"></td>
                                         <td width="120px"><h6>Judul</h6></td>
