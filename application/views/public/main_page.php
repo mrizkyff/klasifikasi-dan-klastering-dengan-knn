@@ -60,7 +60,7 @@
     <div class="container mt-2 mb-1">
         <div class="row mt-2" style="background-color: #ececec; padding-bottom: 20px;">
             <div class="col">
-                <h1 class="text-center">LOGO PERPUSTAKAAN</h1>
+                <h1 class="text-center">Katalog Koleksi Tugas Akhir</h1>
                 <div class="container">
                     <form action="<?php echo base_url().'search/index'?>" method='get'>
                         <table border="0" style="margin-left: auto; margin-right: auto; width: 80%;">
@@ -131,40 +131,45 @@
                                     </button>
                             </div>
                             <div class="modal-body">
-                                <table border='0'>
-                                    <tr>
-                                        <td rowspan="6" style="width:120px; height:135px;">
+                                <table>
+                                    <tr style="border-bottom:1px solid #a9a9a9; border-top: 1px solid #a9a9a9">
+                                        <td rowspan="7" style="width:120px; height:135px;">
                                             <img src="" alt="" id="thumbnailSkripsiMeta">
                                         </td>
-                                        <td rowspan="6" width="7px"></td>
-                                        <td width="120px"><h6>Judul</h6></td>
-                                        <td>:</td>
-                                        <td><h6 id="meta_judul"></h6></td>
+                                        <td class="align-text-bottom" rowspan="7" width="7px"></td>
+                                        <td class="align-text-bottom" width="120px"><h6>Judul</h6></td>
+                                        <td class="align-text-bottom">:</td>
+                                        <td class="align-text-bottom"><h6 id="meta_judul"></h6></td>
                                     </tr>
-                                    <tr>
-                                        <td><h6>Fakultas</h6></td>
-                                        <td>:</td>
-                                        <td><h6 id="meta_fakultas"></h6></td>
+                                    <tr style="border-bottom:1px solid #a9a9a9">
+                                        <td class="align-text-bottom"><h6>Fakultas</h6></td>
+                                        <td class="align-text-bottom">:</td>
+                                        <td class="align-text-bottom"><h6 id="meta_fakultas"></h6></td>
                                     </tr>
-                                    <tr>
-                                        <td><h6>Program Studi</h6></td>
-                                        <td>:</td>
-                                        <td><h6 id="meta_prodi"></h6></td>
+                                    <tr style="border-bottom:1px solid #a9a9a9">
+                                        <td class="align-text-bottom"><h6>Program Studi</h6></td>
+                                        <td class="align-text-bottom">:</td>
+                                        <td class="align-text-bottom"><h6 id="meta_prodi"></h6></td>
                                     </tr>
-                                    <tr>
-                                        <td><h6>Penulis</h6></td>
-                                        <td>:</td>
-                                        <td><h6 id="meta_penulis"></h6></td>
+                                    <tr style="border-bottom:1px solid #a9a9a9">
+                                        <td class="align-text-bottom"><h6>Penulis</h6></td>
+                                        <td class="align-text-bottom">:</td>
+                                        <td class="align-text-bottom"><h6 id="meta_penulis"></h6></td>
                                     </tr>
-                                    <tr>
-                                        <td><h6>No. Induk Mhs</h6></td>
-                                        <td>:</td>
-                                        <td><h6 id="meta_nim"></h6></td>
+                                    <tr style="border-bottom:1px solid #a9a9a9">
+                                        <td class="align-text-bottom"><h6>No. Induk Mhs</h6></td>
+                                        <td class="align-text-bottom">:</td>
+                                        <td class="align-text-bottom"><h6 id="meta_nim"></h6></td>
                                     </tr>
-                                    <tr>
-                                        <td><h6>Tahun Terbit</h6></td>
-                                        <td>:</td>
-                                        <td><h6 id="meta_tahun"></h6></td>
+                                    <tr style="border-bottom:1px solid #a9a9a9">
+                                        <td class="align-text-bottom"><h6>Tahun Terbit</h6></td>
+                                        <td class="align-text-bottom">:</td>
+                                        <td class="align-text-bottom"><h6 id="meta_tahun"></h6></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid #a9a9a9">
+                                        <td class="align-text-bottom"><h6>Lokasi Rak</h6></td>
+                                        <td class="align-text-bottom">:</td>
+                                        <td class="align-text-bottom"><h6 id="meta_lokasi">G.4</h6></td>
                                     </tr>
                                 </table>
                             </div>
