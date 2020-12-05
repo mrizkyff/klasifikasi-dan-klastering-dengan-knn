@@ -21,10 +21,20 @@ class Admin extends CI_Controller {
 	public function index(){
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/korpus');
 		$this->load->view('template/admin/footer');
-		$this->load->view('admin/scripts/dashboard');
+		$this->load->view('admin/scripts/korpus');
 
+	}
+
+	public function rak(){
+		// ambil data rak
+		$data['rak'] = $this->admin->getAllRak();
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('admin/rak',$data);
+		$this->load->view('template/admin/footer');
+		$this->load->view('admin/scripts/rak');
 	}
 
 	public function update_data(){
