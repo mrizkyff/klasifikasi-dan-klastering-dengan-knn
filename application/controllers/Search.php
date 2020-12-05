@@ -34,6 +34,7 @@ class Search extends CI_Controller
             $data['koleksi_skripsi'] = '';
         }
         $this->load->view('template/public/pub_header');
+        $this->load->view('template/public/pub_navbar');
         $this->load->view('public/main_page', $data);
         $this->load->view('template/public/pub_footer');
         $this->load->view('public/scripts/main_page');

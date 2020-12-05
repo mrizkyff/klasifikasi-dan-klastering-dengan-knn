@@ -28,11 +28,35 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?php echo base_url().'admin' ?>" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
+            <a href="<?php echo base_url()?>" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Database
+                Dashboard Admin
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url()?>" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Halaman Utama
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url().'admin' ?>" class="nav-link">
+              <i class="nav-icon fas fa-database"></i>
+              <p>
+                Kelola Database
                 <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url()?>" class="nav-link">
+              <i class="nav-icon fas fa-archive"></i>
+              <p>
+                Kelola Rak
               </p>
             </a>
           </li>
