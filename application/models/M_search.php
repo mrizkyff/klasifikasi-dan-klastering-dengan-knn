@@ -84,9 +84,6 @@
                         <script type="text/javascript">
                             var prodi = $("#hidden_prodi").val();
                             var kodeFak = $("#hidden_kdfak").val();
-                            console.log(prodi);
-                            console.log(kodeFak);
-                            console.log("halo");
                             if (kodeFak == "fik"){
                                 fakultas = "Fakultas Ilmu Komputer";
                             }
