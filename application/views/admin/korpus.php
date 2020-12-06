@@ -45,6 +45,7 @@
                           <th width="250px">Penulis</th>
                           <th>Tahun</th>
                           <th width="700px">Judul</th>
+                          <th>Lokasi</th>
                           <th width="130px">Progdi</th>
                           <th width="120px">Fakultas</th>
                           <th>Waktu</th>
@@ -63,6 +64,7 @@
                           <th>Penulis</th>
                           <th>Tahun</th>
                           <th>Judul</th>
+                          <th>Lokasi</th>
                           <th>Progdi</th>
                           <th>Fakultas</th>
                           <th>Waktu</th>
@@ -116,6 +118,55 @@
                 <label for="judul">Judul Tugas Akhir</label>
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="judul">Lokasi</label>
+                <div class="row">
+                  <div class="col">
+                    <select name="lokasi_alpha" id="lokasi_alpha" class="custom-select">
+                      <option value="arsip">Arsip</option>
+                      <option value="a">A</option>
+                      <option value="b">B</option>
+                      <option value="c">C</option>
+                      <option value="d">D</option>
+                      <option value="e">E</option>
+                      <option value="f">F</option>
+                      <option value="g">G</option>
+                      <option value="h">H</option>
+                      <option value="i">I</option>
+                    </select>
+                    <div class="valid-feedback">
+                      Lokasi dapat digunakan!
+                    </div>
+                    <div class="invalid-feedback">
+                      Lokasi tidak dapat digunakan!
+                    </div>
+                  </div>
+                  <div class="col">
+                    <select name="lokasi_numeric" id="lokasi_numeric" class="custom-select">
+                      <option value="">-</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                    </select>
+                  </div>
+                  <div class="col-2">
+                    <button class="btn btn-info" id="btn_cek_lokasi">Cek</button>
+                  </div>
+                </div>
+            </div>
             <label for="file">Upload File</label>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" name="file">
@@ -161,6 +212,56 @@
             <div class="form-group">
                 <label for="judul">Judul Tugas Akhir</label>
                 <input type="text" name="judul" placeholder="Judul" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="judul">Lokasi</label>
+                <input type="hidden" id="lokasi_sekarang" name="lokasi_sekarang">
+                <div class="row">
+                  <div class="col">
+                    <select name="lokasi_alpha_edit" id="lokasi_alpha_edit" class="custom-select">
+                      <option value="arsip">Arsip</option>
+                      <option value="a">A</option>
+                      <option value="b">B</option>
+                      <option value="c">C</option>
+                      <option value="d">D</option>
+                      <option value="e">E</option>
+                      <option value="f">F</option>
+                      <option value="g">G</option>
+                      <option value="h">H</option>
+                      <option value="i">I</option>
+                    </select>
+                    <div class="valid-feedback">
+                      Lokasi dapat digunakan!
+                    </div>
+                    <div class="invalid-feedback">
+                      Lokasi tidak dapat digunakan!
+                    </div>
+                  </div>
+                  <div class="col">
+                    <select name="lokasi_numeric_edit" id="lokasi_numeric_edit" class="custom-select">
+                      <option value="">-</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                    </select>
+                  </div>
+                  <div class="col-2">
+                    <button class="btn btn-info" id="btn_cek_lokasi_edit">Cek</button>
+                  </div>
+                </div>
             </div>
     </div>
     <div class="modal-footer">

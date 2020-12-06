@@ -62,9 +62,25 @@
             var tahun = $(this).data('tahun');
             var judul = $(this).data('judul');
             var nim = $(this).data('nim');
-            var fakultas = $(this).data('prodi');
-            var prodi = $(this).data('fak');
+            var fakultas = '';
+            var prodi = $(this).data('prodi');
             var kodeFak = $(this).data('kdfak');
+            var lokasi = $(this).data('kdrak');
+            if (kodeFak == 'fik'){
+                fakultas = 'Fakultas Ilmu Komputer';
+            }
+            else if (kodeFak == 'fib'){
+                fakultas = 'Fakultas Ilmu Budaya';
+            }
+            else if (kodeFak == 'feb'){
+                fakultas = 'Fakultas Ekonomi dan Bisnis';
+            }
+            else if (kodeFak == 'fkes'){
+                fakultas = 'Fakultas Kesehatan';
+            }
+            else if (kodeFak == 'ft'){
+                fakultas = 'Fakultas Teknik';
+            }
             $('#modalMeta').modal('show');
             console.log(penulis, tahun, judul, nim, kodeFak);
             $('#meta_judul').text(judul);
@@ -73,6 +89,7 @@
             $('#meta_nim').text(nim);
             $('#meta_fakultas').text(fakultas);
             $('#meta_prodi').text(prodi);
+            $('#meta_lokasi').text(lokasi);
             $('#thumbnailSkripsiMeta').attr("src","http://localhost/ciLTE/asset/img/thumbnail_skripsi/"+kodeFak+".png");
         })
             

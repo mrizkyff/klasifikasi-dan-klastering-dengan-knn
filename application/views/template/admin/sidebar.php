@@ -53,7 +53,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url()?>" class="nav-link">
+            <a href="<?php echo base_url('admin/rak')?>" class="nav-link">
               <i class="nav-icon fas fa-archive"></i>
               <p>
                 Kelola Rak

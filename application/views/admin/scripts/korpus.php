@@ -43,6 +43,7 @@
                 {"data": "author", "seachable":false, "orderable":false},
                 {"data": "tahun"},
                 {"data": "title", "searchable":false, "orderable":false},
+                {"data": "lokasi", "visible": true, "searchable":true},
                 {"data": "desc_prodi"},
                 {"data": "desc_fak"},
                 {"data": "timestamp"},
@@ -53,7 +54,7 @@
                 {"data": "judul", "visible": false, "searchable":true},
             ],
             // order menurut urutan kolom
-            order: [[4, 'desc']],
+            order: [[7, 'desc']],
             rowCallback: function(row, data, iDisplayIndex) {
                 var info = this.fnPagingInfo();
                 var page = info.iPage;
@@ -63,6 +64,50 @@
             }
         });
 
+        // cekKetersediaan lokasi edit
+        $('#btn_cek_lokasi_edit').click(function (e) { 
+            e.preventDefault();
+            var alpha = $('#lokasi_alpha_edit').val();
+            var numeric = $('#lokasi_numeric_edit').val();
+            if (alpha != 'arsip' && numeric == ""){
+                $('#lokasi_alpha_edit').addClass('is-invalid');
+                $('#lokasi_numeric_edit').addClass('is-invalid');
+
+                $('#lokasi_alpha_edit').removeClass('is-valid');
+                $('#lokasi_numeric_edit').removeClass('is-valid');
+            }
+            else if(alpha == 'arsip' && numeric != ""){
+                $('#lokasi_alpha_edit').addClass('is-invalid');
+                $('#lokasi_numeric_edit').addClass('is-invalid');
+
+                $('#lokasi_alpha_edit').removeClass('is-valid');
+                $('#lokasi_numeric_edit').removeClass('is-valid');
+            }
+            else{
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo base_url()?>admin/cek_lokasi",
+                    data: {alpha: alpha, numeric:numeric},
+                    dataType: "JSON",
+                    success: function (response) {
+                        if (parseInt(response[0]["tersedia"])>0){
+                            $('#lokasi_alpha_edit').addClass('is-valid');
+                            $('#lokasi_numeric_edit').addClass('is-valid');
+    
+                            $('#lokasi_alpha_edit').removeClass('is-invalid');
+                            $('#lokasi_numeric_edit').removeClass('is-invalid');
+                        }
+                        else if(parseInt(response[0]["tersedia"]) == 0){
+                            $('#lokasi_alpha_edit').addClass('is-invalid');
+                            $('#lokasi_numeric_edit').addClass('is-invalid');
+    
+                            $('#lokasi_alpha_edit').removeClass('is-valid');
+                            $('#lokasi_numeric_edit').removeClass('is-valid');
+                        }
+                    }
+                });            
+            }
+        });
 
         // getEdit
         $('#tabel_data_dashboard').on('click','.edit_record',function(event){
@@ -73,8 +118,15 @@
             var judul = $(this).data('judul');
             var minat = $(this).data('minat');
             var nim = $(this).data('nim');
+            var lokasi = $(this).data('lokasi');
+            $('[name = lokasi_sekarang]').val(lokasi);
+            lokasi = lokasi.split(".");
+            var alpha =  lokasi[0].toLowerCase();
+            var numeric = lokasi[1];
             // console.log(id, penulis, tahun, judul, minat);
             // set modal edit
+            console.log(alpha);
+            console.log(numeric);
             $('#modal_edit').modal('show');
             $('[name = id]').val(id);
             $('[name = penulis]').val(penulis);
@@ -82,6 +134,8 @@
             $('[name = judul]').val(judul);
             $('[name = minat]').val(minat);
             $('[name = nim]').val(nim);
+            $('#lokasi_alpha_edit').val(alpha);
+            $('#lokasi_numeric_edit').val(numeric);
         })
 
         // aksi edit
@@ -101,7 +155,13 @@
                     $('[name = jurusan]').val();
                     $('[name = minat]').val();
                     $('[name = nim]').val();
+                    $('#lokasi_alpha_edit').val();
+                    $('#lokasi_numeric_edit').val();
                     $('#modal_edit').modal('hide');
+                    $('#lokasi_alpha_edit').removeClass('is-valid');
+                    $('#lokasi_numeric_edit').removeClass('is-valid');
+                    $('#lokasi_alpha_edit').removeClass('is-invalid');
+                    $('#lokasi_numeric_edit').removeClass('is-invalid');
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
 
                     // munculkan alert di dashboard
@@ -171,6 +231,51 @@
             });
         });
 
+        // cekKetersediaan lokasi tambah
+        $('#btn_cek_lokasi').click(function (e) { 
+            e.preventDefault();
+            var alpha = $('#lokasi_alpha').val();
+            var numeric = $('#lokasi_numeric').val();
+            if (alpha != 'arsip' && numeric == ""){
+                $('#lokasi_alpha').addClass('is-invalid');
+                $('#lokasi_numeric').addClass('is-invalid');
+
+                $('#lokasi_alpha').removeClass('is-valid');
+                $('#lokasi_numeric').removeClass('is-valid');
+            }
+            else if(alpha == 'arsip' && numeric != ""){
+                $('#lokasi_alpha').addClass('is-invalid');
+                $('#lokasi_numeric').addClass('is-invalid');
+
+                $('#lokasi_alpha').removeClass('is-valid');
+                $('#lokasi_numeric').removeClass('is-valid');
+            }
+            else{
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo base_url()?>admin/cek_lokasi",
+                    data: {alpha: alpha, numeric:numeric},
+                    dataType: "JSON",
+                    success: function (response) {
+                        if (parseInt(response[0]["tersedia"])>0){
+                            $('#lokasi_alpha').addClass('is-valid');
+                            $('#lokasi_numeric').addClass('is-valid');
+    
+                            $('#lokasi_alpha').removeClass('is-invalid');
+                            $('#lokasi_numeric').removeClass('is-invalid');
+                        }
+                        else if(parseInt(response[0]["tersedia"]) == 0){
+                            $('#lokasi_alpha').addClass('is-invalid');
+                            $('#lokasi_numeric').addClass('is-invalid');
+    
+                            $('#lokasi_alpha').removeClass('is-valid');
+                            $('#lokasi_numeric').removeClass('is-valid');
+                        }
+                    },
+                });            
+            }
+        });
+
         // getCreate
         $('#btn_create').click(function (e) { 
             e.preventDefault();
@@ -195,6 +300,12 @@
                     $('[name= minat]').val("");
                     $('[name= file]').val("");
                     $('[name= nim]').val("");
+                    $('[name= lokasi_alpha]').val("");
+                    $('[name= lokasi_numeric]').val("");
+                    $('#lokasi_alpha').removeClass('is-valid');
+                    $('#lokasi_numeric').removeClass('is-valid');
+                    $('#lokasi_alpha').removeClass('is-invalid');
+                    $('#lokasi_numeric').removeClass('is-invalid');
                     $('#tabel_data_dashboard').DataTable().ajax.reload();
 
                     if(response){

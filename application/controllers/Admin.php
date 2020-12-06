@@ -37,8 +37,20 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/scripts/rak');
 	}
 
+	public function cek_lokasi(){
+		$alpha = $this->input->post('alpha');
+		$numeric = $this->input->post('numeric');
+		$kode_lokasi = strtolower($alpha).$numeric;
+		$data = $this->admin->cekLokasi($kode_lokasi);
+		echo json_encode($data);
+	}
+
 	public function update_data(){
 		$data = $this->input->post();
+		$alpha = $data['lokasi_alpha_edit'];
+		$numeric = $data['lokasi_numeric_edit'];
+		$kode_lokasi = strtolower($alpha).$numeric;
+		$kode_lokasi_sekarang = str_replace(".", "", strtolower($data['lokasi_sekarang']));
 		$id = $data['id'];
 		$data = array(
 			'penulis' => $data['penulis'],
@@ -47,8 +59,14 @@ class Admin extends CI_Controller {
 			'nim' => $data['nim'],
 			'token' => implode(',',$this->prep($data['judul'])),
 			'kode_prodi' => strtolower(substr($data['nim'],0,3)),
+			'kode_rak' => $kode_lokasi,
 		);
 		$data = $this->admin->updateData($data,$id);
+
+		// kurangi jumlah lokasi yang dipilih
+		$data = $this->admin->updateTersedia($kode_lokasi);
+		// tambah jumlah lokasi sekarang
+		$data = $this->admin->updateTersediaSekarang($kode_lokasi_sekarang);
 		echo json_encode($data);
 	}
 
@@ -75,6 +93,9 @@ class Admin extends CI_Controller {
 			$judul = $this->input->post('judul');
 			$minat = $this->input->post('minat');
 			$nim = $this->input->post('nim');
+			$alpha = $this->input->post('lokasi_alpha');
+			$numeric = $this->input->post('lokasi_numeric');
+			$kode_lokasi = strtolower($alpha).$numeric;
 			// token adalah bentuk baku dari judul karena sudah dilakukan preprocessing
 			$token = implode(',',$this->prep($judul));
 
@@ -89,10 +110,14 @@ class Admin extends CI_Controller {
 				'token' => $token,
 				'file' => $nama_file,
 				'timestamp' => $tanggal,
-				'kode_prodi' => $prodi
+				'kode_prodi' => $prodi,
+				'kode_rak' => $kode_lokasi,
 			);
 
+			// simpan ke tb_dokumen
 			$result = $this->admin->simpanData($data);
+			// kurangi lokasi tersedia
+			$result = $this->admin->updateTersedia($kode_lokasi);
 			echo json_encode($result);
 		}
 		

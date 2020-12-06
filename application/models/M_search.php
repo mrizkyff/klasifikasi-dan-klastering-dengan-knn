@@ -45,16 +45,17 @@
         }
         function json() {
 			// jangan pakai bintang nanti tidak bisa search
-			$this->datatables->select('id, penulis, tahun, judul, file, nim, cosim, desc_fak, desc_prodi, tb_fakultas.kode_fak');
+			$this->datatables->select('tb_dokumen.id, penulis, tahun, judul, file, nim, cosim, desc_fak, desc_prodi, tb_fakultas.kode_fak, lokasi');
             $this->datatables->from('tb_dokumen');
             $this->datatables->join('tb_prodi', 'tb_dokumen.kode_prodi = tb_prodi.kode_prodi');
             $this->datatables->join('tb_fakultas', 'tb_prodi.kode_fak = tb_fakultas.kode_fak');
+            $this->datatables->join('tb_rak', 'tb_dokumen.kode_rak = tb_rak.id', 'left');
             $this->datatables->where('cosim != ', '0');
             $this->datatables->add_column('koleksi_ta',
             '<table border="0" width="100%" style="background-color: #fed9c9" class="mt-1">
                 <tr>
                     <td rowspan="5" width="100px">
-                        <img src="http://localhost/ciLTE/asset/img/thumbnail_skripsi/$9.png" style="width:80px; height:120px">
+                        <img src="http://localhost/ciLTE/asset/img/thumbnail_skripsi/$8.png" style="width:80px; height:120px">
                     </td>
                     <td>
                         <a href="#">$1</a>
@@ -77,7 +78,34 @@
                 </tr>
                 <tr>
                     <td>
-                        <h6>$8 || $7</h6>
+                        <input type="hidden" id="hidden_prodi" value="$7">
+                        <input type="hidden" id="hidden_kdfak" value="$8">
+                        <h6 class="field_fakultas_prodi"></h6>
+                        <script type="text/javascript">
+                            var prodi = $("#hidden_prodi").val();
+                            var kodeFak = $("#hidden_kdfak").val();
+                            console.log(prodi);
+                            console.log(kodeFak);
+                            console.log("halo");
+                            if (kodeFak == "fik"){
+                                fakultas = "Fakultas Ilmu Komputer";
+                            }
+                            else if (kodeFak == "fib"){
+                                fakultas = "Fakultas Ilmu Budaya";
+                            }
+                            else if (kodeFak == "feb"){
+                                fakultas = "Fakultas Ekonomi dan Bisnis";
+                            }
+                            else if (kodeFak == "fkes"){
+                                fakultas = "Fakultas Kesehatan";
+                            }
+                            else if (kodeFak == "ft"){
+                                fakultas = "Fakultas Teknik";
+                            }
+                            else{
+                            }
+                            $(".field_fakultas_prodi").text(fakultas+" || "+prodi);
+                        </script>
                     </td>
                 </tr>
                 <tr>
@@ -89,14 +117,14 @@
                             <div class="col">
                                 <a href="upload/$5" target="_blank" rel="noopener noreferrer" class="float-right">Download File</a>
                                 <a class="float-right">&nbsp | &nbsp</a>
-                                <a href="javascript:void(0);" id="btnMeta" data-penulis="$2" data-tahun="$4" data-judul="$1" data-nim="$3" data-prodi="$7" data-fak="$8" data-kdfak="$9" class="float-right">Meta</a>
+                                <a href="javascript:void(0);" id="btnMeta" data-penulis="$2" data-tahun="$4" data-judul="$1" data-nim="$3" data-prodi="$7" data-kdfak="$8" data-kdrak="$9" class="float-right">Meta</a>
                             </div>  
                         </div>
                     </td>
                 </tr>
             </table>
             ',
-            'judul, penulis, nim, tahun, file, cosim, desc_prodi, desc_fak, kode_fak');
+            'judul, penulis, nim, tahun, file, cosim, desc_prodi, kode_fak, lokasi');
 
 			return $this->datatables->generate();
 		}
