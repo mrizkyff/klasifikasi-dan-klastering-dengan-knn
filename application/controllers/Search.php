@@ -10,6 +10,19 @@ class Search extends CI_Controller
         echo $this->search->json();
     }
     public function index(){
+        // get all prodi
+        $data['fakultas'] = $this->search->getAllFakultas();
+        $data['prodi'] = array(
+            'fik' => $this->search->getProdiByKodeFak("fik"),
+            'fib' => $this->search->getProdiByKodeFak("fib"),
+            'feb' => $this->search->getProdiByKodeFak("feb"),
+            'fkes' => $this->search->getProdiByKodeFak("fkes"),
+            'ft' => $this->search->getProdiByKodeFak("ft"),
+        );
+
+        // var_dump($data["prodi"]["fik"]);
+        // die();
+
         $search_query = $this->input->get('query');
         $data['waktu_pencarian'] = 0;
         // cek query kosong atau tidak, kalau tidak kosong masuk ke proses pencarian. 

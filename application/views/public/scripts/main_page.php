@@ -1,14 +1,8 @@
 <script>
-    // $(document).ready(function () {
-    //     $('#daftar_dokumen').DataTable({
-    //         "ordering": false,
-    //         "searching": false,
-    //         "lengthChange": false,
-    //         "language": {
-    //                 "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json"
-    //         }
-    //     });
-    // });
+    var filterTahun = '';
+    var filterProdi = '';
+    var filterTextProdi = '';
+    var filterTextTahun = '';
     $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
         {
             return {
@@ -21,7 +15,7 @@
                 "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
             };
         };
-        var t = $("#daftar_dokumen").dataTable({
+        var t = $("#daftar_dokumen").DataTable({
             initComplete: function() {
                 var api = this.api();
                 $('#mytable_filter input')
@@ -32,6 +26,7 @@
                     }
                 });
             },
+            sDom: 'lrtip',
             language: {
                     "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json"
             },
@@ -40,13 +35,16 @@
             },
             processing: true,
             serverSide: true,
-            searching: false,
+            searching: true,
             lengthChange: false,
             ajax: {"url": "<?php echo base_url('search/json')?>", "type": "POST"},
             columns: [
                 {"data": "id", "visible" : false},
-                {"data": "koleksi_ta", "orderable": false},
+                {"data": "koleksi_ta", "orderable": false, "visible":true},
                 {"data": "cosim", "orderable": true, "visible": false},
+                {"data": "tahun", "orderable": true, "visible": false},
+                {"data": "kode_prodi", "orderable": true, "visible": false},
+                {"data": "tag", "orderable": true, "visible": false},
             ],
             order: [[2, 'desc']],
             rowCallback: function(row, data, iDisplayIndex) {
@@ -92,5 +90,40 @@
             $('#meta_lokasi').text(lokasi);
             $('#thumbnailSkripsiMeta').attr("src","http://localhost/ciLTE/asset/img/thumbnail_skripsi/"+kodeFak+".png");
         })
+
+        // awal filtering
+        function filter_(tahun, prodi, desc_prodi){
+            filter = '';
+            if (prodi == ''){
+                filterTahun = tahun;
+                filterTextTahun = "tahun "+filterTahun;
+            }
+            else if(tahun == ''){
+                filterProdi = prodi;
+                filterTextProdi = ", program studi "+desc_prodi;
+            }
+            filter = filterTahun+filterProdi;
+            // filter = tahun+" "+prodi;
+            t.search(filter, true, false, true).draw();
+            // t.column(3).search(2015).draw();
+            $("#show_filter").text("filter: "+filterTextTahun+filterTextProdi);
+            $("#clearFilter").text(' reset filter');
+            console.log(filter);
+        }
+        // akhir filtering
+
+        // bersihkan filter
+        $("#clearFilter").click(function (e) { 
+            e.preventDefault();
+            t.search("", true, false, true).draw();
+            $("#show_filter").text("");
+            $("#clearFilter").text("");
+            filterTahun = '';
+            filterProdi = '';
+            filterTextProdi = '';
+            filterTextTahun = '';
+        });
+
+        
             
 </script>

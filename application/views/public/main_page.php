@@ -56,21 +56,24 @@
                                 <thead>
                                     <tr>
                                         <th>Custom</th>
-                                        <td>
+                                        <td id="header_daftar_dokumen">
                                             <?php
                                                 if (isset($keyword)){
                                             ?>
-                                                Ditemukan <?= sizeof($koleksi_skripsi) ?> hasil pencarian untuk "<b><?= $keyword ?></b>" <?= $waktu_pencarian.' detik' ?>.
+                                                Ditemukan <?= sizeof($koleksi_skripsi) ?> hasil pencarian untuk "<b><?= $keyword ?></b>" <?= $waktu_pencarian.' detik' ?>. <h6 style="display: inline-block;" id="show_filter"></h6><a id ="clearFilter" href="javascript:void(0)"></a>
                                             <?php 
                                                 }
                                                 else{
                                             ?>
-                                                Koleksi Tugas Akhir
+                                                 Koleksi Tugas Akhir <h6 style="display: inline-block;" id="show_filter"></h6><a id ="clearFilter" href="javascript:void(0)"></a>
                                             <?php
                                                 }
                                             ?>
                                         </td>
                                         <th>Cosim</th>
+                                        <th>Tahun</th>
+                                        <th>Prodi</th>
+                                        <th>Filter</th>
                                     </tr>
                                 </thead>
                                     
@@ -158,36 +161,17 @@
                         <tr>
                             <th class="text-center">Tahun</th>
                         </tr>
+                        <?php 
+                            for ($tahun=2020; $tahun >= 2015; $tahun--) { 
+                        ?>
                         <tr>
                             <td class="td_sidebar">
-                                <a href="#">2020</a>
+                                <a href="javascript:void(0);" onclick="filter_(<?= $tahun ?>,'','')" ><?= $tahun ?></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">2019</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">2018</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">2017</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">2016</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">2015</a>
-                            </td>
-                        </tr>
+                        <?php
+                            }
+                        ?>
                     </table>
                     <!-- akhir tabel tahun -->
 
@@ -196,126 +180,24 @@
                         <tr>
                             <th class="text-center">Program Studi</th>
                         </tr>
-                        <tr>
+                        <?php 
+                            foreach ($fakultas as $fak) {
+                        ?>
                             <th class="text-center">
-                                Fakultas Ilmu Komputer
+                                <?= $fak["desc_fak"] ?>
                             </th>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Teknik Informatika - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Sistem Informasi - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Desain Komunikasi Visual - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Ilmu Komunikasi - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Animasi - D4</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Film dan Televisi - D4</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Teknik Informatika - D3</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Broadcasting - D3</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                Fakultas Ekonomi dan Bisnis
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Manajemen - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Akuntansi - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                Fakultas Ilmu Budaya
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Sastra Inggris - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Sastra Jepang - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Manajemen Perhotelan - D4</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                Fakultas Kesehatan
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Kesehatan Masyarakat - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Kesehatan Lingkungan - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Rek. Medik & Informasi Kesehatan - D3</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">
-                                Fakultas Teknik
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Teknik Elektro - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Teknik Industri - S1</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_sidebar">
-                                <a href="#">Teknik Biomedis - S1</a>
-                            </td>
-                        </tr>
+                        <?php
+                                foreach ($prodi[$fak["kode_fak"]] as $pro) {
+                        ?>
+                                    <tr>
+                                        <td class="td_sidebar">
+                                            <a href="javascript:void(0);" onclick="filter_('','<?= $pro['kode_prodi'] ?>','<?= $pro['desc_prodi'] ?>')"><?= $pro['desc_prodi'] ?></a>
+                                        </td>
+                                    </tr>
+                        <?php
+                                }
+                            }
+                        ?>
                     </table>
                     <!-- akhir tabel program studi -->
                 </div>

@@ -45,7 +45,7 @@
         }
         function json() {
 			// jangan pakai bintang nanti tidak bisa search
-			$this->datatables->select('tb_dokumen.id, penulis, tahun, judul, file, nim, cosim, desc_fak, desc_prodi, tb_fakultas.kode_fak, lokasi');
+			$this->datatables->select('tb_dokumen.id, penulis, tahun, judul, file, nim, cosim, desc_fak, desc_prodi, tb_fakultas.kode_fak, lokasi, tb_dokumen.kode_prodi, tag');
             $this->datatables->from('tb_dokumen');
             $this->datatables->join('tb_prodi', 'tb_dokumen.kode_prodi = tb_prodi.kode_prodi');
             $this->datatables->join('tb_fakultas', 'tb_prodi.kode_fak = tb_fakultas.kode_fak');
@@ -78,31 +78,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="hidden" id="hidden_prodi" value="$7">
-                        <input type="hidden" id="hidden_kdfak" value="$8">
-                        <h6 class="field_fakultas_prodi"></h6>
-                        <script type="text/javascript">
-                            var prodi = $("#hidden_prodi").val();
-                            var kodeFak = $("#hidden_kdfak").val();
-                            if (kodeFak == "fik"){
-                                fakultas = "Fakultas Ilmu Komputer";
-                            }
-                            else if (kodeFak == "fib"){
-                                fakultas = "Fakultas Ilmu Budaya";
-                            }
-                            else if (kodeFak == "feb"){
-                                fakultas = "Fakultas Ekonomi dan Bisnis";
-                            }
-                            else if (kodeFak == "fkes"){
-                                fakultas = "Fakultas Kesehatan";
-                            }
-                            else if (kodeFak == "ft"){
-                                fakultas = "Fakultas Teknik";
-                            }
-                            else{
-                            }
-                            $(".field_fakultas_prodi").text(fakultas+" || "+prodi);
-                        </script>
+                        <h6>$7</h6>
                     </td>
                 </tr>
                 <tr>
@@ -122,9 +98,18 @@
             </table>
             ',
             'judul, penulis, nim, tahun, file, cosim, desc_prodi, kode_fak, lokasi');
-
 			return $this->datatables->generate();
-		}
+        }
+
+        public function getAllFakultas(){
+            $this->db->select('kode_fak, desc_fak');
+            return $this->db->get("tb_fakultas")->result_array();
+        }
+        
+        public function getProdiByKodeFak($kode_fak){
+            $this->db->select("kode_prodi, desc_prodi");
+            $this->db->where("kode_fak",$kode_fak);
+            return $this->db->get("tb_prodi")->result_array();
+        }
     }
-    
 ?>
