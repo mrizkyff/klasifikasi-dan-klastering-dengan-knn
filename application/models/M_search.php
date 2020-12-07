@@ -106,6 +106,23 @@
             return $this->db->get("tb_fakultas")->result_array();
         }
         
+        public function getAllProdi(){
+            $this->db->select('kode_prodi');
+            return $this->db->get('tb_prodi')->result();
+        }
+
+        public function getNumProdi($kode_prodi){
+            $this->db->select('*');
+            $this->db->where('kode_prodi',$kode_prodi);
+            return $this->db->get('tb_dokumen')->num_rows();
+        }
+        
+        public function getNumTahun($tahun){
+            $this->db->select('*');
+            $this->db->where('tahun',$tahun);
+            return $this->db->get('tb_dokumen')->num_rows();
+        }
+
         public function getProdiByKodeFak($kode_fak){
             $this->db->select("kode_prodi, desc_prodi");
             $this->db->where("kode_fak",$kode_fak);

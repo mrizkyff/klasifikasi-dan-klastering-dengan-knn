@@ -19,10 +19,19 @@ class Search extends CI_Controller
             'fkes' => $this->search->getProdiByKodeFak("fkes"),
             'ft' => $this->search->getProdiByKodeFak("ft"),
         );
+        
+        $allProdi = $this->search->getAllProdi();
+        $data['numProdi'] = [];
+        foreach ($allProdi as $prodi) {
+            $data['numProdi'][$prodi->kode_prodi] = $this->search->getNumProdi($prodi->kode_prodi); 
+        }
 
-        // var_dump($data["prodi"]["fik"]);
-        // die();
-
+        $allTahun = [2015, 2016, 2017, 2018, 2019, 2020];
+        $data['numTahun'] = [];
+        for ($i=0; $i < 6; $i++) { 
+            $data['numTahun'][$allTahun[$i]] = $this->search->getNumTahun($allTahun[$i]);
+        }
+        
         $search_query = $this->input->get('query');
         $data['waktu_pencarian'] = 0;
         // cek query kosong atau tidak, kalau tidak kosong masuk ke proses pencarian. 

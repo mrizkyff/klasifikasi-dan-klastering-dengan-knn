@@ -166,7 +166,7 @@
                         ?>
                         <tr>
                             <td class="td_sidebar">
-                                <a href="javascript:void(0);" onclick="filter_(<?= $tahun ?>,'','')" ><?= $tahun ?></a>
+                                <a href="javascript:void(0);" onclick="filter_(<?= $tahun ?>,'','')" ><?= $tahun ?> (<?= $numTahun[$tahun] ?>)</a>
                             </td>
                         </tr>
                         <?php
@@ -191,7 +191,7 @@
                         ?>
                                     <tr>
                                         <td class="td_sidebar">
-                                            <a href="javascript:void(0);" onclick="filter_('','<?= $pro['kode_prodi'] ?>','<?= $pro['desc_prodi'] ?>')"><?= $pro['desc_prodi'] ?></a>
+                                            <a href="javascript:void(0);" onclick="filter_('','<?= $pro['kode_prodi'] ?>','<?= $pro['desc_prodi'] ?>')"><?= $pro['desc_prodi'] ?> (<?= $numProdi[$pro['kode_prodi']]?>)</a>
                                         </td>
                                     </tr>
                         <?php
