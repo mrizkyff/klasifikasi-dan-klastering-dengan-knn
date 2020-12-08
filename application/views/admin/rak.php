@@ -49,7 +49,7 @@
                         </td>
                         <td>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped <?php if($r->tersedia/$r->kapasitas >= 0.67){echo "bg-success";} else if($r->tersedia/$r->kapasitas < 0.67 and $r->tersedia/$r->kapasitas >=0.33){echo "bg-warning";} else if($r->tersedia/$r->kapasitas < 0.33 or $r->tersedia == 0){echo "bg-danger";}  ?>" role="progressbar" style="width: <?php if($r->tersedia != 0){echo $r->tersedia/$r->kapasitas*20;}else{echo 2;}?>%" aria-valuenow="<?= $r->tersedia/$r->kapasitas*100 ?>" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-striped <?php if($r->tersedia/$r->kapasitas >= 0.67){echo "bg-success";} else if($r->tersedia/$r->kapasitas < 0.67 and $r->tersedia/$r->kapasitas >=0.33){echo "bg-warning";} else if($r->tersedia/$r->kapasitas < 0.33 or $r->tersedia == 0){echo "bg-danger";}  ?>" role="progressbar" style="width: <?php if($r->tersedia != 0){echo $r->tersedia/$r->kapasitas*50;}else{echo 2;}?>%" aria-valuenow="<?= $r->tersedia/$r->kapasitas*100 ?>" aria-valuemin="0" aria-valuemax="100">
                                 <?= $r->tersedia."/".$r->kapasitas ?>
                             </div>
                         </div>
