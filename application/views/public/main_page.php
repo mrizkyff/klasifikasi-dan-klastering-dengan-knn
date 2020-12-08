@@ -1,25 +1,5 @@
-<!doctype html>
-<html lang="en">
-  <head>
-  	<!-- custom style -->
-  	<style>
-  		.td_sidebar {
-  			border-bottom: 1px dashed red;
-  		}	
-  	</style>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-
-        
+       
 
     <!-- kontainer utama -->
     <div class="container mt-2 mb-1">
@@ -36,7 +16,18 @@
                                 <td >
                                     <button type="submit" class="btn btn-primary btn-sm">Cari</button>
                                 </td>
-                            </tr>                    
+                            </tr>
+                            <?php if(isset($keyword)){
+                            ?>
+                                <tr>
+                                    <td rowspan=2>
+                                        <input type="text" value="<?php echo isset($keyword_term)?"Kata dasar: ".implode(' ',$keyword_term):'';?>" id="keyword_term" style="background-color:transparent; border:0; font-size: 0.9em; width:100%;" readonly>
+                                    </td>
+                                </tr>         
+                            <?php
+                            }
+                            ?>           
+
                         </table>
                     <form>
                 </div>

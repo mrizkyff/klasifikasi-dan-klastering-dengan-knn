@@ -21,6 +21,9 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>asset/dist/css/adminlte.min.css">
 
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
 
   <!-- Data table -->
   <!-- <link rel="stylesheet" href="<?php echo base_url() ?>asset/plugins/datatables-bs4/css/dataTables.bootstrap4.css"> -->
@@ -35,6 +38,23 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>asset/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- custom style -->
+  <style>
+    .td_sidebar {
+      border-bottom: 1px dashed red;
+    }
+      mark {
+          background: orange;
+          color: inherit;
+          padding: 0;
+      }
+      .mark {
+          background: orange;
+          color: inherit;
+          padding: 0;
+      }
+
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

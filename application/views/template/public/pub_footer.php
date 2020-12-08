@@ -48,6 +48,8 @@
 <!-- JS Datatables -->
 <script src="<?php echo base_url() ?>asset/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?php echo base_url() ?>asset/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- js highlighter -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
 
 <!-- javasccript cdn -->
 <!-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>

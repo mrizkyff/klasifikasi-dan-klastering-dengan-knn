@@ -10,6 +10,10 @@ class Search extends CI_Controller
         echo $this->search->json();
     }
     public function index(){
+        // panggil libarry preprocess
+        $this->load->library('preprocessing');
+
+
         // get all prodi
         $data['fakultas'] = $this->search->getAllFakultas();
         $data['prodi'] = array(
@@ -20,18 +24,21 @@ class Search extends CI_Controller
             'ft' => $this->search->getProdiByKodeFak("ft"),
         );
         
+        // get semua jumlah dokumen setiap prodi
         $allProdi = $this->search->getAllProdi();
         $data['numProdi'] = [];
         foreach ($allProdi as $prodi) {
             $data['numProdi'][$prodi->kode_prodi] = $this->search->getNumProdi($prodi->kode_prodi); 
         }
 
+        // get semua jumlah dokumen setiap tahun
         $allTahun = [2015, 2016, 2017, 2018, 2019, 2020];
         $data['numTahun'] = [];
         for ($i=0; $i < 6; $i++) { 
             $data['numTahun'][$allTahun[$i]] = $this->search->getNumTahun($allTahun[$i]);
         }
         
+
         $search_query = $this->input->get('query');
         $data['waktu_pencarian'] = 0;
         // cek query kosong atau tidak, kalau tidak kosong masuk ke proses pencarian. 
@@ -47,7 +54,9 @@ class Search extends CI_Controller
 
             // ambil data dari db
             $data['koleksi_skripsi'] = $this->search->tampilHasil()->result();
+            // kembalikan query ke form
             $data['keyword'] = $search_query;
+            $data['keyword_term'] = $this->preprocessing->preprocess($search_query);
         }
         else{
             // reset semua bobot setelah semua data tampil jadi -1

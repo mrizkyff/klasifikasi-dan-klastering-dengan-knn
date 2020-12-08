@@ -58,8 +58,17 @@
                         <img src="http://localhost/ciLTE/asset/img/thumbnail_skripsi/$8.png" style="width:80px; height:120px">
                     </td>
                     <td>
-                        <a href="#">$1</a>
-                        <p class="cosim">$6%</p>
+                        <div class="context"><h6 style="display:inline;">$1</h6></div>
+                        <script>
+                            $(document).ready(function () {
+                                var keyword_term = $("#keyword_term").val();
+                                console.log(keyword_term);
+                                $("div.context").mark(keyword_term,{
+                                    "className":"highlighter"
+                                });
+                            });
+                        </script>
+                        <p style="display:inline;" class="cosim">$6%</p>
                         <script>
                             var cosim = $(".cosim").text();
                             if(parseInt(cosim) == -1){
