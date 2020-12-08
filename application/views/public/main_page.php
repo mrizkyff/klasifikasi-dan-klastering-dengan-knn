@@ -60,11 +60,20 @@
                                             <?php
                                                 }
                                             ?>
+                                            <br>
+                                            <div class="form-group row" style="float:right; margin-bottom:0;">
+                                                <label for="nimNama" class="col-sm-2 col-form-label">Cari</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" placeholder="Cari NIM atau Nama" id="nimNama" size="20" class="form-control form-control-sm">
+                                                </div>
+                                            </div> 
                                         </td>
                                         <th>Cosim</th>
                                         <th>Tahun</th>
                                         <th>Prodi</th>
                                         <th>Filter</th>
+                                        <th>Nim</th>
+                                        <th>Nama</th>
                                     </tr>
                                 </thead>
                                     

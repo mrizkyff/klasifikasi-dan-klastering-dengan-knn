@@ -45,6 +45,8 @@
                 {"data": "tahun", "orderable": true, "visible": false},
                 {"data": "kode_prodi", "orderable": true, "visible": false},
                 {"data": "tag", "orderable": true, "visible": false},
+                {"data": "nim", "orderable": true, "visible": false},
+                {"data": "penulis", "orderable": true, "visible": false},
             ],
             order: [[2, 'desc']],
             rowCallback: function(row, data, iDisplayIndex) {
@@ -108,6 +110,7 @@
             // t.column(3).search(2015).draw();
             $("#show_filter").text("filter: "+filterTextTahun+filterTextProdi);
             $("#clearFilter").text(' reset filter');
+            $('#nimNama').val("");
             console.log(filter);
         }
         // akhir filtering
@@ -124,5 +127,10 @@
             filterTextTahun = '';
         });
         
-            
+        // custom search name dan nim
+        $('#nimNama').keyup(function (e) { 
+            var nimNama = this.value;
+            console.log(nimNama);
+            t.search(nimNama, true, false, true).draw();
+        });
 </script>
