@@ -28,7 +28,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?php echo base_url()?>" class="nav-link">
+            <a href="<?php echo base_url('admin')?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard Admin
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url().'admin' ?>" class="nav-link">
+            <a href="<?php echo base_url().'admin/korpus' ?>" class="nav-link">
               <i class="nav-icon fas fa-database"></i>
               <p>
                 Kelola Database

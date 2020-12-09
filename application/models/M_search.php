@@ -116,7 +116,7 @@
         }
         
         public function getAllProdi(){
-            $this->db->select('kode_prodi');
+            $this->db->select('kode_prodi, desc_prodi');
             return $this->db->get('tb_prodi')->result();
         }
 

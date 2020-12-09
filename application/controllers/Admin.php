@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('m_admin','admin');
+		$this->load->model('m_search','search');
 
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("login"));
@@ -16,9 +17,18 @@ class Admin extends CI_Controller {
 	function json() {
         header('Content-Type: application/json');
         echo $this->admin->json();
-    }
+	}
 
 	public function index(){
+		$data['total_doc'] = $this->admin->countAllDoc(); 
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('admin/dashboard', $data);
+		$this->load->view('template/admin/footer');
+		$this->load->view('admin/scripts/dashboard');
+	}	
+
+	public function korpus(){
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('admin/korpus');
@@ -35,6 +45,29 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/rak',$data);
 		$this->load->view('template/admin/footer');
 		$this->load->view('admin/scripts/rak');
+	}
+
+	public function getDataRak(){
+		$data = $this->admin->getAllRak();
+		echo json_encode($data);
+	}
+	public function getDataDocPerProdi(){
+		$data_prodi = $this->search->getAllProdi();
+		$data = [];
+		foreach ($data_prodi as $key) {
+			array_push($data, ['kode_prodi' => $key->kode_prodi, 'desc_prodi' => $key->desc_prodi, 'jml' => $this->search->getNumProdi($key->kode_prodi)]);
+		}
+		echo json_encode($data);
+	}
+
+	public function getDataDocPerTahun(){
+		// get semua jumlah dokumen setiap tahun
+        $data = [];
+        for ($i=2015; $i <= 2020; $i++) { 
+			// array_push($data, [$i => $this->search->getNumTahun($i)]);
+			$data[$i] = $this->search->getNumTahun($i);
+		}
+		echo json_encode($data);
 	}
 
 	public function cek_lokasi(){

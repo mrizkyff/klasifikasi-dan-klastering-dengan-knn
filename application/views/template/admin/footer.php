@@ -57,5 +57,7 @@
 <script src="<?php echo base_url()?>asset/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url()?>asset/dist/js/demo.js"></script>
+<!-- CanvasJs -->
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>
 </html>

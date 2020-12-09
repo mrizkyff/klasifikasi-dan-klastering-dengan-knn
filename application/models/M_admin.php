@@ -57,7 +57,9 @@
 			$this->db->set('tersedia','tersedia+1', false);
 			return $this->db->update('tb_rak');
 		}
-
+		public function countAllDoc(){
+			return $this->db->get('tb_dokumen')->num_rows();
+		}
 		
 		
 	}
