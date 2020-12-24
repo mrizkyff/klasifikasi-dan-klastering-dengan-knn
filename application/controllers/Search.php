@@ -98,6 +98,7 @@ class Search extends CI_Controller
 
         // step 4 memasukkan cos similarity ke database
         $jumlahDokumen = count($allRank['cosinus_similarity']);
+        $data_batch =[];
         for ($i=0; $i < $jumlahDokumen; $i++) { 
             $id = $allRank['cosinus_similarity'][$i]['id_doc'];
             $bobot_cosim = $allRank['cosinus_similarity'][$i]['ranking'];
@@ -106,14 +107,17 @@ class Search extends CI_Controller
             // $bobot_euclidean = $allRank['euclidean_similarity'][$i]['ranking'];
 
             // update bobot
-            $data = array(
-                'cosim' => round($bobot_cosim*100,2),
-                'jaccard' => $bobot_jaccard,
-                'dice' => $bobot_dice,
+            $data_batch[] = array(
+                'id' => $id,
+                'cosim' => round($bobot_cosim*100,4),
+                'jaccard' => round($bobot_jaccard*100,4),
+                'dice' => round($bobot_dice*100,4),
                 // 'euclidean' => $bobot_euclidean,
             );
             $this->search->updateBobot($data,$id);
         }
+        $this->search->updateBobot($data_batch);
+        $this->session->set_userdata('update bobot=',(microtime(true))-$tic);
     }
     
 }

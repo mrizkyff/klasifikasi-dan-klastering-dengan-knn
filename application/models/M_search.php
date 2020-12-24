@@ -13,9 +13,9 @@
             return $this->db->get('tb_dokumen')->result();
         }
 
-		public function updateBobot($data, $id){
-			$this->db->where('id',$id);
-			return $this->db->update('tb_dokumen',$data);
+		public function updateBobot($data){
+			// $this->db->where('id',$id);
+			return $this->db->update_batch('tb_dokumen', $data, 'id');
 		}
 
 		public function tampilHasil($tahun = '', $minat = ''){
