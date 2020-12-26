@@ -104,7 +104,7 @@
                 filterProdi = prodi;
                 filterTextProdi = ", program studi "+desc_prodi;
             }
-            filter = filterTahun+filterProdi;
+            filter = filterTahun.toString()+filterTahun.toString()+filterProdi;
             // filter = tahun+" "+prodi;
             t.search(filter, true, false, true).draw();
             // t.column(3).search(2015).draw();

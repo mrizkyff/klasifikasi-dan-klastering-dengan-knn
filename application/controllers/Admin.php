@@ -145,7 +145,7 @@ class Admin extends CI_Controller {
 				'timestamp' => $tanggal,
 				'kode_prodi' => $prodi,
 				'kode_rak' => $kode_lokasi,
-				'tag' => $tahun.$prodi,
+				'tag' => $tahun.$tahun.$prodi,
 			);
 
 			// simpan ke tb_dokumen
