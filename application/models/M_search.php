@@ -62,10 +62,11 @@
                         <script>
                             $(document).ready(function () {
                                 var keyword_term = $("#keyword_term").val();
-                                console.log(keyword_term);
-                                $("div.context").mark(keyword_term,{
-                                    "className":"highlighter"
-                                });
+                                if(keyword_term !== undefined){
+                                    $("div.context").mark(keyword_term,{
+                                        "className":"highlighter"
+                                    });
+                                }
                             });
                         </script>
                         <p style="display:inline;" class="cosim">$6%</p>
