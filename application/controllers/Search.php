@@ -114,10 +114,8 @@ class Search extends CI_Controller
                 'dice' => round($bobot_dice*100,4),
                 // 'euclidean' => $bobot_euclidean,
             );
-            $this->search->updateBobot($data,$id);
         }
         $this->search->updateBobot($data_batch);
-        $this->session->set_userdata('update bobot=',(microtime(true))-$tic);
     }
     
 }
