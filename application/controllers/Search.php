@@ -110,8 +110,8 @@ class Search extends CI_Controller
             $data_batch[] = array(
                 'id' => $id,
                 'cosim' => round($bobot_cosim*100,4),
-                'jaccard' => round($bobot_jaccard*100,4),
-                'dice' => round($bobot_dice*100,4),
+                // 'jaccard' => round($bobot_jaccard*100,4),
+                // 'dice' => round($bobot_dice*100,4),
                 // 'euclidean' => $bobot_euclidean,
             );
         }
