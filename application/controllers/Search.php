@@ -3,7 +3,7 @@ class Search extends CI_Controller
 {
     public function __construct(){
         parent::__construct();
-        $this->load->model('M_Search','search');
+        $this->load->model('M_search','search');
     }
     function json() {
         header('Content-Type: application/json');
