@@ -33,7 +33,7 @@
         var dataPoints2 = [];
         var chart2 = new CanvasJS.Chart("chartProdi",
         {
-            theme: "light1",
+            theme: "light2",
             title:{
                 text: "Jumlah Koleksi per Prodi"
             },		
