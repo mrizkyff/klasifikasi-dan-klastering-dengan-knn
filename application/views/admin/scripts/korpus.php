@@ -280,6 +280,14 @@
         $('#btn_create').click(function (e) { 
             e.preventDefault();
             $('#modal_tambah').modal('show');
+            $('[name= penulis]').val("");
+            $('[name= tahun]').val("");
+            $('[name= judul]').val("");
+            $('[name= minat]').val("");
+            $('[name= file]').val("");
+            $('[name= nim]').val("");
+            $('[name= lokasi_alpha]').val("arsip");
+            $('[name= lokasi_numeric]').val("");
         });
 
         // aksiCreate
