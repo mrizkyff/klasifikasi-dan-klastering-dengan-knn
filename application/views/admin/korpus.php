@@ -287,6 +287,7 @@
       <div class="modal-body">
       <form id="form_hapus">
         <input type="hidden" name="id_hapus" id="id_hapus">
+        <input type="hidden" name="id_lokasi" id="id_lokasi">
         <div id="div_hapus"></div>
       </div>
       <div class="modal-footer">

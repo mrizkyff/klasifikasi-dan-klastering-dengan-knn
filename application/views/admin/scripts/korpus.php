@@ -191,9 +191,11 @@
         $('#tabel_data_dashboard').on('click','.hapus_record', function(){
             var id = $(this).data('id');
             var judul = $(this).data('judul');
+            var lokasi = $(this).data('lokasi').toLowerCase().split('.').join("");
             $('#modal_hapus').modal('show');
             $('#div_hapus').html('<p>Yakin untuk menghapus dokumen dengan judul <b>'+judul+'</b>?</p>');
             $('[name = id_hapus]').val(id);
+            $('[name = id_lokasi]').val(lokasi);
         })
 
         // aksiHapus

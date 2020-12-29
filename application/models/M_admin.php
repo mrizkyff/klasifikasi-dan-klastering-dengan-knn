@@ -18,7 +18,7 @@
 			$this->datatables->add_column('aksi', '
 			<a href="http://mrizkyff.com/upload/$5" target="_blank" class="badge-light"><i class="fas fa-file-pdf lead"></i></a>
 			<a href="javascript:void(0);" class="edit_record badge badge-info" data-id="$1" data-penulis="$2" data-tahun="$3" data-judul="$4" data-nim="$6" data-lokasi="$7"><i class="fas fa-edit lead"></i> Edit</a>
-			<a href="javascript:void(0);" class="hapus_record badge badge-danger" data-id="$1" data-judul="$4"><i class="fas fa-trash-alt lead"></i> Hapus</a>
+			<a href="javascript:void(0);" class="hapus_record badge badge-danger" data-id="$1" data-judul="$4" data-lokasi="$7"><i class="fas fa-trash-alt lead"></i> Hapus</a>
 			','id, penulis, tahun, judul, file, nim, lokasi');
 
 			return $this->datatables->generate();

@@ -108,7 +108,11 @@ class Admin extends CI_Controller {
 
 	public function hapus_data(){
 		$id = $this->input->post('id_hapus');
+		$id_lokasi = $this->input->post('id_lokasi');
+		// hapus data
 		$data = $this->admin->hapusData($id);
+		// update rak
+		$this->admin->updateTersediaSekarang($id_lokasi);
 		echo json_encode($data);
 	}
 
