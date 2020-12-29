@@ -102,9 +102,8 @@ class Search extends CI_Controller
         for ($i=0; $i < $jumlahDokumen; $i++) { 
             $id = $allRank['cosinus_similarity'][$i]['id_doc'];
             $bobot_cosim = $allRank['cosinus_similarity'][$i]['ranking'];
-            $bobot_jaccard = $allRank['jaccard_similarity'][$i]['ranking'];
-            $bobot_dice = $allRank['dice_similarity'][$i]['ranking'];
-            // $bobot_euclidean = $allRank['euclidean_similarity'][$i]['ranking'];
+            // $bobot_jaccard = $allRank['jaccard_similarity'][$i]['ranking'];
+            // $bobot_dice = $allRank['dice_similarity'][$i]['ranking'];
 
             // update bobot
             $data_batch[] = array(
@@ -112,7 +111,6 @@ class Search extends CI_Controller
                 'cosim' => round($bobot_cosim*100,4),
                 // 'jaccard' => round($bobot_jaccard*100,4),
                 // 'dice' => round($bobot_dice*100,4),
-                // 'euclidean' => $bobot_euclidean,
             );
         }
         $this->search->updateBobot($data_batch);
