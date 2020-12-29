@@ -85,6 +85,8 @@ class Admin extends CI_Controller {
 		$kode_lokasi = strtolower($alpha).$numeric;
 		$kode_lokasi_sekarang = str_replace(".", "", strtolower($data['lokasi_sekarang']));
 		$id = $data['id'];
+		// parsing prodi
+		$prodi = strtolower(substr($data['nim'],0,3));
 		$data = array(
 			'penulis' => $data['penulis'],
 			'tahun' => $data['tahun'],
@@ -93,6 +95,7 @@ class Admin extends CI_Controller {
 			'token' => implode(',',$this->prep($data['judul'])),
 			'kode_prodi' => strtolower(substr($data['nim'],0,3)),
 			'kode_rak' => $kode_lokasi,
+			'tag' => $data['tahun'].$data['tahun'].$prodi,
 		);
 		$data = $this->admin->updateData($data,$id);
 
