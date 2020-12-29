@@ -42,14 +42,14 @@
                       <tr>
                           <th>No.</th>
                           <!-- <th>No</th> -->
-                          <th width="250px">Penulis</th>
+                          <th width="150px">Penulis</th>
                           <th>Tahun</th>
-                          <th width="700px">Judul</th>
+                          <th>Judul</th>
                           <th>Lokasi</th>
-                          <th width="130px">Progdi</th>
-                          <th width="120px">Fakultas</th>
+                          <th width="100px">Progdi</th>
+                          <th>Fakultas</th>
                           <th>Waktu</th>
-                          <th width='11%'>Aksi</th>
+                          <th width='180px'>Aksi</th>
                           <th>Penulis</th>
                           <th>NIM</th>
                           <th>JUDUL</th>
