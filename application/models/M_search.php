@@ -98,7 +98,7 @@
                                 <h6>$4</h6>
                             </div>
                             <div class="col">
-                                <a href="upload/$5" target="_blank" rel="noopener noreferrer" class="float-right">Download File</a>
+                                <a href="http://mrizkyff.com/upload/$5" target="_blank" rel="noopener noreferrer" class="float-right">Download File</a>
                                 <a class="float-right">&nbsp | &nbsp</a>
                                 <a href="javascript:void(0);" id="btnMeta" data-penulis="$2" data-tahun="$4" data-judul="$1" data-nim="$3" data-prodi="$7" data-kdfak="$8" data-kdrak="$9" class="float-right">Meta</a>
                             </div>  
