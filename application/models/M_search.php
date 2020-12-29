@@ -69,7 +69,7 @@
                                 }
                             });
                         </script>
-                        <p style="display:inline;" class="cosim">$6%</p>
+                        <p style="display:inline;" class="cosim"><span class="badge badge-secondary">$6%</span></p>
                         <script>
                             var cosim = $(".cosim").text();
                             if(parseInt(cosim) == -1){
