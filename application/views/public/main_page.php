@@ -99,7 +99,7 @@
                                     </button>
                             </div>
                             <div class="modal-body">
-                                <table>
+                                <table width="100%">
                                     <tr style="border-bottom:1px solid #a9a9a9; border-top: 1px solid #a9a9a9">
                                         <td rowspan="7" style="width:120px; height:135px;">
                                             <img src="" alt="" id="thumbnailSkripsiMeta">
