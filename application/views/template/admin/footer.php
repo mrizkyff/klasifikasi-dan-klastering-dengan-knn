@@ -34,8 +34,6 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url()?>asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="<?php echo base_url()?>asset/plugins/chart.js/Chart.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?php echo base_url()?>asset/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
