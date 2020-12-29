@@ -83,19 +83,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <h6>$2 - $3</h6>
+                        <p style="display:inline">$2 - $3</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <h6>$7</h6>
+                        <p style="display:inline">$7</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="row mr-0">
                             <div class="col">
-                                <h6>$4</h6>
+                                <p style="display:inline">Tahun $4</p>
                             </div>
                             <div class="col">
                                 <a href="http://mrizkyff.com/upload/$5" target="_blank" rel="noopener noreferrer" class="float-right">Download File</a>
