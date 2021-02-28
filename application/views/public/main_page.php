@@ -21,7 +21,7 @@
                             ?>
                                 <tr>
                                     <td rowspan=2>
-                                        <input type="text" value="<?php echo isset($keyword_term)?"Kata dasar: ".implode(' ',$keyword_term):'';?>" id="keyword_term" style="background-color:transparent; border:0; font-size: 0.9em; width:100%;" readonly>
+                                        <input type="text" value="<?php echo isset($keyword_term)?"Katadasar: ".implode(' ',$keyword_term):'';?>" id="keyword_term" style="background-color:transparent; border:0; font-size: 0.9em; width:100%;" readonly>
                                     </td>
                                 </tr>         
                             <?php
