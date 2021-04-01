@@ -148,6 +148,9 @@
             }
             // print_r($arrayDokumen);
 
+            print_r($arrayDokumen);
+            print_r($kueri);
+            die();
             $rank = $this->vsm($kueri, $arrayDokumen, $debug=false);
             print_r($rank);
 

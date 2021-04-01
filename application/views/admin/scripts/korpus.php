@@ -14,7 +14,7 @@
                 "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
             };
         };
-        var t = $("#tabel_data_dashboard").dataTable({
+        var t = $("#tb_dataset").dataTable({
             // ganti bahasa datatable jadi bahasa indonesia
             "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json"
@@ -34,7 +34,7 @@
             },
             processing: true,
             serverSide: true,
-            ajax: {"url": "<?php echo base_url('admin/json')?>", "type": "POST"},
+            ajax: {"url": "<?php echo base_url('dataset/json')?>", "type": "POST"},
             columns: [
                 {
                     "data": "id",
